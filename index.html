@@ -1,4 +1,4 @@
-﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿<!DOCTYPE html>
+﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿<!DOCTYPE html>
 <html lang="zh-CN">
 <head>
 <meta charset="UTF-8">
@@ -2332,9 +2332,9 @@ body {
       <li><button class="nav-link active" data-section="home">首页</button></li>
       <li><button class="nav-link" data-section="experience">工作经历</button></li>
       <li><button class="nav-link" data-section="education">教育背景</button></li>
-      <li><button class="nav-link" data-section="skills">技能特长</button></li>
       <li><button class="nav-link" data-section="portfolio">作品集</button></li>
       <li><button class="nav-link" data-section="honors">证书荣誉</button></li>
+      <li><button class="nav-link" data-section="skills">技能特长</button></li>
     </ul>
   </div>
 </nav>
@@ -2587,100 +2587,6 @@ body {
     </div>
   </section>
 
-  <!-- 技能特长 -->
-  <!-- 技能与爱好（抽卡玩法） -->
-  <section class="section" id="skills">
-    <span class="section-eyebrow">Skills &amp; Life</span>
-    <h2 class="section-title">来抽一张我的档案卡 🃏</h2>
-    <p class="section-sub">技能与爱好混在同一副牌里，抽一张，翻面认识我</p>
-
-    <!-- Tab 切换 -->
-    <div class="card-tabs">
-      <button class="card-tab active" data-tab="all">全部</button>
-      <button class="card-tab" data-tab="skill">技能卡</button>
-      <button class="card-tab" data-tab="hobby">爱好卡</button>
-    </div>
-
-    <!-- 抽卡主区域 -->
-    <div class="card-area">
-      <!-- 左侧：卡背 + 按钮 -->
-      <div class="card-deck">
-        <!-- 叠牌效果（3张卡背错开） -->
-        <div class="card-deck-stack">
-          <div class="card-back card-back-3"></div>
-          <div class="card-back card-back-2"></div>
-          <div class="card-back card-back-1">
-            <div class="card-back-inner">
-              <div class="card-back-dot" style="top:18%;left:15%"></div>
-              <div class="card-back-dot" style="top:30%;right:20%"></div>
-              <div class="card-back-dot" style="bottom:25%;left:22%"></div>
-              <div class="card-back-dot" style="bottom:18%;right:15%"></div>
-              <div class="card-back-text">
-                <div class="card-back-logo">SY</div>
-                <div class="card-back-title">档案卡</div>
-              </div>
-            </div>
-          </div>
-        </div>
-
-        <!-- 牌库统计 -->
-        <div class="card-deck-info" id="deckInfo">6 张技能 · 5 张爱好</div>
-
-        <!-- 抽卡按钮 -->
-        <button class="card-draw-btn" id="drawBtn">
-          <span class="card-draw-btn-text">随机抽一张</span>
-          <span class="card-draw-btn-arrow">✨</span>
-        </button>
-
-        <!-- 已抽到计数 -->
-        <div class="card-drawn-count" id="drawnCount">已抽 0 / 11</div>
-      </div>
-
-      <!-- 右侧：抽卡结果展示 -->
-      <div class="card-reveal">
-        <!-- 3D翻转容器 -->
-        <div class="card-flip-container" id="flipContainer">
-          <div class="card-flip-inner" id="flipInner">
-            <!-- 卡正面 -->
-            <div class="card-face card-front" id="cardFront">
-              <img class="card-front-image" id="cardFrontImage" alt="">
-              <div class="card-front-tag" id="cardFrontTag">技能</div>
-              <div class="card-front-pattern"></div>
-              <div class="card-front-content">
-                <div class="card-front-type" id="cardFrontType">DRAWN FILE</div>
-                <div class="card-front-title" id="cardFrontTitle">点击抽卡</div>
-                <div class="card-front-sub" id="cardFrontSub">Ready to draw</div>
-              </div>
-              <div class="card-front-hint" id="cardFrontHint">点击翻面查看 ↻</div>
-            </div>
-
-            <!-- 卡背面 -->
-            <div class="card-face card-back-face" id="cardBackFace">
-              <div class="card-back-face-icon" id="cardBackIcon">🃏</div>
-              <div class="card-back-face-title" id="cardBackTitle">点击左边抽卡按钮</div>
-              <div class="card-back-face-desc" id="cardBackDesc">抽一张，翻面认识我</div>
-              <div class="card-back-face-tags" id="cardBackTags"></div>
-              <div class="card-back-face-rarity" id="cardBackRarity"></div>
-            </div>
-          </div>
-        </div>
-
-        <!-- 分页指示 -->
-        <div class="card-pagination" id="cardPagination">
-          <span class="card-page-current">00</span>
-          <span class="card-page-dash">——</span>
-          <span class="card-page-total">11</span>
-        </div>
-      </div>
-    </div>
-
-    <!-- 已抽到的卡列表（集齐提示） -->
-    <div class="card-collected" id="cardCollected" style="display:none;">
-      <div class="card-collected-title">🎉 全部集齐了！</div>
-      <div class="card-collected-sub">再抽就是重复啦，看看别的吧～</div>
-    </div>
-  </section>
-
   <!-- 作品集 -->
   <section class="section" id="portfolio">
     <span class="section-eyebrow">Portfolio</span>
@@ -2824,6 +2730,100 @@ body {
       <div class="honor-item"><span class="honor-dot"></span><span class="honor-text">百年优秀团干部</span><span class="honor-tag">学生会主席</span></div>
       <div class="honor-item"><span class="honor-dot"></span><span class="honor-text">七彩假期志愿服务活动全国银奖</span><span class="honor-tag">国家级</span></div>
       <div class="honor-item"><span class="honor-dot"></span><span class="honor-text">长沙市三好学生</span><span class="honor-tag">市级</span></div>
+    </div>
+  </section>
+
+  <!-- 技能特长 -->
+  <!-- 技能与爱好（抽卡玩法） -->
+  <section class="section" id="skills">
+    <span class="section-eyebrow">Skills &amp; Life</span>
+    <h2 class="section-title">来抽一张我的档案卡 🃏</h2>
+    <p class="section-sub">技能与爱好混在同一副牌里，抽一张，翻面认识我</p>
+
+    <!-- Tab 切换 -->
+    <div class="card-tabs">
+      <button class="card-tab active" data-tab="all">全部</button>
+      <button class="card-tab" data-tab="skill">技能卡</button>
+      <button class="card-tab" data-tab="hobby">爱好卡</button>
+    </div>
+
+    <!-- 抽卡主区域 -->
+    <div class="card-area">
+      <!-- 左侧：卡背 + 按钮 -->
+      <div class="card-deck">
+        <!-- 叠牌效果（3张卡背错开） -->
+        <div class="card-deck-stack">
+          <div class="card-back card-back-3"></div>
+          <div class="card-back card-back-2"></div>
+          <div class="card-back card-back-1">
+            <div class="card-back-inner">
+              <div class="card-back-dot" style="top:18%;left:15%"></div>
+              <div class="card-back-dot" style="top:30%;right:20%"></div>
+              <div class="card-back-dot" style="bottom:25%;left:22%"></div>
+              <div class="card-back-dot" style="bottom:18%;right:15%"></div>
+              <div class="card-back-text">
+                <div class="card-back-logo">SY</div>
+                <div class="card-back-title">档案卡</div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- 牌库统计 -->
+        <div class="card-deck-info" id="deckInfo">6 张技能 · 5 张爱好</div>
+
+        <!-- 抽卡按钮 -->
+        <button class="card-draw-btn" id="drawBtn">
+          <span class="card-draw-btn-text">随机抽一张</span>
+          <span class="card-draw-btn-arrow">✨</span>
+        </button>
+
+        <!-- 已抽到计数 -->
+        <div class="card-drawn-count" id="drawnCount">已抽 0 / 11</div>
+      </div>
+
+      <!-- 右侧：抽卡结果展示 -->
+      <div class="card-reveal">
+        <!-- 3D翻转容器 -->
+        <div class="card-flip-container" id="flipContainer">
+          <div class="card-flip-inner" id="flipInner">
+            <!-- 卡正面 -->
+            <div class="card-face card-front" id="cardFront">
+              <img class="card-front-image" id="cardFrontImage" alt="">
+              <div class="card-front-tag" id="cardFrontTag">技能</div>
+              <div class="card-front-pattern"></div>
+              <div class="card-front-content">
+                <div class="card-front-type" id="cardFrontType">DRAWN FILE</div>
+                <div class="card-front-title" id="cardFrontTitle">点击抽卡</div>
+                <div class="card-front-sub" id="cardFrontSub">Ready to draw</div>
+              </div>
+              <div class="card-front-hint" id="cardFrontHint">点击翻面查看 ↻</div>
+            </div>
+
+            <!-- 卡背面 -->
+            <div class="card-face card-back-face" id="cardBackFace">
+              <div class="card-back-face-icon" id="cardBackIcon">🃏</div>
+              <div class="card-back-face-title" id="cardBackTitle">点击左边抽卡按钮</div>
+              <div class="card-back-face-desc" id="cardBackDesc">抽一张，翻面认识我</div>
+              <div class="card-back-face-tags" id="cardBackTags"></div>
+              <div class="card-back-face-rarity" id="cardBackRarity"></div>
+            </div>
+          </div>
+        </div>
+
+        <!-- 分页指示 -->
+        <div class="card-pagination" id="cardPagination">
+          <span class="card-page-current">00</span>
+          <span class="card-page-dash">——</span>
+          <span class="card-page-total">11</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- 已抽到的卡列表（集齐提示） -->
+    <div class="card-collected" id="cardCollected" style="display:none;">
+      <div class="card-collected-title">🎉 全部集齐了！</div>
+      <div class="card-collected-sub">再抽就是重复啦，看看别的吧～</div>
     </div>
   </section>
 
