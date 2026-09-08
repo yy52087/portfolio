@@ -1,4 +1,4 @@
-﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿<!DOCTYPE html>
+﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿<!DOCTYPE html>
 <html lang="zh-CN">
 <head>
 <meta charset="UTF-8">
@@ -3647,26 +3647,30 @@ function drawCard() {
   drawnIds.add(pick.id);
   currentCardIndex = filtered.findIndex(c => c.id === pick.id);
 
-  // 如果当前卡是翻开的 → 先翻回去，再翻开新的
+  // 按钮暂时禁用，防止连点
+  drawBtn.disabled = true;
+
+  // 如果当前卡是翻开的 → 先翻回去
   if (isFlipped) {
     flipInner.classList.remove('flipped');
     isFlipped = false;
-    // 翻回半程时渲染新卡内容，然后自然翻开
+    // 翻回半程时渲染新卡内容
     setTimeout(() => {
       renderCard(pick);
       updateDrawnCount();
     }, 300);
-    setTimeout(() => {
-      flipInner.classList.add('flipped');
-      isFlipped = true;
-    }, 500);
   } else {
-    // 直接渲染 + 翻开
+    // 直接渲染
     renderCard(pick);
     updateDrawnCount();
+  }
+
+  // 停 2 秒让用户看清正面图片，再自动翻开
+  setTimeout(() => {
     flipInner.classList.add('flipped');
     isFlipped = true;
-  }
+    drawBtn.disabled = false;
+  }, 2000);
 }
 
 // 翻面（点击卡牌切换）
