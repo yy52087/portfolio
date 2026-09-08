@@ -1,4 +1,4 @@
-﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿<!DOCTYPE html>
+﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿<!DOCTYPE html>
 <html lang="zh-CN">
 <head>
 <meta charset="UTF-8">
@@ -3665,12 +3665,12 @@ function drawCard() {
     updateDrawnCount();
   }
 
-  // 停 2 秒让用户看清正面图片，再自动翻开
+  // 停 1 秒让用户看清正面图片，再自动翻开
   setTimeout(() => {
     flipInner.classList.add('flipped');
     isFlipped = true;
     drawBtn.disabled = false;
-  }, 2000);
+  }, 1000);
 }
 
 // 翻面（点击卡牌切换）
