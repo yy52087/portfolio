@@ -1,0 +1,15 @@
+# 依赖
+node_modules/
+package-lock.json
+
+# IDE / 工具配置
+.trae/
+.vscode/
+
+# 系统
+.DS_Store
+Thumbs.db
+
+# 脚本（网站运行不需要）
+*.ps1
+*.cs

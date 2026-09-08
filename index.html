@@ -1,0 +1,3713 @@
+﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>史雅靓 | 产品经理 · 个人简历</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<style>
+/* ==================== 全局重置与基础样式 ==================== */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+:root {
+  /* 主色调 - 克制墨青色系（参考 RAMYANG 设计语言浅色转译） */
+  --primary: #0F766E;        /* 墨青 teal-700：链接/小面积点缀 */
+  --primary-light: #14B8A6;  /* teal-500 */
+  --primary-dark: #0D5D56;   /* 深青 */
+  --ink: #141818;            /* 反色墨黑：主按钮、重强调 */
+  /* 点缀色（统一青色系，弱化多彩） */
+  --accent-cyan: #E8FBFF;    /* 极浅青：英文眉标底/高亮 */
+  --accent-cyan-text: #0E7490;
+  /* 背景色 */
+  --bg-white: #FFFFFF;
+  --bg-light: #FAFAFA;
+  --bg-gray: #F4F5F5;
+  /* 文字色 */
+  --text-primary: #1A1D1D;
+  --text-secondary: #545858;
+  --text-muted: #8A8F8F;
+  /* 边框与阴影 */
+  --border-light: #ECECEC;
+  --shadow-sm: 0 1px 3px rgba(0, 0, 0, 0.05);
+  --shadow-md: 0 8px 24px rgba(15, 23, 23, 0.08);
+  --shadow-lg: 0 14px 42px rgba(15, 23, 23, 0.12);
+  /* 圆角（收敛为小圆角） */
+  --radius-sm: 8px;
+  --radius-md: 12px;
+  --radius-lg: 16px;
+  /* 利落动效缓动 */
+  --ease: cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'PingFang SC', 'Microsoft YaHei', 
+               'Helvetica Neue', Arial, sans-serif;
+  background: var(--bg-light);
+  color: var(--text-primary);
+  line-height: 1.7;
+  min-height: 100vh;
+  overflow-x: hidden;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* ==================== 导航栏 ==================== */
+.navbar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 1000;
+  background: rgba(255, 255, 255, 0.92);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  box-shadow: var(--shadow-sm);
+  transition: all 0.15s var(--ease);
+}
+
+.nav-inner {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 24px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  height: 64px;
+}
+
+.nav-logo {
+  font-size: 20px;
+  font-weight: 700;
+  color: var(--primary);
+  letter-spacing: 1px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.nav-logo-dot {
+  width: 10px;
+  height: 10px;
+  background: var(--primary);
+  border-radius: 50%;
+}
+
+.nav-links {
+  display: flex;
+  list-style: none;
+  gap: 8px;
+}
+
+.nav-link {
+  padding: 10px 18px;
+  font-size: 14px;
+  font-weight: 500;
+  color: var(--text-secondary);
+  cursor: pointer;
+  border-radius: var(--radius-sm);
+  transition: color 0.15s var(--ease), background 0.15s var(--ease);
+  border: none;
+  background: transparent;
+  font-family: inherit;
+}
+
+.nav-link:hover {
+  color: var(--text-primary);
+  background: rgba(15, 118, 110, 0.06);
+}
+
+.nav-link.active {
+  color: var(--primary-dark);
+  background: var(--accent-cyan);
+  font-weight: 600;
+}
+
+/* 移动端汉堡菜单按钮 */
+.menu-toggle {
+  display: none;
+  flex-direction: column;
+  gap: 5px;
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 8px;
+}
+
+.menu-toggle span {
+  width: 24px;
+  height: 2px;
+  background: var(--text-primary);
+  border-radius: 2px;
+  transition: all 0.15s var(--ease);
+}
+
+/* ==================== 主内容区 ==================== */
+.main-content {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 96px 24px 64px;
+  min-height: 100vh;
+}
+
+/* 滚动式布局：所有栏目平铺显示，点击导航平滑滚动 */
+.section {
+  display: block;
+  scroll-margin-top: 80px;
+  padding: 48px 0 24px;
+  border-top: 1px solid var(--border-light, rgba(0,0,0,0.06));
+}
+.section:first-of-type {
+  border-top: none;
+  padding-top: 0;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* 英文眉标：小字、大字距、半透明青色 */
+.section-eyebrow {
+  display: block;
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: var(--accent-cyan-text);
+  opacity: 0.75;
+  margin-bottom: 12px;
+}
+
+.section-title {
+  font-size: 32px;
+  font-weight: 300;
+  margin-bottom: 36px;
+  letter-spacing: -0.5px;
+  color: var(--text-primary);
+}
+
+/* ==================== Hero区（首页/个人简介） ==================== */
+/* ==================== Hero 全屏英雄区 ==================== */
+#home {
+  position: relative;
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  padding: 100px 0 60px;
+  overflow: hidden;
+  background:
+    radial-gradient(ellipse 80% 60% at 85% 20%, rgba(15, 118, 110, 0.08) 0%, transparent 60%),
+    radial-gradient(ellipse 60% 50% at 15% 80%, rgba(14, 116, 144, 0.06) 0%, transparent 55%),
+    linear-gradient(180deg, #FBFCFC 0%, #F6F8F8 100%);
+}
+
+/* 背景装饰点阵 */
+#home::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background-image: radial-gradient(circle, rgba(15, 118, 110, 0.12) 1px, transparent 1px);
+  background-size: 32px 32px;
+  mask-image: radial-gradient(ellipse 70% 60% at 50% 50%, black 20%, transparent 70%);
+  -webkit-mask-image: radial-gradient(ellipse 70% 60% at 50% 50%, black 20%, transparent 70%);
+  pointer-events: none;
+}
+
+.hero {
+  display: grid;
+  grid-template-columns: 1.3fr 1fr;
+  gap: 80px;
+  align-items: center;
+  position: relative;
+  z-index: 1;
+  width: 100%;
+  clip-path: polygon(0 100%, 100% 100%, 100% 100%, 0 100%);
+  will-change: clip-path;
+}
+
+/* Hero 左栏 */
+.hero-left {
+  text-align: left;
+}
+
+.hero-greeting {
+  display: inline-block;
+  padding: 7px 16px;
+  background: linear-gradient(135deg, rgba(15, 118, 110, 0.1), rgba(14, 116, 144, 0.08));
+  color: var(--primary);
+  font-size: 13px;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  border-radius: 100px;
+  margin-bottom: 28px;
+  border: 1px solid rgba(15, 118, 110, 0.15);
+}
+
+.hero-name {
+  font-size: clamp(56px, 9vw, 112px);
+  font-weight: 800;
+  color: var(--text-primary);
+  margin-bottom: 8px;
+  letter-spacing: -2px;
+  line-height: 1.02;
+  font-family: 'Inter', -apple-system, 'PingFang SC', 'Microsoft YaHei', sans-serif;
+}
+
+.hero-name span {
+  background: linear-gradient(135deg, var(--primary-dark) 0%, var(--primary) 50%, var(--primary-light) 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  font-weight: 900;
+}
+
+.hero-intro {
+  font-size: clamp(18px, 2.2vw, 24px);
+  color: var(--text-secondary);
+  margin-bottom: 20px;
+  font-weight: 500;
+  letter-spacing: 0.02em;
+}
+
+.hero-tagline {
+  font-size: 16px;
+  color: var(--text-muted);
+  line-height: 1.8;
+  margin-bottom: 36px;
+  max-width: 520px;
+}
+
+/* 快速联系信息 */
+.hero-info {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 14px 28px;
+  margin-bottom: 36px;
+}
+
+.hero-info-item {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 14px;
+  color: var(--text-secondary);
+}
+
+.hero-info-item svg {
+  width: 18px;
+  height: 18px;
+  color: var(--primary);
+  flex-shrink: 0;
+}
+
+.hero-actions {
+  display: flex;
+  gap: 14px;
+  flex-wrap: wrap;
+}
+
+/* Hero 右栏 - 头像 + 内容块 */
+.hero-right {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 28px;
+}
+
+/* 3D形象轮播区 */
+/* ===== 圆形人物肖像容器（参考图三风格） ===== */
+.portrait-wrap {
+  position: relative;
+  width: 100%;
+  max-width: 420px;
+  aspect-ratio: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* 圆形装饰边框 */
+.portrait-ring {
+  position: absolute;
+  border-radius: 50%;
+  border: 1px solid rgba(15, 118, 110, 0.15);
+  animation: ringRotate 20s linear infinite;
+}
+.portrait-ring {
+  inset: 2%;
+}
+.portrait-ring-2 {
+  inset: 8%;
+  border-color: rgba(15, 118, 110, 0.08);
+  animation-direction: reverse;
+  animation-duration: 28s;
+}
+@keyframes ringRotate {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}
+
+/* 圆形照片 */
+.portrait-circle {
+  width: 78%;
+  aspect-ratio: 1;
+  border-radius: 50%;
+  overflow: hidden;
+  position: relative;
+  box-shadow:
+    0 30px 60px -15px rgba(15, 118, 110, 0.35),
+    0 12px 30px -8px rgba(15, 118, 110, 0.18),
+    0 0 0 6px #fff,
+    0 0 0 8px rgba(15, 118, 110, 0.2);
+  animation: portraitFloat 6s ease-in-out infinite;
+}
+@keyframes portraitFloat {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-10px); }
+}
+.portrait-circle img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+.portrait-placeholder {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: linear-gradient(160deg, #F0FDF4 0%, #DCFCE7 50%, #BBF7D0 100%);
+}
+.portrait-placeholder svg {
+  width: 100px;
+  height: 100px;
+  opacity: 0.5;
+}
+
+/* 左下装饰圆点 */
+.portrait-dots {
+  position: absolute;
+  bottom: 10%;
+  left: -8%;
+  display: grid;
+  grid-template-columns: repeat(3, 6px);
+  gap: 6px;
+}
+.portrait-dots span {
+  display: block;
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: var(--primary);
+  opacity: 0.4;
+}
+.portrait-dots span:nth-child(2n) { width: 4px; height: 4px; opacity: 0.25; }
+.portrait-dots span:nth-child(3n) { background: var(--primary-dark); opacity: 0.5; }
+
+/* 右下装饰小方块 */
+.portrait-accent {
+  position: absolute;
+  bottom: 5%;
+  right: 5%;
+  width: 28px;
+  height: 28px;
+  background: linear-gradient(135deg, var(--primary-light), var(--primary));
+  border-radius: 8px;
+  transform: rotate(15deg);
+  box-shadow: 0 4px 12px rgba(15, 118, 110, 0.3);
+  animation: accentFloat 4s ease-in-out infinite;
+}
+@keyframes accentFloat {
+  0%, 100% { transform: rotate(15deg) scale(1); }
+  50% { transform: rotate(22deg) scale(1.05); }
+}
+
+/* ===== 技能便签行（参考图三便签风格） ===== */
+.skill-tags-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin-top: 24px;
+}
+.skill-tag {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 10px 16px;
+  border-radius: 100px;
+  font-size: 13px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.2s var(--ease);
+  border: 1px solid transparent;
+}
+.skill-tag em {
+  font-style: normal;
+  font-size: 14px;
+  opacity: 0.6;
+}
+.skill-tag:hover em { opacity: 1; }
+.skill-tag-1 {
+  background: #E8FBFF;
+  color: #0E7490;
+  border-color: rgba(14, 116, 144, 0.15);
+}
+.skill-tag-2 {
+  background: #FEF3C7;
+  color: #92400E;
+  border-color: rgba(146, 64, 14, 0.15);
+}
+.skill-tag-3 {
+  background: #DCFCE7;
+  color: #14532D;
+  border-color: rgba(20, 83, 45, 0.15);
+}
+.skill-tag-4 {
+  background: #FCE7F3;
+  color: #9D174D;
+  border-color: rgba(157, 23, 77, 0.15);
+}
+.skill-tag:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 16px rgba(0,0,0,0.08);
+}
+
+/* 旧 char-slider 相关样式不再使用，保留空定义防崩 */
+.char-slider, .char-main, .char-thumbs, .char-nav, .hero-side-card, .deco-shape { display: none; }
+
+.btn-primary {
+  padding: 14px 30px;
+  background: var(--ink);
+  color: #fff;
+  border: none;
+  border-radius: var(--radius-sm);
+  font-size: 14px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: background 0.15s var(--ease), transform 0.15s var(--ease), box-shadow 0.15s var(--ease);
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.15);
+  font-family: inherit;
+}
+
+.btn-primary:hover {
+  background: #000;
+  transform: translateY(-1px);
+  box-shadow: 0 6px 18px rgba(0, 0, 0, 0.18);
+}
+
+.btn-secondary {
+  padding: 14px 30px;
+  background: transparent;
+  color: var(--text-primary);
+  border: 1px solid var(--border-light);
+  border-radius: var(--radius-sm);
+  font-size: 14px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: border-color 0.15s var(--ease), color 0.15s var(--ease), background 0.15s var(--ease);
+  font-family: inherit;
+}
+
+.btn-secondary:hover {
+  border-color: var(--primary);
+  color: var(--primary-dark);
+  background: var(--accent-cyan);
+}
+
+/* ==================== 通用卡片样式 ==================== */
+.card {
+  background: var(--bg-white);
+  border-radius: var(--radius-md);
+  padding: 28px;
+  box-shadow: var(--shadow-sm);
+  border: 1px solid var(--border-light);
+  transition: all 0.15s var(--ease);
+}
+
+.card:hover {
+  box-shadow: var(--shadow-md);
+  transform: translateY(-2px);
+}
+
+/* ==================== 工作/项目经历（参考图风格） ==================== */
+.timeline {
+  position: relative;
+  padding: 0;
+  margin: 0;
+}
+/* 居中垂直轴线 */
+.timeline::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 2px;
+  background: linear-gradient(180deg, var(--primary-light), var(--primary) 50%, var(--primary-light));
+  border-radius: 2px;
+  opacity: 0.5;
+}
+
+.timeline-item {
+  position: relative;
+  margin-bottom: 48px;
+  width: 50%;
+}
+
+/* 左列 - 卡片在左，轴线在右 → 日期紧贴卡片左侧（外侧） */
+.timeline-left {
+  left: 0;
+  padding-right: 80px;   /* 给 num 留空间 */
+  padding-left: 0;
+  text-align: right;
+}
+/* 右列 - 卡片在右，轴线在左 → 日期紧贴卡片右侧（外侧） */
+.timeline-right {
+  left: 50%;
+  padding-left: 80px;    /* 给 num 留空间 */
+  padding-right: 0;
+}
+
+/* 编号圆点 - 独立定位在轴线上 */
+.timeline-num {
+  position: absolute;
+  top: 12px;
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  background: var(--bg-white);
+  border: 2px solid var(--primary);
+  color: var(--primary-dark);
+  font-size: 14px;
+  font-weight: 800;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 0 0 4px rgba(15, 118, 110, 0.08);
+  z-index: 3;
+  transition: all 0.2s var(--ease);
+}
+/* 左列：num 中心正好在轴线上 */
+.timeline-left .timeline-num {
+  right: -18px;
+}
+/* 右列：num 中心正好在轴线上 */
+.timeline-right .timeline-num {
+  left: -18px;
+}
+.timeline-item:hover .timeline-num {
+  background: var(--primary);
+  color: #fff;
+  transform: scale(1.1);
+  box-shadow: 0 0 0 6px rgba(15, 118, 110, 0.15);
+}
+
+/* 日期徽章 - 紧贴卡片内侧（卡片和轴线之间），垂直居中 */
+.timeline-date-badge {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  font-size: 18px;
+  font-weight: 700;
+  color: var(--primary-dark);
+  background: rgba(15, 118, 110, 0.08);
+  padding: 10px 20px;
+  border-radius: 100px;
+  border: 1px solid rgba(15, 118, 110, 0.15);
+  white-space: nowrap;
+  z-index: 2;
+  letter-spacing: 0.02em;
+}
+/* 左列卡片（卡片在左，轴线在右）→ 日期完全在轴线右边 */
+.timeline-left .timeline-date-badge {
+  right: -380px;
+  left: auto;
+}
+/* 右列卡片（卡片在右，轴线在左）→ 日期完全在轴线左边 */
+.timeline-right .timeline-date-badge {
+  left: -380px;
+  right: auto;
+}
+
+/* 卡片 - 需要 overflow: visible 让日期伸出去 */
+.timeline-card {
+  background: var(--bg-white);
+  border-radius: var(--radius-md);
+  padding: 24px 28px;
+  box-shadow: var(--shadow-sm);
+  border: 1px solid var(--border-light);
+  text-align: left;
+  transition: box-shadow 0.3s var(--ease), transform 0.3s var(--ease), border-color 0.3s var(--ease);
+  position: relative;
+  overflow: visible !important;
+}
+.timeline-item:hover .timeline-card {
+  box-shadow: var(--shadow-md);
+  transform: translateY(-3px);
+  border-color: rgba(15, 118, 110, 0.25);
+}
+
+/* 公司名 - 大标题 */
+.timeline-company {
+  font-size: 18px;
+  font-weight: 800;
+  color: var(--text-primary);
+  letter-spacing: -0.01em;
+  margin-bottom: 2px;
+  word-break: break-word;
+}
+
+/* 职位 - 中标题 */
+.timeline-role {
+  font-size: 13px;
+  color: var(--primary);
+  font-weight: 600;
+  margin-bottom: 12px;
+  letter-spacing: 0.02em;
+}
+
+/* 一句话简介 */
+.timeline-summary {
+  font-size: 13px;
+  color: var(--text-secondary);
+  line-height: 1.6;
+  margin-bottom: 14px;
+}
+
+/* 成果数字行 */
+.timeline-stats {
+  display: flex;
+  gap: 18px;
+  padding-top: 12px;
+  border-top: 1px solid var(--border-light);
+}
+.timeline-stats span {
+  display: flex;
+  flex-direction: column;
+  line-height: 1;
+}
+.timeline-stats strong {
+  font-size: 18px;
+  font-weight: 800;
+  color: var(--primary-dark);
+  letter-spacing: -0.02em;
+}
+.timeline-stats em {
+  font-style: normal;
+  font-size: 10px;
+  color: var(--text-muted);
+  font-weight: 500;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  margin-top: 4px;
+}
+
+/* 展开提示 */
+.timeline-hint {
+  text-align: center;
+  font-size: 11px;
+  color: var(--text-muted);
+  margin-top: 14px;
+  padding-top: 10px;
+  border-top: 1px dashed var(--border-light);
+  letter-spacing: 0.04em;
+  transition: opacity 0.2s var(--ease);
+}
+.timeline-item:hover .timeline-hint {
+  opacity: 0;
+  height: 0;
+  margin: 0;
+  padding: 0;
+  border: none;
+  overflow: hidden;
+}
+
+/* 详情区 - 默认收起 */
+.timeline-detail {
+  max-height: 0;
+  overflow: hidden;
+  transition: max-height 0.5s cubic-bezier(0.22, 1, 0.36, 1), margin 0.4s var(--ease);
+}
+.timeline-item:hover .timeline-detail {
+  max-height: 500px;
+  margin-top: 16px;
+}
+
+/* 详情内的区块 */
+.timeline-block {
+  margin-bottom: 12px;
+  animation: detailFade 0.4s var(--ease) forwards;
+  opacity: 0;
+}
+.timeline-item:hover .timeline-block:nth-child(1) { animation-delay: 0.05s; }
+.timeline-item:hover .timeline-block:nth-child(2) { animation-delay: 0.12s; }
+.timeline-block-label {
+  display: inline-block;
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--accent-cyan-text);
+  opacity: 0.8;
+  margin-bottom: 4px;
+}
+.timeline-block p {
+  margin: 0;
+  font-size: 13px;
+  color: var(--text-secondary);
+  line-height: 1.7;
+}
+.timeline-block ul {
+  margin: 0;
+  padding-left: 18px;
+}
+.timeline-block li {
+  font-size: 13px;
+  color: var(--text-secondary);
+  line-height: 1.65;
+  margin-bottom: 4px;
+}
+@keyframes detailFade {
+  from { opacity: 0; transform: translateY(8px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+/* 旧样式隐藏 */
+.timeline-body, .timeline-highlight, .timeline-header, .timeline-date,
+.timeline-section, .timeline-section-label, .timeline-result,
+.timeline-result-label, .timeline-desc, .timeline-item::before { display: none; }
+
+/* ==================== 教育背景 ==================== */
+.edu-card {
+  background: linear-gradient(135deg, var(--bg-white) 0%, #F0FAF9 100%);
+  border-radius: var(--radius-md);
+  padding: 0;
+  box-shadow: var(--shadow-sm);
+  border: 1px solid var(--border-light);
+  display: grid;
+  grid-template-columns: 240px 1fr;
+  overflow: hidden;
+}
+
+.edu-card-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+  min-height: 280px;
+}
+
+.edu-card-body {
+  padding: 32px;
+  display: flex;
+  flex-direction: column;
+}
+
+.edu-icon {
+  width: 64px;
+  height: 64px;
+  background: linear-gradient(135deg, var(--primary), var(--primary-light));
+  border-radius: 16px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+.edu-icon svg {
+  width: 32px;
+  height: 32px;
+  fill: white;
+}
+
+.edu-info {
+  flex: 1;
+}
+
+.edu-school {
+  font-size: 22px;
+  font-weight: 700;
+  color: var(--text-primary);
+  margin-bottom: 4px;
+}
+
+.edu-tags {
+  display: flex;
+  gap: 8px;
+  flex-wrap: wrap;
+  margin-bottom: 12px;
+}
+
+.edu-tag {
+  padding: 4px 12px;
+  background: rgba(15, 118, 110, 0.1);
+  color: var(--primary);
+  font-size: 12px;
+  font-weight: 600;
+  border-radius: 100px;
+}
+
+.edu-major {
+  font-size: 16px;
+  color: var(--text-secondary);
+  margin-bottom: 8px;
+}
+
+.edu-date {
+  font-size: 13px;
+  color: var(--text-muted);
+  margin-bottom: 16px;
+}
+
+.edu-details {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.edu-detail-item {
+  font-size: 14px;
+  color: var(--text-secondary);
+  display: flex;
+  gap: 8px;
+}
+
+.edu-detail-item strong {
+  color: var(--text-primary);
+  flex-shrink: 0;
+}
+
+/* ==================== 技能与爱好（抽卡玩法） ==================== */
+.section-sub {
+  text-align: center;
+  font-size: 14px;
+  color: var(--text-muted);
+  margin-top: -8px;
+  margin-bottom: 32px;
+}
+
+/* Tab 切换 */
+.card-tabs {
+  display: flex;
+  justify-content: center;
+  gap: 8px;
+  margin-bottom: 36px;
+}
+
+.card-tab {
+  padding: 8px 20px;
+  background: rgba(15, 118, 110, 0.06);
+  border: 1px solid rgba(15, 118, 110, 0.12);
+  border-radius: 100px;
+  font-size: 13px;
+  font-weight: 500;
+  color: var(--text-secondary);
+  cursor: pointer;
+  transition: all 0.15s var(--ease);
+  font-family: inherit;
+}
+
+.card-tab:hover {
+  background: rgba(15, 118, 110, 0.1);
+  color: var(--primary-dark);
+}
+
+.card-tab.active {
+  background: var(--primary);
+  color: #fff;
+  border-color: var(--primary);
+  box-shadow: 0 4px 12px rgba(15, 118, 110, 0.25);
+}
+
+/* 抽卡主区域 */
+.card-area {
+  display: grid;
+  grid-template-columns: 1fr 1.2fr;
+  gap: 60px;
+  align-items: center;
+  max-width: 900px;
+  margin: 0 auto;
+}
+
+/* 左侧卡背区 */
+.card-deck {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 16px;
+}
+
+.card-deck-stack {
+  position: relative;
+  width: 200px;
+  height: 260px;
+  perspective: 800px;
+}
+
+.card-back {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  border-radius: 16px;
+  box-shadow: 0 12px 32px rgba(15, 118, 110, 0.2);
+}
+
+.card-back-3 {
+  background: linear-gradient(135deg, #7DD3CF 0%, #4FBFB9 100%);
+  transform: translate(-12px, 10px) rotate(-6deg);
+  z-index: 1;
+}
+
+.card-back-2 {
+  background: linear-gradient(135deg, #6AC5BE 0%, #3AA9A1 100%);
+  transform: translate(-6px, 5px) rotate(-3deg);
+  z-index: 2;
+}
+
+.card-back-1 {
+  background: linear-gradient(145deg, #5AB8B1 0%, #2E958D 60%, #1E7A73 100%);
+  transform: translate(0, 0) rotate(0deg);
+  z-index: 3;
+  animation: cardBreathe 4s ease-in-out infinite;
+}
+
+@keyframes cardBreathe {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-4px); }
+}
+
+.card-back-inner {
+  width: 100%;
+  height: 100%;
+  border-radius: 16px;
+  border: 2px solid rgba(255,255,255,0.25);
+  position: relative;
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.card-back-dot {
+  position: absolute;
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: rgba(255,255,255,0.4);
+}
+
+.card-back-text {
+  text-align: center;
+  color: rgba(255,255,255,0.85);
+}
+
+.card-back-logo {
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+  background: rgba(255,255,255,0.15);
+  border: 2px solid rgba(255,255,255,0.35);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 18px;
+  font-weight: 700;
+  margin: 0 auto 10px;
+  letter-spacing: 1px;
+}
+
+.card-back-title {
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 0.3em;
+}
+
+.card-deck-info {
+  font-size: 12px;
+  color: var(--text-muted);
+  letter-spacing: 0.06em;
+}
+
+.card-draw-btn {
+  padding: 12px 28px;
+  background: var(--ink);
+  color: #fff;
+  border: none;
+  border-radius: 100px;
+  font-size: 14px;
+  font-weight: 600;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  transition: all 0.15s var(--ease);
+  box-shadow: 0 6px 20px rgba(0,0,0,0.18);
+  font-family: inherit;
+}
+
+.card-draw-btn:hover:not(:disabled) {
+  transform: translateY(-2px);
+  box-shadow: 0 10px 28px rgba(0,0,0,0.22);
+}
+
+.card-draw-btn:active:not(:disabled) {
+  transform: translateY(0);
+}
+
+.card-draw-btn:disabled {
+  background: var(--border-light);
+  cursor: not-allowed;
+  box-shadow: none;
+}
+
+.card-draw-btn-arrow {
+  font-size: 14px;
+}
+
+.card-drawn-count {
+  font-size: 12px;
+  color: var(--text-muted);
+}
+
+/* 右侧卡展示区 */
+.card-reveal {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 20px;
+}
+
+/* 3D翻转容器 - 只负责 perspective，不做任何 transform */
+.card-flip-container {
+  width: 280px;
+  height: 400px;
+  perspective: 1200px;
+  perspective-origin: 50% 50%;
+  transform: none !important;
+  transition: none !important;
+}
+
+/* 翻转内层 - 唯一做 transform 的元素 */
+.card-flip-inner {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  transform-style: preserve-3d;
+  transform-origin: center center;
+  transition: transform 0.7s ease;
+  will-change: transform;
+}
+
+.card-flip-inner.flipped {
+  transform: rotateY(180deg);
+}
+
+/* 正反面 - 绝对定位叠在一起 */
+.card-face {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  backface-visibility: hidden;
+  -webkit-backface-visibility: hidden;
+  border-radius: 20px;
+  box-shadow: 0 20px 50px rgba(15, 118, 110, 0.18);
+  overflow: hidden;
+  transform-origin: center center;
+}
+
+/* 卡正面（带背景、边框、布局等） */
+.card-front {
+  background: linear-gradient(160deg, #F0FDF4 0%, #E8FBFF 50%, #DCFCE7 100%);
+  border: 2px solid rgba(15, 118, 110, 0.15);
+  display: flex;
+  flex-direction: column;
+  cursor: pointer;
+  position: relative;
+}
+
+.card-front-image {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  opacity: 0;
+  transition: opacity 0.4s ease;
+  z-index: 0;
+}
+
+.card-front.has-image .card-front-image {
+  opacity: 1;
+}
+
+/* 爱好卡有图时，底部渐变遮罩保证文字可读 */
+.card-front.has-image::after {
+  content: '';
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  height: 45%;
+  background: linear-gradient(to top, rgba(0,0,0,0.75) 0%, rgba(0,0,0,0.45) 50%, transparent 100%);
+  z-index: 2;
+  pointer-events: none;
+}
+
+.card-front.has-image .card-front-tag {
+  background: rgba(255,255,255,0.9);
+  color: var(--primary-dark);
+}
+
+.card-front.has-image .card-front-content {
+  z-index: 3;
+}
+
+.card-front.has-image .card-front-type {
+  color: rgba(255,255,255,0.85);
+}
+
+.card-front.has-image .card-front-title {
+  color: #fff;
+  text-shadow: 0 2px 8px rgba(0,0,0,0.3);
+}
+
+.card-front.has-image .card-front-sub {
+  color: rgba(255,255,255,0.8);
+}
+
+.card-front.has-image .card-front-hint {
+  color: rgba(255,255,255,0.7);
+  z-index: 3;
+}
+
+.card-front.has-image .card-front-pattern {
+  display: none;
+}
+
+.card-front-tag {
+  position: absolute;
+  top: 16px;
+  right: 16px;
+  padding: 3px 10px;
+  border-radius: 100px;
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  background: var(--primary);
+  color: #fff;
+}
+
+.card-front-tag.hobby {
+  background: #0D5D56;
+}
+
+.card-front-tag.skill {
+  background: var(--primary);
+}
+
+.card-front-pattern {
+  position: absolute;
+  inset: 0;
+  background-image:
+    repeating-radial-gradient(circle at 70% 30%, rgba(15, 118, 110, 0.08) 0, rgba(15, 118, 110, 0.08) 1px, transparent 1px, transparent 28px),
+    repeating-radial-gradient(circle at 30% 70%, rgba(15, 118, 110, 0.05) 0, rgba(15, 118, 110, 0.05) 1px, transparent 1px, transparent 35px);
+  pointer-events: none;
+}
+
+.card-front-content {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  padding: 28px;
+  position: relative;
+  z-index: 1;
+}
+
+.card-front-type {
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 0.25em;
+  color: var(--primary);
+  margin-bottom: 10px;
+  opacity: 0.8;
+}
+
+.card-front-title {
+  font-size: 26px;
+  font-weight: 800;
+  color: var(--text-primary);
+  line-height: 1.2;
+  margin-bottom: 6px;
+}
+
+.card-front-sub {
+  font-size: 13px;
+  color: var(--text-muted);
+}
+
+.card-front-hint {
+  position: absolute;
+  bottom: 14px;
+  right: 16px;
+  font-size: 11px;
+  color: var(--text-muted);
+  opacity: 0.6;
+}
+
+/* 卡背面（未翻面的详细内容） */
+.card-back-face {
+  transform: rotateY(180deg);
+  background: #fff;
+  border: 1px solid var(--border-light);
+  padding: 32px 24px;
+  display: flex;
+  flex-direction: column;
+}
+
+.card-back-face-icon {
+  font-size: 42px;
+  text-align: center;
+  margin-bottom: 14px;
+}
+
+.card-back-face-title {
+  font-size: 20px;
+  font-weight: 800;
+  color: var(--text-primary);
+  text-align: center;
+  margin-bottom: 10px;
+}
+
+.card-back-face-desc {
+  font-size: 13px;
+  color: var(--text-secondary);
+  line-height: 1.7;
+  text-align: center;
+  flex: 1;
+}
+
+.card-back-face-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  justify-content: center;
+  margin-top: 16px;
+}
+
+.card-back-face-tag {
+  padding: 3px 10px;
+  background: var(--accent-cyan);
+  color: var(--primary-dark);
+  border-radius: 100px;
+  font-size: 11px;
+  font-weight: 500;
+}
+
+.card-back-face-rarity {
+  text-align: center;
+  margin-top: 14px;
+  font-size: 11px;
+  color: var(--primary);
+  font-weight: 600;
+  letter-spacing: 0.1em;
+}
+
+/* 只保留干净的 Y 轴翻转，去掉所有额外动画 */
+.card-flip-container {
+  /* 静态，不做 transform 动画 */
+}
+
+/* 分页指示 */
+.card-pagination {
+  font-size: 14px;
+  font-weight: 500;
+  color: var(--text-muted);
+  letter-spacing: 0.06em;
+}
+
+.card-page-current {
+  color: var(--primary-dark);
+  font-weight: 700;
+}
+
+.card-page-dash {
+  margin: 0 8px;
+  opacity: 0.4;
+}
+
+/* 集齐提示 */
+.card-collected {
+  text-align: center;
+  margin-top: 40px;
+  padding: 20px;
+  background: var(--accent-cyan);
+  border-radius: var(--radius-md);
+  border: 1px solid rgba(15, 118, 110, 0.12);
+}
+
+.card-collected-title {
+  font-size: 16px;
+  font-weight: 700;
+  color: var(--primary-dark);
+  margin-bottom: 4px;
+}
+
+.card-collected-sub {
+  font-size: 13px;
+  color: var(--text-muted);
+}
+
+/* ==================== 作品集 ==================== */
+.portfolio-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(340px, 1fr));
+  gap: 24px;
+}
+
+.portfolio-card {
+  background: var(--bg-white);
+  border-radius: var(--radius-md);
+  overflow: hidden;
+  box-shadow: var(--shadow-sm);
+  border: 1px solid var(--border-light);
+  transition: all 0.15s var(--ease);
+  cursor: pointer;
+  position: relative;
+}
+
+.portfolio-card:hover {
+  box-shadow: var(--shadow-lg);
+  transform: translateY(-6px);
+}
+
+.portfolio-thumb {
+  width: 100%;
+  height: 220px;
+  overflow: hidden;
+  position: relative;
+  background: linear-gradient(135deg, #F5F5F5, #EEEEEE);
+}
+
+.portfolio-thumb img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.5s ease;
+}
+
+.portfolio-card:hover .portfolio-thumb img {
+  transform: scale(1.05);
+}
+
+/* 图片加载失败时的占位样式 */
+.portfolio-thumb-placeholder {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: linear-gradient(135deg, #E6FAF8, #C5EAE7);
+  color: var(--primary-dark);
+  font-size: 14px;
+  font-weight: 500;
+}
+
+.portfolio-thumb-overlay {
+  position: absolute;
+  top: 0; left: 0; right: 0; bottom: 0;
+  background: linear-gradient(180deg, transparent 60%, rgba(0,0,0,0.5));
+  display: flex;
+  align-items: flex-end;
+  padding: 16px;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+.portfolio-card:hover .portfolio-thumb-overlay {
+  opacity: 1;
+}
+
+.portfolio-zoom-icon {
+  width: 40px;
+  height: 40px;
+  background: rgba(255,255,255,0.9);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-left: auto;
+}
+
+.portfolio-zoom-icon svg {
+  width: 20px;
+  height: 20px;
+  stroke: var(--primary);
+}
+
+.portfolio-info {
+  padding: 20px 22px;
+}
+
+.portfolio-tag {
+  display: inline-block;
+  padding: 4px 12px;
+  background: rgba(15, 118, 110, 0.1);
+  color: var(--primary);
+  font-size: 12px;
+  font-weight: 600;
+  border-radius: 100px;
+  margin-bottom: 10px;
+}
+
+.portfolio-title {
+  font-size: 18px;
+  font-weight: 700;
+  color: var(--text-primary);
+  margin-bottom: 8px;
+}
+
+.portfolio-desc {
+  font-size: 13px;
+  color: var(--text-secondary);
+  line-height: 1.6;
+  margin-bottom: 12px;
+}
+
+.portfolio-meta {
+  display: flex;
+  gap: 12px;
+  flex-wrap: wrap;
+  font-size: 12px;
+  color: var(--text-muted);
+}
+
+.portfolio-meta-item {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+}
+
+/* 灯箱（图片放大查看） */
+.portfolio-lightbox {
+  display: none;
+  position: fixed;
+  top: 0; left: 0; right: 0; bottom: 0;
+  background: rgba(0, 0, 0, 0.9);
+  z-index: 9999;
+  align-items: center;
+  justify-content: center;
+  padding: 32px;
+  cursor: pointer;
+}
+
+.portfolio-lightbox.open {
+  display: flex;
+  animation: fadeIn 0.3s ease;
+}
+
+.portfolio-lightbox img {
+  max-width: 90%;
+  max-height: 90vh;
+  border-radius: 12px;
+  box-shadow: 0 16px 48px rgba(0,0,0,0.5);
+  transition: opacity 0.3s ease;
+}
+
+.portfolio-lightbox-close {
+  position: absolute;
+  top: 20px;
+  right: 20px;
+  width: 44px;
+  height: 44px;
+  background: rgba(255,255,255,0.15);
+  border: none;
+  border-radius: 50%;
+  color: white;
+  font-size: 24px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: background 0.3s ease;
+}
+
+.portfolio-lightbox-close:hover {
+  background: rgba(255,255,255,0.3);
+}
+
+.portfolio-lightbox-nav {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 48px;
+  height: 48px;
+  background: rgba(255,255,255,0.15);
+  border: none;
+  border-radius: 50%;
+  color: white;
+  font-size: 24px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: background 0.3s ease;
+}
+
+.portfolio-lightbox-nav:hover {
+  background: rgba(255,255,255,0.3);
+}
+
+.portfolio-lightbox-prev { left: 20px; }
+.portfolio-lightbox-next { right: 20px; }
+
+/* ==================== 作品集目录视图 ==================== */
+.portfolio-toc-header {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  margin-bottom: 36px;
+  padding: 20px 28px;
+  background: linear-gradient(135deg, rgba(15, 118, 110, 0.07), rgba(14, 116, 144, 0.05));
+  border-radius: var(--radius-md);
+  border: 1px solid rgba(15, 118, 110, 0.12);
+}
+
+.portfolio-toc-icon {
+  display: flex;
+  align-items: center;
+  gap: 2px;
+  color: #7C4DFF;
+}
+
+.portfolio-toc-icon svg {
+  width: 22px;
+  height: 22px;
+}
+
+.portfolio-toc-icon svg:first-child {
+  opacity: 0.6;
+  margin-right: -6px;
+}
+
+.portfolio-toc-text {
+  display: flex;
+  align-items: baseline;
+  gap: 16px;
+}
+
+.portfolio-toc-label {
+  font-size: 28px;
+  font-weight: 800;
+  letter-spacing: 3px;
+  color: var(--text-primary);
+}
+
+.portfolio-toc-sub {
+  font-size: 14px;
+  font-weight: 600;
+  letter-spacing: 2px;
+  color: #7C4DFF;
+  text-transform: uppercase;
+}
+
+.portfolio-dir-list {
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+}
+
+.portfolio-dir-item {
+  display: grid;
+  grid-template-columns: 60px 1fr 140px 32px;
+  align-items: center;
+  gap: 20px;
+  padding: 20px 24px;
+  background: var(--bg-white);
+  border: 1px solid var(--border-light);
+  border-bottom: none;
+  cursor: pointer;
+  transition: all 0.15s var(--ease);
+  position: relative;
+}
+
+.portfolio-dir-item:first-child {
+  border-radius: var(--radius-md) var(--radius-md) 0 0;
+}
+
+.portfolio-dir-item:last-child {
+  border-bottom: 1px solid var(--border-light);
+  border-radius: 0 0 var(--radius-md) var(--radius-md);
+}
+
+.portfolio-dir-item:hover {
+  background: linear-gradient(90deg, rgba(15, 118, 110, 0.04), transparent);
+  border-color: var(--primary);
+  transform: translateX(4px);
+}
+
+.portfolio-dir-item:hover .portfolio-dir-arrow {
+  color: var(--primary);
+  transform: translateX(4px);
+}
+
+.portfolio-dir-item:hover .portfolio-dir-thumb img {
+  transform: scale(1.08);
+}
+
+.portfolio-dir-index {
+  font-size: 28px;
+  font-weight: 800;
+  color: var(--primary);
+  opacity: 0.7;
+  font-family: 'SF Mono', 'Menlo', monospace;
+  letter-spacing: 2px;
+}
+
+.portfolio-dir-info {
+  min-width: 0;
+}
+
+.portfolio-dir-title {
+  font-size: 20px;
+  font-weight: 700;
+  color: var(--text-primary);
+  margin-bottom: 4px;
+}
+
+.portfolio-dir-desc {
+  font-size: 13px;
+  color: var(--text-secondary);
+  line-height: 1.5;
+}
+
+.portfolio-dir-thumb {
+  width: 140px;
+  height: 80px;
+  border-radius: 10px;
+  overflow: hidden;
+  background: var(--bg-gray);
+  flex-shrink: 0;
+}
+
+.portfolio-dir-thumb img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.4s ease;
+}
+
+.portfolio-dir-thumb-fallback {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 28px;
+  background: linear-gradient(135deg, #F5F5F5, #EEEEEE);
+}
+
+.portfolio-dir-arrow {
+  color: var(--text-muted);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.15s var(--ease);
+}
+
+/* ==================== 作品集详情视图 ==================== */
+.portfolio-detail-view {
+  animation: fadeIn 0.4s ease;
+}
+
+.portfolio-back-btn {
+  position: fixed;
+  top: 84px;
+  left: 24px;
+  z-index: 1001;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 10px 18px;
+  background: rgba(255, 255, 255, 0.95);
+  border: 1px solid var(--border-light);
+  border-radius: var(--radius-sm);
+  font-size: 14px;
+  font-weight: 500;
+  color: var(--text-secondary);
+  cursor: pointer;
+  transition: all 0.15s var(--ease);
+  box-shadow: 0 2px 12px rgba(0, 0, 0, 0.08);
+  backdrop-filter: blur(8px);
+  font-family: inherit;
+}
+
+.portfolio-back-btn:hover {
+  background: var(--ink);
+  color: white;
+  border-color: var(--ink);
+  box-shadow: 0 4px 14px rgba(0, 0, 0, 0.2);
+}
+
+.portfolio-detail-header {
+  margin-bottom: 32px;
+  padding-bottom: 24px;
+  border-bottom: 1px solid var(--border-light);
+}
+
+.portfolio-detail-title {
+  font-size: 26px;
+  font-weight: 800;
+  color: var(--text-primary);
+  margin-bottom: 8px;
+}
+
+.portfolio-detail-desc {
+  font-size: 15px;
+  color: var(--text-secondary);
+  line-height: 1.6;
+}
+
+.portfolio-detail-gallery {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 20px;
+}
+
+.portfolio-detail-img-wrapper {
+  background: var(--bg-white);
+  border-radius: var(--radius-md);
+  overflow: hidden;
+  box-shadow: var(--shadow-sm);
+  border: 1px solid var(--border-light);
+  cursor: pointer;
+  transition: all 0.15s var(--ease);
+}
+
+.portfolio-detail-img-wrapper:hover {
+  box-shadow: var(--shadow-lg);
+  transform: translateY(-2px);
+}
+
+.portfolio-detail-img-wrapper img {
+  width: 100%;
+  height: auto;
+  display: block;
+  transition: transform 0.4s ease;
+}
+
+.portfolio-detail-img-wrapper:hover img {
+  transform: scale(1.02);
+}
+
+.portfolio-video-divider {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 16px;
+  padding: 48px 0 32px;
+  grid-column: 1 / -1;
+}
+
+.portfolio-video-divider-line {
+  flex: 1;
+  max-width: 120px;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, #c8c8c8, transparent);
+}
+
+.portfolio-video-divider-text {
+  font-size: 15px;
+  font-weight: 500;
+  color: var(--text-secondary);
+  letter-spacing: 3px;
+  white-space: nowrap;
+  position: relative;
+  padding: 8px 24px;
+}
+
+.portfolio-video-divider-text::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: rgba(15, 118, 110, 0.06);
+  border: 1px solid rgba(15, 118, 110, 0.15);
+  border-radius: 100px;
+}
+
+.portfolio-video-divider-text::after {
+  content: '▶';
+  position: absolute;
+  left: -22px;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 28px;
+  height: 28px;
+  background: var(--primary);
+  color: white;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 11px;
+  box-shadow: 0 2px 8px rgba(15, 118, 110, 0.35);
+}
+
+/* ==================== 响应式适配 ==================== */
+@media (max-width: 768px) {
+  /* 抽卡玩法响应式 */
+  .card-area {
+    grid-template-columns: 1fr;
+    gap: 40px;
+    max-width: 380px;
+  }
+
+  .card-deck-stack {
+    width: 170px;
+    height: 220px;
+  }
+
+  .card-flip-container {
+    width: 260px;
+    height: 370px;
+  }
+
+  .card-front-title {
+    font-size: 22px;
+  }
+
+  .card-back-face {
+    padding: 24px 18px;
+  }
+
+  .card-back-face-icon {
+    font-size: 36px;
+  }
+
+  .card-back-face-title {
+    font-size: 18px;
+  }
+
+  .card-back-face-desc {
+    font-size: 12px;
+  }
+
+  .portfolio-toc-header {
+    padding: 14px 18px;
+    gap: 10px;
+    margin-bottom: 24px;
+  }
+
+  .portfolio-toc-label {
+    font-size: 20px;
+    letter-spacing: 2px;
+  }
+
+  .portfolio-toc-sub {
+    font-size: 11px;
+    letter-spacing: 1px;
+  }
+
+  .portfolio-dir-item {
+    grid-template-columns: 48px 1fr 80px 24px;
+    gap: 12px;
+    padding: 14px 16px;
+  }
+
+  .portfolio-dir-index {
+    font-size: 22px;
+  }
+
+  .portfolio-dir-title {
+    font-size: 16px;
+  }
+
+  .portfolio-dir-desc {
+    font-size: 12px;
+    -webkit-line-clamp: 2;
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+  }
+
+  .portfolio-dir-thumb {
+    width: 80px;
+    height: 50px;
+  }
+
+  .portfolio-detail-title {
+    font-size: 20px;
+  }
+
+  .portfolio-detail-gallery {
+    gap: 12px;
+  }
+
+  .portfolio-back-btn {
+    top: 76px;
+    left: 16px;
+    padding: 8px 16px;
+    font-size: 13px;
+  }
+
+  .portfolio-video-divider {
+    padding: 36px 0 24px;
+    gap: 10px;
+  }
+
+  .portfolio-video-divider-line {
+    max-width: 60px;
+  }
+
+  .portfolio-video-divider-text {
+    font-size: 13px;
+    letter-spacing: 2px;
+    padding: 6px 18px;
+  }
+}
+
+@media (max-width: 480px) {
+  .portfolio-dir-item {
+    grid-template-columns: 36px 1fr 60px 20px;
+    gap: 8px;
+    padding: 12px;
+  }
+
+  .portfolio-dir-index {
+    font-size: 18px;
+  }
+
+  .portfolio-dir-title {
+    font-size: 14px;
+  }
+
+  .portfolio-dir-thumb {
+    width: 60px;
+    height: 40px;
+  }
+}
+
+/* ==================== 证书/荣誉 ==================== */
+.honors-list {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.honor-item {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  padding: 14px 20px;
+  background: var(--bg-white);
+  border: 1px solid var(--border-light);
+  border-radius: var(--radius-md);
+  transition: all 0.2s var(--ease);
+}
+
+.honor-item:hover {
+  border-color: rgba(15, 118, 110, 0.3);
+  box-shadow: var(--shadow-sm);
+  transform: translateX(4px);
+}
+
+.honor-dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: var(--primary-dark);
+  flex-shrink: 0;
+}
+
+.honor-text {
+  flex: 1;
+  font-size: 15px;
+  font-weight: 500;
+  color: var(--text-primary);
+}
+
+.honor-tag {
+  font-size: 12px;
+  color: var(--primary-dark);
+  background: rgba(15, 118, 110, 0.08);
+  padding: 4px 12px;
+  border-radius: 100px;
+  flex-shrink: 0;
+}
+
+/* ==================== 页脚 ==================== */
+.footer {
+  text-align: center;
+  padding: 32px 24px;
+  color: var(--text-muted);
+  font-size: 13px;
+  border-top: 1px solid var(--border-light);
+  margin-top: 48px;
+}
+
+/* ==================== 响应式适配 ==================== */
+@media (max-width: 900px) {
+  #home {
+    min-height: auto;
+    padding: 100px 0 48px;
+  }
+
+  .hero {
+    grid-template-columns: 1fr;
+    gap: 48px;
+    text-align: center;
+  }
+
+  .hero-left {
+    text-align: center;
+  }
+
+  .hero-tagline {
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  .hero-info {
+    justify-content: center;
+  }
+
+  .hero-actions {
+    justify-content: center;
+  }
+
+  .hero-right {
+    order: -1;
+  }
+
+  .portrait-wrap {
+    max-width: 320px;
+  }
+  .skill-tags-row {
+    justify-content: center;
+  }
+
+  .edu-card {
+    grid-template-columns: 1fr;
+  }
+
+  .edu-card-img {
+    min-height: 200px;
+    max-height: 240px;
+  }
+
+  .edu-card-body {
+    text-align: center;
+    padding: 24px;
+  }
+
+  .edu-icon {
+    margin: 0 auto;
+  }
+
+  .edu-tags {
+    justify-content: center;
+  }
+}
+
+@media (max-width: 768px) {
+  .menu-toggle {
+    display: flex;
+  }
+
+  .nav-links {
+    position: fixed;
+    top: 64px;
+    left: 0;
+    right: 0;
+    background: white;
+    flex-direction: column;
+    padding: 16px;
+    gap: 4px;
+    box-shadow: var(--shadow-md);
+    transform: translateY(-120%);
+    opacity: 0;
+    transition: all 0.15s var(--ease);
+  }
+
+  .nav-links.open {
+    transform: translateY(0);
+    opacity: 1;
+  }
+
+  .nav-link {
+    text-align: center;
+    padding: 14px;
+  }
+
+  .main-content {
+    padding-top: 80px;
+    padding-bottom: 48px;
+    overflow-x: hidden;
+  }
+
+  .hero-name {
+    font-size: 36px;
+  }
+
+  .hero-intro {
+    font-size: 17px;
+  }
+
+  .portrait-wrap {
+    max-width: 280px;
+  }
+
+  .section-title {
+    font-size: 24px;
+    margin-bottom: 24px;
+  }
+
+  /* 移动端：时间轴改回左侧 */
+  .timeline::before {
+    left: 18px;
+    transform: none;
+  }
+  .timeline-left,
+  .timeline-right {
+    width: 100%;
+    left: 0;
+    padding-left: 0;
+    padding-right: 0;
+    text-align: left;
+  }
+  .timeline-left .timeline-num,
+  .timeline-right .timeline-num {
+    left: -18px;
+    right: auto;
+  }
+  .timeline-left .timeline-date-badge,
+  .timeline-right .timeline-date-badge {
+    position: relative;
+    left: auto;
+    right: auto;
+    top: auto;
+    transform: none;
+    display: inline-block;
+    margin-bottom: 8px;
+  }
+  .timeline-card {
+    padding: 20px;
+  }
+
+  .honors-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 480px) {
+  .main-content {
+    padding-left: 16px;
+    padding-right: 16px;
+  }
+
+  .hero-name {
+    font-size: 32px;
+  }
+
+  .char-slider {
+    max-width: 220px;
+  }
+
+  .btn-primary,
+  .btn-secondary {
+    padding: 12px 24px;
+    font-size: 14px;
+  }
+}
+
+/* ==================== 加载动画 ==================== */
+.loading-spinner {
+  width: 40px;
+  height: 40px;
+  border: 3px solid var(--border-light);
+  border-top-color: var(--primary);
+  border-radius: 50%;
+  animation: spin 0.8s linear infinite;
+}
+
+@keyframes spin {
+  to { transform: rotate(360deg); }
+}
+</style>
+<!-- GSAP + ScrollTrigger -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+</head>
+<body>
+
+<!-- ==================== 导航栏 ==================== -->
+<nav class="navbar">
+  <div class="nav-inner">
+    <div class="nav-logo">
+      <span class="nav-logo-dot"></span>
+      史雅靓
+    </div>
+    <button class="menu-toggle" id="menuToggle" aria-label="菜单">
+      <span></span><span></span><span></span>
+    </button>
+    <ul class="nav-links" id="navLinks">
+      <li><button class="nav-link active" data-section="home">首页</button></li>
+      <li><button class="nav-link" data-section="experience">工作经历</button></li>
+      <li><button class="nav-link" data-section="education">教育背景</button></li>
+      <li><button class="nav-link" data-section="skills">技能特长</button></li>
+      <li><button class="nav-link" data-section="portfolio">作品集</button></li>
+      <li><button class="nav-link" data-section="honors">证书荣誉</button></li>
+    </ul>
+  </div>
+</nav>
+
+<!-- ==================== 主内容区 ==================== -->
+<main class="main-content">
+
+  <!-- 首页/个人简介 -->
+  <section class="section active" id="home">
+    <div class="hero">
+      <!-- 左栏：名字 + 介绍 + 联系 + 按钮 -->
+      <div class="hero-left">
+        <div class="hero-greeting">你好，我是 👋</div>
+        <h1 class="hero-name">史<span>雅靓</span></h1>
+        <p class="hero-intro">产品经理 · 产品运营 · UX 设计</p>
+        <p class="hero-tagline">
+          逻辑在线、洞察敏锐的产品人。擅长把复杂的竞品分析和需求拆解讲明白，和 UX 团队配合默契。对智能硬件和空间智能方向，超级感兴趣！
+        </p>
+
+        <div class="hero-info">
+          <div class="hero-info-item">
+            <!-- SVG图标：电话 -->
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/>
+            </svg>
+            <span>19519938670</span>
+          </div>
+          <div class="hero-info-item">
+            <!-- SVG图标：邮箱 -->
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/>
+              <polyline points="22,6 12,13 2,6"/>
+            </svg>
+            <span>2646158571@qq.com</span>
+          </div>
+          <div class="hero-info-item">
+            <!-- SVG图标：地点 -->
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/>
+              <circle cx="12" cy="10" r="3"/>
+            </svg>
+            <span>广东 · 广州</span>
+          </div>
+        </div>
+
+        <div class="hero-actions">
+          <button class="btn-primary" onclick="document.getElementById('portfolio').scrollIntoView({behavior:'smooth'})">查看作品集</button>
+          <button class="btn-secondary" onclick="document.getElementById('experience').scrollIntoView({behavior:'smooth'})">职业经历 →</button>
+        </div>
+      </div>
+
+      <!-- 右栏：人物肖像 + 浮动标签（参考图三风格） -->
+      <div class="hero-right">
+        <!-- 圆形人物肖像容器 -->
+        <div class="portrait-wrap">
+          <!-- 圆形边框装饰 -->
+          <div class="portrait-ring"></div>
+          <div class="portrait-ring portrait-ring-2"></div>
+          <!-- 圆形照片 -->
+          <div class="portrait-circle">
+            <img src="images_avatar/01.png" alt="史雅靓" onerror="this.style.display='none'; document.querySelector('.portrait-placeholder').style.display='flex'">
+            <div class="portrait-placeholder">
+              <svg viewBox="0 0 100 100" fill="none">
+                <circle cx="50" cy="38" r="16" stroke="#0F766E" stroke-width="3" fill="rgba(15,118,110,0.1)"/>
+                <path d="M20 88 Q20 65 50 65 Q80 65 80 88" stroke="#0F766E" stroke-width="3" fill="rgba(15,118,110,0.1)" stroke-linecap="round"/>
+              </svg>
+            </div>
+          </div>
+
+          <!-- 左下装饰圆点 -->
+          <div class="portrait-dots">
+            <span></span><span></span><span></span>
+            <span></span><span></span><span></span>
+          </div>
+
+          <!-- 右下装饰小方块 -->
+          <div class="portrait-accent"></div>
+        </div>
+
+        <!-- 技能便签（参考图三的便签风格） -->
+        <div class="skill-tags-row">
+          <span class="skill-tag skill-tag-1">学生会主席 <em>×</em></span>
+          <span class="skill-tag skill-tag-2">江南大学 (211) <em>×</em></span>
+          <span class="skill-tag skill-tag-3">Figma / Axure 原型 <em>×</em></span>
+          <span class="skill-tag skill-tag-4">用户调研 · 数据驱动 <em>×</em></span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 工作/项目经历 -->
+  <section class="section" id="experience">
+    <span class="section-eyebrow">Experience</span>
+    <h2 class="section-title">我的职业旅程</h2>
+    
+    <div class="timeline">
+
+      <!-- 经历1：广汽研究院（左） -->
+      <div class="timeline-item timeline-left" data-index="1">
+        <div class="timeline-card">
+          <div class="timeline-date-badge">2026.06 — 至今</div>
+          <div class="timeline-head-text">
+            <div class="timeline-company">广汽研究院</div>
+            <div class="timeline-role">智能座舱产品线 · 产品实习生</div>
+          </div>
+          <div class="timeline-summary">驱动 V20「时光印迹」照片墙壁纸，从调研 → 方案 → 交互全流程落地</div>
+          <div class="timeline-stats">
+            <span><strong>67 份</strong><em>有效问卷</em></span>
+            <span><strong>10 套</strong><em>方案发散</em></span>
+            <span><strong>2 套</strong><em>最终落地</em></span>
+          </div>
+          <div class="timeline-detail">
+            <div class="timeline-block">
+              <span class="timeline-block-label">背景</span>
+              <p>辅助智能座舱情感化产品建设，围绕 V20 车型照片墙壁纸功能，驱动从用户调研 → 方案设计 → 交互定义全流程推进，打造承载个人生活记忆的车载壁纸产品。</p>
+            </div>
+            <div class="timeline-block">
+              <span class="timeline-block-label">行动</span>
+              <ul>
+                <li>完成 67 份用户问卷与深度访谈，提炼三类核心人群需求，输出座舱专属感、回忆留存等核心洞察</li>
+                <li>从 3 个主题方向发散 10 套设计方案，受交互逻辑、技术实现与开发周期制约，最终筛选收敛至 2 套可落地方案</li>
+                <li>设计完整交互链路（入口→选模板→上传→编辑→生成），落地效果先行、容错上传、轻编辑三大策略</li>
+              </ul>
+            </div>
+            <div class="timeline-block">
+              <span class="timeline-block-label">成果</span>
+              <ul>
+                <li>方案通过评审，「时光拼图」主题计划 V20 车型 SOP 首搭，「地球玩家」规划 M51 车型落地</li>
+                <li>沉淀交互规范与开发排期，远期聚合为独立壁纸 APP 并接入会员付费体系，实现商业化闭环</li>
+              </ul>
+            </div>
+          </div>
+          <div class="timeline-hint">hover 查看详情 ↓</div>
+        </div>
+        <span class="timeline-num">1</span>
+      </div>
+
+      <!-- 经历2：江苏网商精益（右） -->
+      <div class="timeline-item timeline-right" data-index="2">
+        <div class="timeline-card">
+          <div class="timeline-date-badge">2026.01 — 2026.03</div>
+          <div class="timeline-head-text">
+            <div class="timeline-company">江苏网商精益管理软件有限公司</div>
+            <div class="timeline-role">产品经理实习生</div>
+          </div>
+          <div class="timeline-summary">面向离散制造业，从 0 到 1 设计车间 IoT 数据采集平台，并行推进多客户 APS 项目交付</div>
+          <div class="timeline-stats">
+            <span><strong>2 个</strong><em>平台设计</em></span>
+            <span><strong>6 大</strong><em>核心功能</em></span>
+            <span><strong>3 大</strong><em>落地功效</em></span>
+          </div>
+          <div class="timeline-detail">
+            <div class="timeline-block">
+              <span class="timeline-block-label">背景</span>
+              <p>面向汽配、千斤顶制造等离散企业，传统车间存在设备数据孤岛、人工抄录滞后、数据格式不统一等痛点，亟需一套集设备联网、数据采集、标准化传输于一体的车间数字化解决方案。</p>
+            </div>
+            <div class="timeline-block">
+              <span class="timeline-block-label">行动</span>
+              <ul>
+                <li>深入制造企业实地调研，输出工业 IoT 客户画像，明确库存透明、降低失误、全品类数据采集等核心诉求</li>
+                <li>从 0 到 1 设计车间设备数据采集与传输平台，规划多协议接入、实时采集、边缘预处理、状态监控等 6 大核心功能，输出完整产品方案与原型</li>
+                <li>并行承接多客户 APS 项目任务拆解与进度跟踪，协调研发、实施、客户多方，持续推进交付落地</li>
+              </ul>
+            </div>
+            <div class="timeline-block">
+              <span class="timeline-block-label">成果</span>
+              <ul>
+                <li>完成 IoT 平台与电表数据采集平台 2 个产品从 0 到 1 设计，覆盖设备接入、生产核算、预警维保、数据可视化全链路</li>
+                <li>沉淀 B 端产品闭环思维：业务调研→需求抽象→标准化方案→项目落地→迭代优化，建立平台化产品设计意识</li>
+              </ul>
+            </div>
+          </div>
+          <div class="timeline-hint">hover 查看详情 ↓</div>
+        </div>
+        <span class="timeline-num">2</span>
+      </div>
+
+      <!-- 经历3：好记星（左） -->
+      <div class="timeline-item timeline-left" data-index="3">
+        <div class="timeline-card">
+          <div class="timeline-date-badge">2025.06 — 2025.09</div>
+          <div class="timeline-head-text">
+            <div class="timeline-company">好记星科技有限公司</div>
+            <div class="timeline-role">AI 产品实习生</div>
+          </div>
+          <div class="timeline-summary">AI 智能硬件从 0 到 1，搭建完整信息架构与多端体验流程</div>
+          <div class="timeline-stats">
+            <span><strong>50+</strong><em>功能模块</em></span>
+            <span><strong>20</strong><em>份 PRD</em></span>
+            <span><strong>50%</strong><em>效率提升</em></span>
+          </div>
+          <div class="timeline-detail">
+            <div class="timeline-block">
+              <span class="timeline-block-label">目标</span>
+              <p>协助 AI 智能硬件从 0 到 1 的搭建阶段，缺乏标准化产品规范，团队迭代效率低下，多端产品体验无法统一。</p>
+            </div>
+            <div class="timeline-block">
+              <span class="timeline-block-label">行动</span>
+              <ul>
+                <li>独立完成竞品分析，结合用户使用场景开展 150 份调研问卷和 10 份访谈研究</li>
+                <li>搭建基于 AI 功能模块的完整信息架构，独立输出 PRD 初稿约 20 份</li>
+                <li>跟进功能上线后的数据监控，迭代优化产品，完善从 0 到 1 的流程</li>
+              </ul>
+            </div>
+          </div>
+          <div class="timeline-hint">hover 查看详情 ↓</div>
+        </div>
+        <span class="timeline-num">3</span>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- 教育背景 -->
+  <section class="section" id="education">
+    <span class="section-eyebrow">Education</span>
+    <h2 class="section-title">校园时光</h2>
+
+    <div class="edu-card">
+      <img class="edu-card-img" src="images_edu/jiangnan.png" alt="江南大学" onerror="this.style.display='none'">
+      <div class="edu-card-body">
+        <div class="edu-icon">
+          <!-- SVG图标：学位帽 -->
+          <svg viewBox="0 0 24 24">
+            <path d="M22 10v6M2 10l10-5 10 5-10 5z" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
+            <path d="M6 12v5c3 3 9 3 12 0v-5" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
+          </svg>
+        </div>
+        <div class="edu-info">
+        <div class="edu-school">江南大学</div>
+        <div class="edu-tags">
+          <span class="edu-tag">211工程</span>
+          <span class="edu-tag">双一流</span>
+        </div>
+        <div class="edu-major">工业设计 · 本科</div>
+        <div class="edu-date">2023.09 — 至今</div>
+        <div class="edu-details">
+          <div class="edu-detail-item">
+            <strong>专业排名：</strong>
+            <span>专业前20%</span>
+          </div>
+          <div class="edu-detail-item">
+            <strong>核心课程：</strong>
+            <span>用户研究、智能制造基础、交互设计和可用性测试等课程均为4.0</span>
+          </div>
+        </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 技能特长 -->
+  <!-- 技能与爱好（抽卡玩法） -->
+  <section class="section" id="skills">
+    <span class="section-eyebrow">Skills &amp; Life</span>
+    <h2 class="section-title">来抽一张我的档案卡 🃏</h2>
+    <p class="section-sub">技能与爱好混在同一副牌里，抽一张，翻面认识我</p>
+
+    <!-- Tab 切换 -->
+    <div class="card-tabs">
+      <button class="card-tab active" data-tab="all">全部</button>
+      <button class="card-tab" data-tab="skill">技能卡</button>
+      <button class="card-tab" data-tab="hobby">爱好卡</button>
+    </div>
+
+    <!-- 抽卡主区域 -->
+    <div class="card-area">
+      <!-- 左侧：卡背 + 按钮 -->
+      <div class="card-deck">
+        <!-- 叠牌效果（3张卡背错开） -->
+        <div class="card-deck-stack">
+          <div class="card-back card-back-3"></div>
+          <div class="card-back card-back-2"></div>
+          <div class="card-back card-back-1">
+            <div class="card-back-inner">
+              <div class="card-back-dot" style="top:18%;left:15%"></div>
+              <div class="card-back-dot" style="top:30%;right:20%"></div>
+              <div class="card-back-dot" style="bottom:25%;left:22%"></div>
+              <div class="card-back-dot" style="bottom:18%;right:15%"></div>
+              <div class="card-back-text">
+                <div class="card-back-logo">SY</div>
+                <div class="card-back-title">档案卡</div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- 牌库统计 -->
+        <div class="card-deck-info" id="deckInfo">6 张技能 · 5 张爱好</div>
+
+        <!-- 抽卡按钮 -->
+        <button class="card-draw-btn" id="drawBtn">
+          <span class="card-draw-btn-text">随机抽一张</span>
+          <span class="card-draw-btn-arrow">✨</span>
+        </button>
+
+        <!-- 已抽到计数 -->
+        <div class="card-drawn-count" id="drawnCount">已抽 0 / 11</div>
+      </div>
+
+      <!-- 右侧：抽卡结果展示 -->
+      <div class="card-reveal">
+        <!-- 3D翻转容器 -->
+        <div class="card-flip-container" id="flipContainer">
+          <div class="card-flip-inner" id="flipInner">
+            <!-- 卡正面 -->
+            <div class="card-face card-front" id="cardFront">
+              <img class="card-front-image" id="cardFrontImage" alt="">
+              <div class="card-front-tag" id="cardFrontTag">技能</div>
+              <div class="card-front-pattern"></div>
+              <div class="card-front-content">
+                <div class="card-front-type" id="cardFrontType">DRAWN FILE</div>
+                <div class="card-front-title" id="cardFrontTitle">点击抽卡</div>
+                <div class="card-front-sub" id="cardFrontSub">Ready to draw</div>
+              </div>
+              <div class="card-front-hint" id="cardFrontHint">点击翻面查看 ↻</div>
+            </div>
+
+            <!-- 卡背面 -->
+            <div class="card-face card-back-face" id="cardBackFace">
+              <div class="card-back-face-icon" id="cardBackIcon">🃏</div>
+              <div class="card-back-face-title" id="cardBackTitle">点击左边抽卡按钮</div>
+              <div class="card-back-face-desc" id="cardBackDesc">抽一张，翻面认识我</div>
+              <div class="card-back-face-tags" id="cardBackTags"></div>
+              <div class="card-back-face-rarity" id="cardBackRarity"></div>
+            </div>
+          </div>
+        </div>
+
+        <!-- 分页指示 -->
+        <div class="card-pagination" id="cardPagination">
+          <span class="card-page-current">00</span>
+          <span class="card-page-dash">——</span>
+          <span class="card-page-total">11</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- 已抽到的卡列表（集齐提示） -->
+    <div class="card-collected" id="cardCollected" style="display:none;">
+      <div class="card-collected-title">🎉 全部集齐了！</div>
+      <div class="card-collected-sub">再抽就是重复啦，看看别的吧～</div>
+    </div>
+  </section>
+
+  <!-- 作品集 -->
+  <section class="section" id="portfolio">
+    <span class="section-eyebrow">Portfolio</span>
+    <h2 class="section-title">我的作品集</h2>
+
+    <!-- 目录视图（默认显示） -->
+    <div class="portfolio-view" id="portfolioDirView">
+      <div class="portfolio-toc-header">
+        <div class="portfolio-toc-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <polygon points="5 3 19 12 5 21 5 3"/>
+          </svg>
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <polygon points="5 3 19 12 5 21 5 3"/>
+          </svg>
+        </div>
+        <div class="portfolio-toc-text">
+          <span class="portfolio-toc-label">CONTENTS</span>
+          <span class="portfolio-toc-sub">UI DESIGN</span>
+        </div>
+      </div>
+
+      <div class="portfolio-dir-list">
+        <!-- 项目1：中国移动 -->
+        <div class="portfolio-dir-item" onclick="showPortfolioDetail('cmcc')">
+          <div class="portfolio-dir-index">01</div>
+          <div class="portfolio-dir-info">
+            <h3 class="portfolio-dir-title">中国移动</h3>
+            <p class="portfolio-dir-desc">可用性测试 + 界面迭代，覆盖充值、会员、套餐等核心场景</p>
+          </div>
+          <div class="portfolio-dir-thumb">
+            <img src="images_cmcc_new/01.png" alt="中国移动" loading="lazy" onerror="this.parentElement.innerHTML='<div class=\'portfolio-dir-thumb-fallback\'>�</div>'">
+          </div>
+          <div class="portfolio-dir-arrow">
+            <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <polyline points="9 18 15 12 9 6"/>
+            </svg>
+          </div>
+        </div>
+
+        <!-- 项目2：RERELIC -->
+        <div class="portfolio-dir-item" onclick="showPortfolioDetail('rerelic')">
+          <div class="portfolio-dir-index">02</div>
+          <div class="portfolio-dir-info">
+            <h3 class="portfolio-dir-title">RERELIC</h3>
+            <p class="portfolio-dir-desc">数字博物馆 × Z世代文化共创</p>
+          </div>
+          <div class="portfolio-dir-thumb">
+            <img src="images_rerelic/01.png" alt="RERELIC" loading="lazy" onerror="this.parentElement.innerHTML='<div class=\'portfolio-dir-thumb-fallback\'>🏛️</div>'">
+          </div>
+          <div class="portfolio-dir-arrow">
+            <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <polyline points="9 18 15 12 9 6"/>
+            </svg>
+          </div>
+        </div>
+
+        <!-- 项目3：掌城APP -->
+        <div class="portfolio-dir-item" onclick="showPortfolioDetail('zhangcheng')">
+          <div class="portfolio-dir-index">03</div>
+          <div class="portfolio-dir-info">
+            <h3 class="portfolio-dir-title">掌城APP</h3>
+            <p class="portfolio-dir-desc">融入 AR 的商场导航 APP，逛商场更好玩</p>
+          </div>
+          <div class="portfolio-dir-thumb">
+            <img src="images_zhangcheng/00.png" alt="掌城APP" loading="lazy" onerror="this.parentElement.innerHTML='<div class=\'portfolio-dir-thumb-fallback\'>�️</div>'">
+          </div>
+          <div class="portfolio-dir-arrow">
+            <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <polyline points="9 18 15 12 9 6"/>
+            </svg>
+          </div>
+        </div>
+
+        <!-- 项目4：莲境 -->
+        <div class="portfolio-dir-item" onclick="showPortfolioDetail('lianjing')">
+          <div class="portfolio-dir-index">04</div>
+          <div class="portfolio-dir-info">
+            <h3 class="portfolio-dir-title">莲境</h3>
+            <p class="portfolio-dir-desc">为 10~15 岁青少年设计的五音疗愈玩具</p>
+          </div>
+          <div class="portfolio-dir-thumb">
+            <img src="images_lianjing/01.png" alt="莲境" loading="lazy" onerror="this.parentElement.innerHTML='<div class=\'portfolio-dir-thumb-fallback\'>🪷</div>'">
+          </div>
+          <div class="portfolio-dir-arrow">
+            <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <polyline points="9 18 15 12 9 6"/>
+            </svg>
+          </div>
+        </div>
+
+        <!-- 项目5：好记星 -->
+        <div class="portfolio-dir-item" onclick="showPortfolioDetail('haojixing')">
+          <div class="portfolio-dir-index">05</div>
+          <div class="portfolio-dir-info">
+            <h3 class="portfolio-dir-title">好记星 · 实习项目</h3>
+            <p class="portfolio-dir-desc">实习期间的需求拆解与功能设计实战</p>
+          </div>
+          <div class="portfolio-dir-thumb">
+            <img src="images_haojixing/01.png" alt="好记星" loading="lazy" onerror="this.parentElement.innerHTML='<div class=\'portfolio-dir-thumb-fallback\'>📘</div>'">
+          </div>
+          <div class="portfolio-dir-arrow">
+            <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <polyline points="9 18 15 12 9 6"/>
+            </svg>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- 详情视图（默认隐藏） -->
+    <div class="portfolio-view portfolio-detail-view" id="portfolioDetailView" style="display:none;">
+      <button class="portfolio-back-btn" onclick="backToPortfolioDir()">
+        <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <polyline points="15 18 9 12 15 6"/>
+        </svg>
+        返回目录
+      </button>
+      <div class="portfolio-detail-header">
+        <h3 class="portfolio-detail-title" id="portfolioDetailTitle"></h3>
+        <p class="portfolio-detail-desc" id="portfolioDetailDesc"></p>
+      </div>
+      <div class="portfolio-detail-gallery" id="portfolioDetailGallery">
+        <!-- 图片将通过JS动态插入 -->
+      </div>
+    </div>
+
+  </section>
+
+  <!-- 证书/荣誉 -->
+  <section class="section" id="honors">
+    <span class="section-eyebrow">Honors &amp; Awards</span>
+    <h2 class="section-title">我的荣誉墙</h2>
+
+    <div class="honors-list">
+      <div class="honor-item"><span class="honor-dot"></span><span class="honor-text">校级优秀干部</span><span class="honor-tag">2023 · 校级</span></div>
+      <div class="honor-item"><span class="honor-dot"></span><span class="honor-text">全国大学生数媒科技国家三等奖</span><span class="honor-tag">2023 · 国家级</span></div>
+      <div class="honor-item"><span class="honor-dot"></span><span class="honor-text">江南大学综合奖学金</span><span class="honor-tag">2023 · 校级</span></div>
+      <div class="honor-item"><span class="honor-dot"></span><span class="honor-text">第十届届奖总决赛三等奖</span><span class="honor-tag">2025</span></div>
+      <div class="honor-item"><span class="honor-dot"></span><span class="honor-text">无锡市摄影比赛二等奖</span><span class="honor-tag">市级</span></div>
+      <div class="honor-item"><span class="honor-dot"></span><span class="honor-text">百年优秀团干部</span><span class="honor-tag">学生会主席</span></div>
+      <div class="honor-item"><span class="honor-dot"></span><span class="honor-text">七彩假期志愿服务活动全国银奖</span><span class="honor-tag">国家级</span></div>
+      <div class="honor-item"><span class="honor-dot"></span><span class="honor-text">长沙市三好学生</span><span class="honor-tag">市级</span></div>
+    </div>
+  </section>
+
+</main>
+
+<!-- 作品集灯箱（图片放大查看） -->
+<div class="portfolio-lightbox" id="portfolioLightbox" onclick="closeLightbox(event)">
+  <button class="portfolio-lightbox-close" onclick="closeLightbox(event, true)" aria-label="关闭">
+    <svg viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+      <line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/>
+    </svg>
+  </button>
+  <button class="portfolio-lightbox-nav portfolio-lightbox-prev" onclick="navLightbox(event, -1)" aria-label="上一张">
+    <svg viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+      <polyline points="15 18 9 12 15 6"/>
+    </svg>
+  </button>
+  <img id="portfolioLightboxImg" src="" alt="作品集图片放大查看">
+  <button class="portfolio-lightbox-nav portfolio-lightbox-next" onclick="navLightbox(event, 1)" aria-label="下一张">
+    <svg viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+      <polyline points="9 18 15 12 9 6"/>
+    </svg>
+  </button>
+</div>
+
+<!-- 页脚 -->
+<footer class="footer">
+  <p>© 2026 史雅靓 · 产品经理 | 个人简历网站</p>
+</footer>
+
+<script>
+/* ==================== 栏目切换逻辑（滚动式） ==================== */
+function switchSection(sectionId) {
+  // 平滑滚动到目标栏目
+  const targetSection = document.getElementById(sectionId);
+  if (targetSection) {
+    targetSection.scrollIntoView({ behavior: 'smooth', block: 'start' });
+  }
+  // 更新导航栏选中状态
+  document.querySelectorAll('.nav-link').forEach(link => {
+    link.classList.remove('active');
+    if (link.dataset.section === sectionId) {
+      link.classList.add('active');
+    }
+  });
+  // 关闭移动端菜单
+  document.getElementById('navLinks').classList.remove('open');
+}
+
+// 导航按钮点击事件绑定
+document.querySelectorAll('.nav-link').forEach(link => {
+  link.addEventListener('click', () => {
+    switchSection(link.dataset.section);
+  });
+});
+
+/* ==================== 滚动时自动高亮当前栏目 ==================== */
+const navObserver = new IntersectionObserver((entries) => {
+  entries.forEach(entry => {
+    if (entry.isIntersecting) {
+      const id = entry.target.id;
+      document.querySelectorAll('.nav-link').forEach(link => {
+        link.classList.toggle('active', link.dataset.section === id);
+      });
+    }
+  });
+}, { rootMargin: '-80px 0px -60% 0px', threshold: 0 });
+
+document.querySelectorAll('.section').forEach(section => {
+  navObserver.observe(section);
+});
+
+/* ==================== 移动端汉堡菜单 ==================== */
+const menuToggle = document.getElementById('menuToggle');
+const navLinks = document.getElementById('navLinks');
+
+menuToggle.addEventListener('click', () => {
+  navLinks.classList.toggle('open');
+});
+
+/* ==================== 3D形象轮播 ==================== */
+const charList = [
+  { file: '01.png', label: '骑行中 🚴‍♀️' },
+  { file: '02.png', label: '打球中 🏸' },
+  { file: '03.png', label: '拍拍拍 📷' },
+  { file: '04.png', label: '写写写 ✍️' },
+  { file: '05.png', label: '画画中 🎨' }
+];
+let currentChar = 0;
+/* ==================== 滚动监听：导航栏样式变化 ==================== */
+let lastScrollY = 0;
+window.addEventListener('scroll', () => {
+  const navbar = document.querySelector('.navbar');
+  const currentScrollY = window.scrollY;
+  
+  if (currentScrollY > 50) {
+    navbar.style.boxShadow = '0 4px 20px rgba(0, 0, 0, 0.1)';
+  } else {
+    navbar.style.boxShadow = '0 2px 8px rgba(0, 0, 0, 0.06)';
+  }
+  
+  lastScrollY = currentScrollY;
+}, { passive: true });
+
+/* ==================== GSAP + ScrollTrigger 动效系统 ==================== */
+(function() {
+  if (typeof gsap === 'undefined' || typeof ScrollTrigger === 'undefined') return;
+
+  gsap.registerPlugin(ScrollTrigger);
+
+  // 尊重 reduced-motion
+  const prefersReduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  const slow = prefersReduced ? 0.3 : 1;
+
+  // ====== 首屏 Opening Animation ======
+  function heroOpening() {
+    const tl = gsap.timeline({ defaults: { ease: 'power3.out' } });
+
+    // 遮罩层从上揭开
+    tl.to('.hero', {
+      clipPath: 'polygon(0 0, 100% 0, 100% 100%, 0 100%)',
+      duration: 1.2 * slow,
+      ease: 'power4.inOut'
+    }, 0);
+
+    // 问候文字：从下方入场 + 模糊消散
+    tl.from('.hero-greeting', {
+      y: 60,
+      opacity: 0,
+      filter: 'blur(8px)',
+      duration: 0.9 * slow
+    }, 0.3);
+
+    // 大标题：缩放压缩归位 + 位移 + 模糊消散
+    tl.from('.hero-name', {
+      y: 80,
+      scale: 1.15,
+      opacity: 0,
+      filter: 'blur(12px)',
+      duration: 1.2 * slow,
+      ease: 'expo.out'
+    }, 0.45);
+
+    // 副标题
+    tl.from('.hero-intro', {
+      y: 40,
+      opacity: 0,
+      duration: 0.7 * slow
+    }, 0.9);
+
+    // 描述文字
+    tl.from('.hero-tagline', {
+      y: 30,
+      opacity: 0,
+      duration: 0.7 * slow
+    }, 1.05);
+
+    // 联系信息 stagger
+    tl.from('.hero-info-item', {
+      y: 24,
+      opacity: 0,
+      duration: 0.5 * slow,
+      stagger: 0.08
+    }, 1.2);
+
+    // 按钮
+    tl.from('.hero-actions', {
+      y: 30,
+      opacity: 0,
+      duration: 0.6 * slow
+    }, 1.4);
+
+    // 右侧3D形象
+    tl.from('.hero-right', {
+      x: 80,
+      opacity: 0,
+      filter: 'blur(10px)',
+      duration: 1 * slow,
+      ease: 'power3.out'
+    }, 0.5);
+
+    // 技能便签
+    tl.from('.skill-tags-row', {
+      y: 30,
+      opacity: 0,
+      duration: 0.6 * slow,
+      stagger: 0.08
+    }, 1.1);
+
+    // 导航栏淡入
+    tl.from('.navbar', {
+      y: -30,
+      opacity: 0,
+      duration: 0.6 * slow
+    }, 0.1);
+  }
+
+  // ====== 模块标题入场（clipPath 遮罩揭示） ======
+  function sectionTitles() {
+    gsap.utils.toArray('.section-title').forEach((el, i) => {
+      // 给标题加个 span 包裹用于 clipPath
+      if (!el.querySelector('.title-text-wrap')) {
+        const text = el.innerHTML;
+        el.innerHTML = `<span class="title-text-wrap" style="display:inline-block;overflow:hidden"><span class="title-text" style="display:inline-block">${text}</span></span>`;
+      }
+      const titleText = el.querySelector('.title-text');
+      const eyebrow = el.previousElementSibling; // section-eyebrow
+
+      gsap.set(titleText, { y: '120%' });
+      if (eyebrow) gsap.set(eyebrow, { y: 20, opacity: 0 });
+
+      const tl = gsap.timeline({
+        scrollTrigger: {
+          trigger: el,
+          start: 'top 85%',
+          once: true
+        }
+      });
+
+      if (eyebrow) {
+        tl.to(eyebrow, { y: 0, opacity: 1, duration: 0.6 * slow, ease: 'power3.out' }, 0);
+      }
+      tl.to(titleText, { y: '0%', duration: 0.9 * slow, ease: 'expo.out' }, 0.15);
+    });
+  }
+
+  // ====== 卡片 stagger 入场 ======
+  function cardStaggerReveal() {
+    const cardSelectors = [
+      '.honor-item',
+      '.timeline-card',
+      '.edu-card-body',
+      '.portfolio-dir-item',
+      '.card-flip-container'
+    ];
+
+    cardSelectors.forEach(sel => {
+      const cards = document.querySelectorAll(sel);
+      if (cards.length === 0) return;
+
+      gsap.fromTo(cards,
+        { y: 50, opacity: 0 },
+        {
+          y: 0,
+          opacity: 1,
+          duration: 0.8 * slow,
+          stagger: 0.08,
+          ease: 'power3.out',
+          immediateRender: false,
+          scrollTrigger: {
+            trigger: cards[0].closest('.section') || cards[0],
+            start: 'top 85%',
+            once: true
+          }
+        }
+      );
+    });
+  }
+
+  // ====== 图片 reveal + 轻微 parallax ======
+  function imageReveal() {
+    const imgSelectors = ['.portfolio-detail-img-wrapper img', '.edu-card-img'];
+
+    imgSelectors.forEach(sel => {
+      const imgs = document.querySelectorAll(sel);
+      if (imgs.length === 0) return;
+
+      imgs.forEach(img => {
+        gsap.fromTo(img,
+          { scale: 1.08 },
+          {
+            scale: 1,
+            duration: 1.2 * slow,
+            ease: 'power3.out',
+            scrollTrigger: {
+              trigger: img,
+              start: 'top 90%',
+              once: true
+            }
+          }
+        );
+
+        // 轻微 parallax（滚动时图片反向微移）
+        gsap.to(img, {
+          y: '-20px',
+          ease: 'none',
+          scrollTrigger: {
+            trigger: img,
+            start: 'top bottom',
+            end: 'bottom top',
+            scrub: true
+          }
+        });
+      });
+    });
+  }
+
+  // ====== 卡片内部元素 stagger ======
+  function cardInnerReveal() {
+    // timeline-card 内部
+    gsap.utils.toArray('.timeline-card').forEach(card => {
+      gsap.fromTo(card.querySelectorAll('.timeline-company, .timeline-role, .timeline-summary, .timeline-stats'),
+        { y: 20, opacity: 0 },
+        {
+          y: 0,
+          opacity: 1,
+          duration: 0.5 * slow,
+          stagger: 0.06,
+          ease: 'power3.out',
+          immediateRender: false,
+          scrollTrigger: {
+            trigger: card,
+            start: 'top 85%',
+            once: true
+          }
+        }
+      );
+    });
+
+    // 编号圆点动画
+    gsap.utils.toArray('.timeline-num').forEach(num => {
+      gsap.fromTo(num,
+        { scale: 0.6, opacity: 0 },
+        {
+          scale: 1,
+          opacity: 1,
+          duration: 0.5 * slow,
+          ease: 'power3.out',
+          immediateRender: false,
+          scrollTrigger: {
+            trigger: num.closest('.timeline-item'),
+            start: 'top 85%',
+            once: true
+          }
+        }
+      );
+    });
+
+    // portfolio-dir-item
+    gsap.utils.toArray('.portfolio-dir-item').forEach(item => {
+      gsap.fromTo(item.querySelectorAll('.portfolio-dir-num, .portfolio-dir-info, .portfolio-dir-thumb'),
+        { y: 24, opacity: 0 },
+        {
+          y: 0,
+          opacity: 1,
+          duration: 0.6 * slow,
+          stagger: 0.1,
+          ease: 'power3.out',
+          immediateRender: false,
+          scrollTrigger: {
+            trigger: item,
+            start: 'top 85%',
+            once: true
+          }
+        }
+      );
+    });
+  }
+
+  // ====== Navbar 滚动效果 ======
+  function navbarScroll() {
+    gsap.to('.navbar', {
+      boxShadow: '0 2px 20px rgba(0,0,0,0.08)',
+      scrollTrigger: {
+        trigger: '#home',
+        start: 'bottom 10%',
+        toggleActions: 'play none none reverse'
+      }
+    });
+  }
+
+  // ====== Hero 肖像 parallax ======
+  function heroParallax() {
+    if (prefersReduced) return;
+    const portrait = document.querySelector('.portrait-wrap');
+    if (!portrait) return;
+
+    gsap.to(portrait, {
+      y: -25,
+      ease: 'none',
+      scrollTrigger: {
+        trigger: '#home',
+        start: 'top top',
+        end: 'bottom top',
+        scrub: 0.5
+      }
+    });
+
+  }
+
+  // ====== 启动 ======
+  function init() {
+    if (prefersReduced) {
+      // reduced-motion 降级：直接显示
+      gsap.set(['.honor-item', '.timeline-card', '.portfolio-dir-item', '.edu-card-body', '.card-flip-container'], { opacity: 1, y: 0 });
+      return;
+    }
+    heroOpening();
+    sectionTitles();
+    cardStaggerReveal();
+    imageReveal();
+    cardInnerReveal();
+    navbarScroll();
+    heroParallax();
+
+    // 初始化完刷新一次，确保位置计算正确
+    ScrollTrigger.refresh();
+  }
+
+  // DOM ready 后启动
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', init);
+  } else {
+    init();
+  }
+
+  // 图片加载完再刷新一次（图片尺寸会影响布局）
+  window.addEventListener('load', () => {
+    ScrollTrigger.refresh();
+  });
+})();
+
+/* ==================== 作品集项目数据 ==================== */
+const portfolioProjects = {
+  cmcc: {
+    title: '中国移动',
+    desc: '给中国移动做了一轮可用性测试和界面迭代，覆盖充值、会员、套餐等核心场景的体验优化。',
+    images: [
+      'images_cmcc_new/01.png', 'images_cmcc_new/02.png', 'images_cmcc_new/03.png', 'images_cmcc_new/04.png',
+      'images_cmcc_new/06.png', 'images_cmcc_new/08.png', 'images_cmcc_new/10.png', 'images_cmcc_new/11.png',
+      'images_cmcc_new/12.png', 'images_cmcc_new/13.png', 'images_cmcc_new/14.png', 'images_cmcc_new/15.png',
+      'images_cmcc_new/16.png', 'images_cmcc_new/18.png', 'images_cmcc_new/19.png', 'images_cmcc_new/20.png',
+      'images_cmcc_new/21.png', 'images_cmcc_new/22.png', 'images_cmcc_new/23.png', 'images_cmcc_new/25.png',
+      'images_cmcc_new/26.png', 'images_cmcc_new/27.png', 'images_cmcc_new/28.png', 'images_cmcc_new/29.png',
+      'images_cmcc_new/30.png', 'images_cmcc_new/31.png', 'images_cmcc_new/32.png',
+      'images_cmcc_new/33.gif', 'images_cmcc_new/34.png', 'images_cmcc_new/35.png', 'images_cmcc_new/36.gif',
+      'images_cmcc_new/39.png', 'images_cmcc_new/40.gif',
+      'images_cmcc_new/41.png', 'images_cmcc_new/42.png', 'images_cmcc_new/43.png',
+      'images_cmcc_new/46.png', 'images_cmcc_new/47.gif',
+      'images_cmcc_new/50.png', 'images_cmcc_new/52.png'
+    ]
+  },
+  rerelic: {
+    title: 'RERELIC',
+    desc: '数字博物馆 × Z世代文化共创，用数字化让年轻人和传统文化玩到一起。',
+    images: [
+      'images_rerelic/01.png', 'images_rerelic/02.png', 'images_rerelic/03.png', 'images_rerelic/04.png',
+      'images_rerelic/05.png', 'images_rerelic/06.png', 'images_rerelic/07.png', 'images_rerelic/08.png',
+      'images_rerelic/09.png', 'images_rerelic/11.gif', 'images_rerelic/12.gif',
+      'images_rerelic/13.gif', 'images_rerelic/14.gif', 'images_rerelic/15.png'
+    ]
+  },
+  zhangcheng: {
+    title: '掌城APP',
+    desc: '融入 AR 的商场导航 APP，让逛商场这件事更高效、更好玩。',
+    images: [
+      'images_zhangcheng/01.png', 'images_zhangcheng/02.png',
+      'images_zhangcheng/03.png', 'images_zhangcheng/04.png',
+      'images_zhangcheng/05.png', 'images_zhangcheng/06.png',
+      'images_zhangcheng/07.png', 'images_zhangcheng/08.png',
+      'images_zhangcheng/09.png', 'images_zhangcheng/10.png',
+      'images_zhangcheng/11.png', 'images_zhangcheng/12.png',
+      'images_zhangcheng/13.png', 'images_zhangcheng/14.png'
+    ]
+  },
+  lianjing: {
+    title: '莲境',
+    desc: '为 10~15 岁青少年设计的五音疗愈玩具，用声音温柔治愈青春期的小烦恼。',
+    images: [
+      'images_lianjing/01.png', 'images_lianjing/03.png', 'images_lianjing/04.png', 'images_lianjing/05.png',
+      'images_lianjing/06.png', 'images_lianjing/07.png', 'images_lianjing/08.png', 'images_lianjing/09.png',
+      'images_lianjing/10.png', 'images_lianjing/11.png', 'images_lianjing/02.png'
+    ]
+  },
+  haojixing: {
+    title: '好记星 · 实习项目',
+    desc: '好记星实习期间的需求拆解与功能设计实战，从 0 到 1 搭建产品流程。',
+    images: [
+      'images_haojixing/01.png', 'images_haojixing/02.png',
+      'images_haojixing/03.png', 'images_haojixing/04.png',
+      'images_haojixing/05.png', 'images_haojixing/06.png',
+      'images_haojixing/07.png', 'images_haojixing/08.png',
+      'images_haojixing/09.png', 'images_haojixing/10.png',
+      'images_haojixing/11.png'
+    ]
+  }
+};
+
+/**
+ * 展示作品集项目详情
+ * @param {string} projectId - 项目ID (cmcc/rerelic/zhangcheng/lianjing/haojixing)
+ */
+function showPortfolioDetail(projectId) {
+  const project = portfolioProjects[projectId];
+  if (!project) return;
+
+  // 更新标题和描述
+  document.getElementById('portfolioDetailTitle').textContent = project.title;
+  document.getElementById('portfolioDetailDesc').textContent = project.desc;
+
+  // 构建图片画廊
+  const gallery = document.getElementById('portfolioDetailGallery');
+  gallery.innerHTML = '';
+
+  // GIF 叠加位置配置：灰色"动图"占位框实测位置（按 PNG 文件名）；未配置的 GIF 单独展示
+  const overlayConfig = {
+    '32.png': { top: '48%',   left: '47.5%', width: '15.7%' },
+    '35.png': { top: '47.5%', left: '37.5%', width: '22%'   },
+    '39.png': { top: '48.5%', left: '48%',   width: '15.5%' },
+    '46.png': { top: '48.5%', left: '32%',   width: '15.5%' }
+  };
+
+  // 标记需要跳过的 GIF（前一张 PNG 配置了叠加位）
+  const skipGif = new Set();
+  project.images.forEach((src, i) => {
+    if (/\.gif$/i.test(src) && i > 0 && !/\.gif$/i.test(project.images[i - 1])) {
+      const prevName = project.images[i - 1].split('/').pop();
+      if (overlayConfig[prevName]) skipGif.add(i);
+    }
+  });
+
+  project.images.forEach((imgSrc, idx) => {
+    if (skipGif.has(idx)) return; // 已叠加到前面 PNG 上的 GIF 不单独显示
+
+    const curIsGif = /\.gif$/i.test(imgSrc);
+    const imgName = imgSrc.split('/').pop();
+    const nextSrc = idx + 1 < project.images.length ? project.images[idx + 1] : null;
+    const nextIsGif = nextSrc && /\.gif$/i.test(nextSrc);
+    const cfg = overlayConfig[imgName];
+
+    const wrapper = document.createElement('div');
+    wrapper.className = 'portfolio-detail-img-wrapper' + (curIsGif ? ' is-gif' : '');
+    wrapper.onclick = () => openLightbox(project.images, idx);
+
+    if (!curIsGif && nextIsGif && cfg) {
+      // GIF 叠加到 PNG 的灰色"动图"占位框位置，垂直居中
+      wrapper.innerHTML = `
+        <div style="position:relative;width:100%;">
+          <img src="${imgSrc}" alt="${project.title}" loading="lazy" style="width:100%;display:block;">
+          <div style="position:absolute;top:${cfg.top};left:${cfg.left};width:${cfg.width};transform:translateY(-50%);border-radius:16px;overflow:hidden;box-shadow:0 6px 20px rgba(0,0,0,.25);background:#fff;">
+            <img src="${nextSrc}" alt="动图演示" loading="lazy" style="width:100%;display:block;">
+          </div>
+        </div>
+      `;
+    } else {
+      wrapper.innerHTML = '<img src="' + imgSrc + '" alt="' + project.title + ' - 图片' + (idx + 1) + '" loading="lazy" onerror="this.parentElement.style.display=\'none\'">';
+    }
+    gallery.appendChild(wrapper);
+  });
+
+  // 切换视图
+  document.getElementById('portfolioDirView').style.display = 'none';
+  document.getElementById('portfolioDetailView').style.display = 'block';
+  document.getElementById('portfolio').scrollIntoView({ behavior: 'smooth', block: 'start' });
+}
+
+/**
+ * 返回作品集目录视图
+ */
+function backToPortfolioDir() {
+  document.getElementById('portfolioDetailView').style.display = 'none';
+  document.getElementById('portfolioDirView').style.display = 'block';
+  document.getElementById('portfolio').scrollIntoView({ behavior: 'smooth', block: 'start' });
+}
+
+/* ==================== 作品集灯箱交互 ==================== */
+// 当前灯箱中显示的图片列表与索引
+let currentLightboxImages = [];
+let currentLightboxIndex = 0;
+
+/**
+ * 打开灯箱
+ * @param {string[]} images - 图片路径数组
+ * @param {number} startIndex - 初始显示的图片索引
+ */
+function openLightbox(images, startIndex = 0) {
+  if (!images || images.length === 0) return;
+  currentLightboxImages = images;
+  currentLightboxIndex = Math.max(0, Math.min(startIndex, images.length - 1));
+  updateLightboxImage();
+  document.getElementById('portfolioLightbox').classList.add('open');
+  document.body.style.overflow = 'hidden'; // 禁止背景滚动
+}
+
+/**
+ * 关闭灯箱
+ * @param {Event} event - 点击事件
+ * @param {boolean} forceClose - 强制关闭（来自关闭按钮）
+ */
+function closeLightbox(event, forceClose = false) {
+  // 仅当点击背景或点击关闭按钮时关闭，点击图片/导航按钮不关闭
+  if (!forceClose) {
+    const target = event.target;
+    // 如果点击的是图片或导航按钮内部，则不关闭
+    if (target.tagName === 'IMG' || target.closest('.portfolio-lightbox-nav')) {
+      return;
+    }
+  }
+  document.getElementById('portfolioLightbox').classList.remove('open');
+  document.body.style.overflow = '';
+}
+
+/**
+ * 切换灯箱图片
+ * @param {Event} event - 点击事件
+ * @param {number} direction - 方向：-1上一张，1下一张
+ */
+function navLightbox(event, direction) {
+  if (event) event.stopPropagation();
+  if (currentLightboxImages.length === 0) return;
+  currentLightboxIndex = (currentLightboxIndex + direction + currentLightboxImages.length) % currentLightboxImages.length;
+  updateLightboxImage();
+}
+
+/**
+ * 更新灯箱中显示的图片
+ */
+function updateLightboxImage() {
+  const img = document.getElementById('portfolioLightboxImg');
+  img.style.opacity = '0';
+  // 短暂淡出后切换图片
+  setTimeout(() => {
+    img.src = currentLightboxImages[currentLightboxIndex];
+    img.onload = () => { img.style.opacity = '1'; };
+  }, 150);
+}
+
+// 键盘事件：ESC关闭，左右箭头切换
+document.addEventListener('keydown', (e) => {
+  const lightbox = document.getElementById('portfolioLightbox');
+  if (!lightbox.classList.contains('open')) return;
+  if (e.key === 'Escape') {
+    closeLightbox(null, true);
+  } else if (e.key === 'ArrowLeft') {
+    navLightbox(null, -1);
+  } else if (e.key === 'ArrowRight') {
+    navLightbox(null, 1);
+  }
+});
+
+// 触摸滑动支持（移动端左右切换）
+let touchStartX = 0;
+const lightboxEl = document.getElementById('portfolioLightbox');
+lightboxEl.addEventListener('touchstart', (e) => {
+  touchStartX = e.touches[0].clientX;
+}, { passive: true });
+lightboxEl.addEventListener('touchend', (e) => {
+  const touchEndX = e.changedTouches[0].clientX;
+  const diff = touchEndX - touchStartX;
+  if (Math.abs(diff) > 50) {
+    // 向右滑（diff>0）= 上一张，向左滑（diff<0）= 下一张
+    navLightbox(null, diff > 0 ? -1 : 1);
+  }
+}, { passive: true });
+
+/* ==================== 抽卡玩法 JS ==================== */
+// 卡牌数据
+const cardData = [
+  // ===== 技能卡 =====
+  {
+    id: 'skill-1',
+    type: 'skill',
+    typeLabel: '技能',
+    rarity: '★★★★★',
+    icon: '🛠️',
+    title: '产品工具',
+    subtitle: 'Tools & Prototype',
+    desc: 'Figma、ProtoPie、Axure、Visio、ProcessOn、Xmind、飞书、蓝湖（熟练），可独立完成原型绘制、流程图梳理、PRD撰写与项目自检跟进。',
+    tags: ['Figma', 'Axure', 'ProtoPie', 'PRD'],
+    image: 'images_avatar/08.png'
+  },
+  {
+    id: 'skill-2',
+    type: 'skill',
+    typeLabel: '技能',
+    rarity: '★★★★☆',
+    icon: '🤖',
+    title: 'AI 辅助能力',
+    subtitle: 'AI Native',
+    desc: '熟练使用 Google AI Studio、Gemini、AIGC、Claude code、vibe coding、cursor 等工具辅助需求分析与方案推进，具备产品思维。',
+    tags: ['Gemini', 'Claude', 'Vibe Coding', 'Cursor'],
+    image: 'images_avatar/09.png'
+  },
+  {
+    id: 'skill-3',
+    type: 'skill',
+    typeLabel: '技能',
+    rarity: '★★★★★',
+    icon: '💡',
+    title: '专业能力',
+    subtitle: 'Product Thinking',
+    desc: '行业竞品分析、用户需求调研与拆解、业务流程梳理、产品架构搭建、交互原型设计、可用性测试、跨团队协同推进。',
+    tags: ['竞品分析', '需求拆解', '原型设计', '可用性测试'],
+    image: 'images_avatar/04.png'
+  },
+  {
+    id: 'skill-4',
+    type: 'skill',
+    typeLabel: '技能',
+    rarity: '★★★★☆',
+    icon: '🌐',
+    title: '行业认知',
+    subtitle: 'Domain Knowledge',
+    desc: '熟悉智能硬件、AIGC、空间智能、AR 场景化产品的业务逻辑与用户体验要点，持续关注机器人及智能硬件行业前沿动态。',
+    tags: ['智能硬件', 'AR', '空间智能', 'AIGC'],
+    image: 'images_avatar/11.png'
+  },
+  {
+    id: 'skill-5',
+    type: 'skill',
+    typeLabel: '技能',
+    rarity: '★★★★☆',
+    icon: '📊',
+    title: '数据分析',
+    subtitle: 'Data & Research',
+    desc: '能够独立完成竞品调研报告、用户访谈、可用性测试与结果分析，用数据支撑产品决策，输出有洞察的方案文档。',
+    tags: ['调研报告', '用户访谈', '数据分析', '方案输出'],
+    image: 'images_avatar/10.png'
+  },
+  {
+    id: 'skill-6',
+    type: 'skill',
+    typeLabel: '技能',
+    rarity: '★★★★☆',
+    icon: '🎯',
+    title: '跨团队协作',
+    subtitle: 'Cross-team Work',
+    desc: '与 UX、研发、运营、市场团队配合默契，能清晰传达产品需求，协调各方资源推进项目落地，具备 owner 心态。',
+    tags: ['沟通协调', '项目推进', 'Owner 心态', '快速学习'],
+    image: 'images_avatar/07.png'
+  },
+
+  // ===== 爱好卡 =====
+  {
+    id: 'hobby-1',
+    type: 'hobby',
+    typeLabel: '爱好',
+    rarity: '★★★★☆',
+    icon: '🚴‍♀️',
+    title: '骑行',
+    subtitle: 'Cycling Lover',
+    desc: '周末骑车兜风爱好者～享受风在耳边的感觉，探索城市里没走过的小路。',
+    tags: ['城市骑行', '户外', '自由'],
+    image: 'images_avatar/06.png'
+  },
+  {
+    id: 'hobby-2',
+    type: 'hobby',
+    typeLabel: '爱好',
+    rarity: '★★★☆☆',
+    icon: '🏸',
+    title: '羽毛球',
+    subtitle: 'Badminton Player',
+    desc: '偶尔打打羽毛球，运动一下对脑子也有帮助嘛！',
+    tags: ['运动', '出汗', '解压'],
+    image: 'images_avatar/02.png'
+  },
+  {
+    id: 'hobby-3',
+    type: 'hobby',
+    typeLabel: '爱好',
+    rarity: '★★★★☆',
+    icon: '📷',
+    title: '摄影',
+    subtitle: 'Photography',
+    desc: '喜欢记录生活里有意思的瞬间，构图和光线是我一直在学习的事。',
+    tags: ['构图', '光影', '记录生活'],
+    image: 'images_avatar/03.png'
+  },
+  {
+    id: 'hobby-5',
+    type: 'hobby',
+    typeLabel: '爱好',
+    rarity: '★★★★★',
+    icon: '🎨',
+    title: '画画 / 设计',
+    subtitle: 'Design & Draw',
+    desc: '没事就喜欢画点小东西，对视觉表达特别着迷，也是做产品设计的灵感来源。',
+    tags: ['视觉', '色彩感', '创意'],
+    image: 'images_avatar/05.png'
+  }
+];
+
+// 状态
+let cardTabFilter = 'all';
+let drawnIds = new Set();
+let currentCardIndex = -1;
+let isFlipped = false;
+
+// DOM 引用
+const drawBtn = document.getElementById('drawBtn');
+const flipInner = document.getElementById('flipInner');
+const flipContainer = document.getElementById('flipContainer');
+const cardFrontEl = document.getElementById('cardFront');
+const cardBackFace = document.getElementById('cardBackFace');
+const cardFrontTag = document.getElementById('cardFrontTag');
+const cardFrontTitle = document.getElementById('cardFrontTitle');
+const cardFrontSub = document.getElementById('cardFrontSub');
+const cardFrontType = document.getElementById('cardFrontType');
+const cardFrontHint = document.getElementById('cardFrontHint');
+const cardBackIcon = document.getElementById('cardBackIcon');
+const cardBackTitle = document.getElementById('cardBackTitle');
+const cardBackDesc = document.getElementById('cardBackDesc');
+const cardBackTags = document.getElementById('cardBackTags');
+const cardBackRarity = document.getElementById('cardBackRarity');
+const deckInfo = document.getElementById('deckInfo');
+const drawnCountEl = document.getElementById('drawnCount');
+const pageCurrent = document.querySelector('.card-page-current');
+const pageTotal = document.querySelector('.card-page-total');
+const collectedEl = document.getElementById('cardCollected');
+
+// 获取当前过滤后的卡池
+function getFilteredCards() {
+  if (cardTabFilter === 'all') return cardData;
+  return cardData.filter(c => c.type === cardTabFilter);
+}
+
+// 更新牌库统计
+function updateDeckInfo() {
+  const skills = cardData.filter(c => c.type === 'skill').length;
+  const hobbies = cardData.filter(c => c.type === 'hobby').length;
+  const total = getFilteredCards().length;
+  deckInfo.textContent = `${skills} 张技能 · ${hobbies} 张爱好`;
+  pageTotal.textContent = String(total).padStart(2, '0');
+}
+
+// 更新已抽计数
+function updateDrawnCount() {
+  const filtered = getFilteredCards();
+  const filteredDrawn = filtered.filter(c => drawnIds.has(c.id)).length;
+  drawnCountEl.textContent = `已抽 ${filteredDrawn} / ${filtered.length}`;
+  collectedEl.style.display = filteredDrawn === filtered.length && filtered.length > 0 ? 'block' : 'none';
+}
+
+// 渲染卡牌内容
+function renderCard(card) {
+  // 正面
+  cardFrontTag.textContent = card.typeLabel;
+  cardFrontTag.className = 'card-front-tag ' + card.type;
+  cardFrontType.textContent = card.type === 'skill' ? 'DRAWN FILE' : 'DRAWN HOBBY';
+  cardFrontTitle.textContent = card.title;
+  cardFrontSub.textContent = card.subtitle;
+
+  // 爱好卡有图片 → 显示图片覆盖
+  const cardFront = document.getElementById('cardFront');
+  const cardImg = document.getElementById('cardFrontImage');
+  if (card.image) {
+    cardFront.classList.add('has-image');
+    cardImg.src = card.image;
+    cardImg.alt = card.title;
+  } else {
+    cardFront.classList.remove('has-image');
+    cardImg.removeAttribute('src');
+  }
+
+  // 背面
+  cardBackIcon.textContent = card.icon;
+  cardBackTitle.textContent = card.title;
+  cardBackDesc.textContent = card.desc;
+  cardBackRarity.textContent = card.rarity;
+  cardBackTags.innerHTML = card.tags.map(t => `<span class="card-back-face-tag">${t}</span>`).join('');
+
+  // 分页
+  const filtered = getFilteredCards();
+  const idx = filtered.findIndex(c => c.id === card.id);
+  pageCurrent.textContent = String(idx + 1).padStart(2, '0');
+}
+
+// 抽卡
+function drawCard() {
+  const filtered = getFilteredCards();
+  const undrawn = filtered.filter(c => !drawnIds.has(c.id));
+  if (undrawn.length === 0) {
+    drawBtn.disabled = true;
+    drawBtn.querySelector('.card-draw-btn-text').textContent = '全部抽完啦 🎉';
+    return;
+  }
+
+  const pick = undrawn[Math.floor(Math.random() * undrawn.length)];
+  drawnIds.add(pick.id);
+  currentCardIndex = filtered.findIndex(c => c.id === pick.id);
+
+  // 如果当前卡是翻开的 → 先翻回去，再翻开新的
+  if (isFlipped) {
+    flipInner.classList.remove('flipped');
+    isFlipped = false;
+    // 翻回半程时渲染新卡内容，然后自然翻开
+    setTimeout(() => {
+      renderCard(pick);
+      updateDrawnCount();
+    }, 300);
+    setTimeout(() => {
+      flipInner.classList.add('flipped');
+      isFlipped = true;
+    }, 500);
+  } else {
+    // 直接渲染 + 翻开
+    renderCard(pick);
+    updateDrawnCount();
+    flipInner.classList.add('flipped');
+    isFlipped = true;
+  }
+}
+
+// 翻面（点击卡牌切换）
+function flipCard() {
+  if (currentCardIndex < 0) return;
+  flipInner.classList.toggle('flipped');
+  isFlipped = !isFlipped;
+}
+
+// Tab 切换
+function switchTab(tab) {
+  cardTabFilter = tab;
+  document.querySelectorAll('.card-tab').forEach(t => {
+    t.classList.toggle('active', t.dataset.tab === tab);
+  });
+
+  // 重置状态
+  if (isFlipped) {
+    flipInner.classList.remove('flipped');
+    isFlipped = false;
+  }
+  currentCardIndex = -1;
+  drawBtn.disabled = false;
+  drawBtn.querySelector('.card-draw-btn-text').textContent = '随机抽一张';
+
+  updateDeckInfo();
+  updateDrawnCount();
+}
+
+// 事件绑定
+drawBtn.addEventListener('click', drawCard);
+cardFrontEl.addEventListener('click', flipCard);
+cardBackFace.addEventListener('click', flipCard);
+document.querySelectorAll('.card-tab').forEach(tab => {
+  tab.addEventListener('click', () => switchTab(tab.dataset.tab));
+});
+
+// 初始化
+updateDeckInfo();
+updateDrawnCount();
+</script>
+
+</body>
+</html>
