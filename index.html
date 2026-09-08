@@ -1,4 +1,4 @@
-﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿<!DOCTYPE html>
+﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿<!DOCTYPE html>
 <html lang="zh-CN">
 <head>
 <meta charset="UTF-8">
@@ -1803,6 +1803,8 @@ body {
   border: 1px solid var(--border-light);
   cursor: pointer;
   transition: all 0.15s var(--ease);
+  display: flex;
+  justify-content: center;
 }
 
 .portfolio-detail-img-wrapper:hover {
@@ -1811,10 +1813,13 @@ body {
 }
 
 .portfolio-detail-img-wrapper img {
-  width: 100%;
+  max-width: 100%;
+  width: auto;
   height: auto;
   display: block;
   transition: transform 0.4s ease;
+  max-height: 1200px;
+  object-fit: contain;
 }
 
 .portfolio-detail-img-wrapper:hover img {
