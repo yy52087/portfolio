@@ -1,4 +1,4 @@
-﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿<!DOCTYPE html>
+﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿<!DOCTYPE html>
 <html lang="zh-CN">
 <head>
 <meta charset="UTF-8">
@@ -2182,68 +2182,57 @@ body {
     margin-bottom: 24px;
   }
 
-  /* 移动端：时间轴改回左侧 */
-  .timeline::before {
-    left: 18px;
-    transform: none;
+  /* 移动端：时间轴保持双列，缩小间距 */
+  .timeline-left {
+    padding-right: 50px;
   }
-  .timeline-left,
   .timeline-right {
-    width: 100%;
-    left: 0;
-    padding-left: 0;
-    padding-right: 0;
-    text-align: left;
+    padding-left: 50px;
   }
-  .timeline-left .timeline-num,
-  .timeline-right .timeline-num {
-    left: -18px;
-    right: auto;
+  .timeline-left .timeline-date-badge {
+    right: -240px;
   }
-  .timeline-left .timeline-date-badge,
   .timeline-right .timeline-date-badge {
-    position: relative;
-    left: auto;
-    right: auto;
-    top: auto;
-    transform: none;
-    display: inline-block;
-    margin-bottom: 8px;
+    left: -240px;
+  }
+  .timeline-date-badge {
+    font-size: 13px;
+    padding: 6px 12px;
   }
   .timeline-card {
-    padding: 20px;
+    padding: 14px;
   }
 
   .honors-grid {
-    grid-template-columns: 1fr;
+    grid-template-columns: 1fr 1fr;
   }
 
-  /* 移动端时间轴：每个 item 占满宽度 */
-  .timeline-item {
-    width: 100%;
-    margin-bottom: 36px;
-  }
-
-  /* 作品集：单列 + 缩略图更矮 */
+  /* 作品集保持双列 */
   .portfolio-grid {
-    grid-template-columns: 1fr;
-    gap: 20px;
+    grid-template-columns: 1fr 1fr;
+    gap: 14px;
   }
   .portfolio-thumb {
-    height: 180px;
+    height: 140px;
   }
   .portfolio-info {
-    padding: 16px 18px;
+    padding: 12px 14px;
   }
   .portfolio-title {
-    font-size: 16px;
+    font-size: 14px;
   }
   .portfolio-desc {
-    font-size: 12px;
-    -webkit-line-clamp: 2;
-    display: -webkit-box;
-    -webkit-box-orient: vertical;
-    overflow: hidden;
+    font-size: 11px;
+    line-height: 1.5;
+    margin-bottom: 8px;
+  }
+  .portfolio-tag {
+    font-size: 10px;
+    padding: 3px 8px;
+  }
+  .portfolio-meta {
+    font-size: 10px;
+    gap: 8px;
   }
 }
 
@@ -2267,27 +2256,45 @@ body {
     font-size: 14px;
   }
 
-  /* 时间轴卡片更紧凑 */
+  /* 时间轴更紧凑（保持双列） */
+  .timeline-left {
+    padding-right: 40px;
+  }
+  .timeline-right {
+    padding-left: 40px;
+  }
+  .timeline-left .timeline-date-badge {
+    right: -190px;
+  }
+  .timeline-right .timeline-date-badge {
+    left: -190px;
+  }
   .timeline-card {
-    padding: 16px;
+    padding: 12px;
   }
   .timeline-date-badge {
-    font-size: 15px;
-    padding: 8px 16px;
+    font-size: 11px;
+    padding: 4px 10px;
   }
   .timeline-stats {
-    font-size: 13px;
-    gap: 12px;
+    font-size: 11px;
+    gap: 8px;
+  }
+  .timeline-company {
+    font-size: 14px;
+  }
+  .timeline-role {
+    font-size: 11px;
   }
 
   /* 技能抽卡区域 */
   .card-deck {
-    width: 180px;
-    height: 240px;
+    width: 160px;
+    height: 220px;
   }
   .card-reveal {
     width: 100%;
-    max-width: 320px;
+    max-width: 300px;
   }
 }
 
