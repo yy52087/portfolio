@@ -1,4 +1,4 @@
-﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿<!DOCTYPE html>
+﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿<!DOCTYPE html>
 <html lang="zh-CN">
 <head>
 <meta charset="UTF-8">
@@ -2217,6 +2217,34 @@ body {
   .honors-grid {
     grid-template-columns: 1fr;
   }
+
+  /* 移动端时间轴：每个 item 占满宽度 */
+  .timeline-item {
+    width: 100%;
+    margin-bottom: 36px;
+  }
+
+  /* 作品集：单列 + 缩略图更矮 */
+  .portfolio-grid {
+    grid-template-columns: 1fr;
+    gap: 20px;
+  }
+  .portfolio-thumb {
+    height: 180px;
+  }
+  .portfolio-info {
+    padding: 16px 18px;
+  }
+  .portfolio-title {
+    font-size: 16px;
+  }
+  .portfolio-desc {
+    font-size: 12px;
+    -webkit-line-clamp: 2;
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+  }
 }
 
 @media (max-width: 480px) {
@@ -2237,6 +2265,29 @@ body {
   .btn-secondary {
     padding: 12px 24px;
     font-size: 14px;
+  }
+
+  /* 时间轴卡片更紧凑 */
+  .timeline-card {
+    padding: 16px;
+  }
+  .timeline-date-badge {
+    font-size: 15px;
+    padding: 8px 16px;
+  }
+  .timeline-stats {
+    font-size: 13px;
+    gap: 12px;
+  }
+
+  /* 技能抽卡区域 */
+  .card-deck {
+    width: 180px;
+    height: 240px;
+  }
+  .card-reveal {
+    width: 100%;
+    max-width: 320px;
   }
 }
 
