@@ -1,4 +1,4 @@
-﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿<!DOCTYPE html>
+﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿<!DOCTYPE html>
 <html lang="zh-CN">
 <head>
 <meta charset="UTF-8">
@@ -3376,6 +3376,11 @@ function showPortfolioDetail(projectId) {
   const gallery = document.getElementById('portfolioDetailGallery');
   gallery.innerHTML = '';
 
+  // 切换视图（目录 → 详情）
+  document.getElementById('portfolioDirView').style.display = 'none';
+  document.getElementById('portfolioDetailView').style.display = 'block';
+  document.getElementById('portfolio').scrollIntoView({ behavior: 'smooth', block: 'start' });
+
   // PDF嵌入模式（掌城专用）
   if (project.viewType === 'pdf') {
     const container = document.createElement('div');
@@ -3446,11 +3451,6 @@ function showPortfolioDetail(projectId) {
     }
     gallery.appendChild(wrapper);
   });
-
-  // 切换视图
-  document.getElementById('portfolioDirView').style.display = 'none';
-  document.getElementById('portfolioDetailView').style.display = 'block';
-  document.getElementById('portfolio').scrollIntoView({ behavior: 'smooth', block: 'start' });
 }
 
 /**
