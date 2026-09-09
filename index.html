@@ -1,4 +1,4 @@
-﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿<!DOCTYPE html>
+﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿<!DOCTYPE html>
 <html lang="zh-CN">
 <head>
 <meta charset="UTF-8">
@@ -1157,7 +1157,7 @@ body {
   z-index: 0;
 }
 
-.card-front.has-image .card-front-image {
+.card-front-image.img-loaded {
   opacity: 1;
 }
 
@@ -3686,7 +3686,7 @@ const cardData = [
     subtitle: 'AI Native',
     desc: '熟练使用 Google AI Studio、Gemini、AIGC、Claude code、vibe coding、cursor 等工具辅助需求分析与方案推进，具备产品思维。',
     tags: ['Gemini', 'Claude', 'Vibe Coding', 'Cursor'],
-    image: 'images_avatar/09.png'
+    image: 'images_avatar/09.jpg'
   },
   {
     id: 'skill-3',
@@ -3698,7 +3698,7 @@ const cardData = [
     subtitle: 'Product Thinking',
     desc: '行业竞品分析、用户需求调研与拆解、业务流程梳理、产品架构搭建、交互原型设计、可用性测试、跨团队协同推进。',
     tags: ['竞品分析', '需求拆解', '原型设计', '可用性测试'],
-    image: 'images_avatar/08.png'
+    image: 'images_avatar/08.jpg'
   },
   {
     id: 'skill-4',
@@ -3710,7 +3710,7 @@ const cardData = [
     subtitle: 'Domain Knowledge',
     desc: '熟悉智能硬件、AIGC、空间智能、AR 场景化产品的业务逻辑与用户体验要点，持续关注机器人及智能硬件行业前沿动态。',
     tags: ['智能硬件', 'AR', '空间智能', 'AIGC'],
-    image: 'images_avatar/11.png'
+    image: 'images_avatar/11.jpg'
   },
   {
     id: 'skill-5',
@@ -3722,7 +3722,7 @@ const cardData = [
     subtitle: 'Data & Research',
     desc: '能够独立完成竞品调研报告、用户访谈、可用性测试与结果分析，用数据支撑产品决策，输出有洞察的方案文档。',
     tags: ['调研报告', '用户访谈', '数据分析', '方案输出'],
-    image: 'images_avatar/10.png'
+    image: 'images_avatar/10.jpg'
   },
   {
     id: 'skill-6',
@@ -3748,7 +3748,7 @@ const cardData = [
     subtitle: 'Cycling Lover',
     desc: '周末骑车兜风爱好者～享受风在耳边的感觉，探索城市里没走过的小路。',
     tags: ['城市骑行', '户外', '自由'],
-    image: 'images_avatar/06.png'
+    image: 'images_avatar/06.jpg'
   },
   {
     id: 'hobby-2',
@@ -3760,7 +3760,7 @@ const cardData = [
     subtitle: 'Badminton Player',
     desc: '偶尔打打羽毛球，运动一下对脑子也有帮助嘛！',
     tags: ['运动', '出汗', '解压'],
-    image: 'images_avatar/02.png'
+    image: 'images_avatar/02.jpg'
   },
   {
     id: 'hobby-3',
@@ -3772,7 +3772,7 @@ const cardData = [
     subtitle: 'Photography',
     desc: '喜欢记录生活里有意思的瞬间，构图和光线是我一直在学习的事。',
     tags: ['构图', '光影', '记录生活'],
-    image: 'images_avatar/03.png'
+    image: 'images_avatar/03.jpg'
   },
   {
     id: 'hobby-5',
@@ -3784,9 +3784,14 @@ const cardData = [
     subtitle: 'Design & Draw',
     desc: '没事就喜欢画点小东西，对视觉表达特别着迷，也是做产品设计的灵感来源。',
     tags: ['视觉', '色彩感', '创意'],
-    image: 'images_avatar/05.png'
+    image: 'images_avatar/05.jpg'
   }
 ];
+
+// 预加载所有卡片图片，避免连续抽卡时大图未下载完而短暂显示上一张图
+cardData.forEach(c => {
+  if (c.image) { const p = new Image(); p.src = c.image; }
+});
 
 // 状态
 let cardTabFilter = 'all';
@@ -3848,15 +3853,24 @@ function renderCard(card) {
   cardFrontTitle.textContent = card.title;
   cardFrontSub.textContent = card.subtitle;
 
-  // 爱好卡有图片 → 显示图片覆盖
+  // 爱好卡有图片 → 显示图片覆盖（新图加载完成后再淡入，避免显示上一张旧图）
   const cardFront = document.getElementById('cardFront');
   const cardImg = document.getElementById('cardFrontImage');
   if (card.image) {
     cardFront.classList.add('has-image');
-    cardImg.src = card.image;
+    cardImg.classList.remove('img-loaded');
     cardImg.alt = card.title;
+    cardImg.onload = () => cardImg.classList.add('img-loaded');
+    cardImg.onerror = () => cardImg.classList.remove('img-loaded');
+    cardImg.src = card.image;
+    // 已在缓存中时 complete 为 true，直接显示
+    if (cardImg.complete && cardImg.naturalWidth > 0) {
+      cardImg.classList.add('img-loaded');
+    }
   } else {
     cardFront.classList.remove('has-image');
+    cardImg.classList.remove('img-loaded');
+    cardImg.onload = null;
     cardImg.removeAttribute('src');
   }
 
