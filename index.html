@@ -1,4 +1,4 @@
-﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿<!DOCTYPE html>
+﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿<!DOCTYPE html>
 <html lang="zh-CN">
 <head>
 <meta charset="UTF-8">
@@ -3691,8 +3691,10 @@ function renderProjectContent(projectId, card) {
         slideEl.innerHTML = `<img src="${slide.src}" alt="${project.title} - ${idx + 1}" loading="lazy">`;
         lightboxImages.push(slide.src);
       }
-      // 点击图片 → lightbox 放大，传入 lightboxImages 全量
-      slideEl.querySelector('img').onclick = () => openLightbox(lightboxImages, idx);
+      // 绑定 lightbox 放大（slide 内所有 img 都可点击）
+      slideEl.querySelectorAll('img').forEach(im => {
+        im.onclick = (e) => { e.stopPropagation(); openLightbox(lightboxImages, idx); };
+      });
       track.appendChild(slideEl);
 
       const dot = document.createElement('div');
