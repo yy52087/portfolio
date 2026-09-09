@@ -1,4 +1,4 @@
-﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿<!DOCTYPE html>
+﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿<!DOCTYPE html>
 <html lang="zh-CN">
 <head>
 <meta charset="UTF-8">
@@ -1828,6 +1828,7 @@ body {
 
 /* ===== PDF嵌入展示 ===== */
 .pdf-embed {
+  width: 100%;
   max-width: 1100px;
   margin: 0 auto;
   aspect-ratio: 16 / 9;
@@ -3385,7 +3386,7 @@ function showPortfolioDetail(projectId) {
   if (project.viewType === 'pdf') {
     const container = document.createElement('div');
     container.className = 'pdf-embed';
-    container.innerHTML = `<iframe src="${project.pdfUrl}" title="${project.title}" loading="lazy"></iframe>`;
+    container.innerHTML = `<iframe src="${project.pdfUrl}#toolbar=0&navpanes=0" title="${project.title}" loading="lazy"></iframe>`;
     gallery.appendChild(container);
     return;
   }
