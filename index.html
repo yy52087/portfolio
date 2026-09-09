@@ -1,4 +1,4 @@
-﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿<!DOCTYPE html>
+﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿<!DOCTYPE html>
 <html lang="zh-CN">
 <head>
 <meta charset="UTF-8">
@@ -1783,6 +1783,45 @@ body {
   border-top: 1px dashed var(--border-light);
 }
 
+/* 收起按钮 */
+.portfolio-collapse-row {
+  display: flex;
+  justify-content: center;
+  margin-top: 28px;
+}
+
+.portfolio-collapse-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 10px 26px;
+  background: var(--bg-white);
+  border: 1px solid var(--border-light);
+  border-radius: 999px;
+  font-size: 13px;
+  font-weight: 600;
+  font-family: inherit;
+  color: var(--text-secondary);
+  cursor: pointer;
+  transition: all 0.2s var(--ease);
+}
+
+.portfolio-collapse-btn:hover {
+  background: var(--primary);
+  color: #fff;
+  border-color: var(--primary);
+  transform: translateY(-2px);
+  box-shadow: 0 6px 18px rgba(15, 118, 110, 0.28);
+}
+
+.portfolio-collapse-btn svg {
+  transition: transform 0.2s var(--ease);
+}
+
+.portfolio-collapse-btn:hover svg {
+  transform: translateY(-2px);
+}
+
 /* ==================== 作品集画廊（卡片展开区内） ==================== */
 
 .portfolio-detail-gallery {
@@ -2677,6 +2716,12 @@ body {
               <div class="portfolio-card-content">
                 <p class="portfolio-card-desc" id="pf-desc-cmcc"></p>
                 <div class="portfolio-detail-gallery" id="pf-gallery-cmcc"></div>
+                <div class="portfolio-collapse-row">
+                  <button class="portfolio-collapse-btn" type="button" onclick="togglePortfolioCard('cmcc')">
+                    <svg viewBox="0 0 24 24" width="15" height="15" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><polyline points="18 15 12 9 6 15"/></svg>
+                    收起
+                  </button>
+                </div>
               </div>
             </div>
           </div>
@@ -2704,6 +2749,12 @@ body {
               <div class="portfolio-card-content">
                 <p class="portfolio-card-desc" id="pf-desc-rerelic"></p>
                 <div class="portfolio-detail-gallery" id="pf-gallery-rerelic"></div>
+                <div class="portfolio-collapse-row">
+                  <button class="portfolio-collapse-btn" type="button" onclick="togglePortfolioCard('rerelic')">
+                    <svg viewBox="0 0 24 24" width="15" height="15" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><polyline points="18 15 12 9 6 15"/></svg>
+                    收起
+                  </button>
+                </div>
               </div>
             </div>
           </div>
@@ -2731,6 +2782,12 @@ body {
               <div class="portfolio-card-content">
                 <p class="portfolio-card-desc" id="pf-desc-zhangcheng"></p>
                 <div class="portfolio-detail-gallery" id="pf-gallery-zhangcheng"></div>
+                <div class="portfolio-collapse-row">
+                  <button class="portfolio-collapse-btn" type="button" onclick="togglePortfolioCard('zhangcheng')">
+                    <svg viewBox="0 0 24 24" width="15" height="15" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><polyline points="18 15 12 9 6 15"/></svg>
+                    收起
+                  </button>
+                </div>
               </div>
             </div>
           </div>
@@ -2758,6 +2815,12 @@ body {
               <div class="portfolio-card-content">
                 <p class="portfolio-card-desc" id="pf-desc-lianjing"></p>
                 <div class="portfolio-detail-gallery" id="pf-gallery-lianjing"></div>
+                <div class="portfolio-collapse-row">
+                  <button class="portfolio-collapse-btn" type="button" onclick="togglePortfolioCard('lianjing')">
+                    <svg viewBox="0 0 24 24" width="15" height="15" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><polyline points="18 15 12 9 6 15"/></svg>
+                    收起
+                  </button>
+                </div>
               </div>
             </div>
           </div>
@@ -2785,6 +2848,12 @@ body {
               <div class="portfolio-card-content">
                 <p class="portfolio-card-desc" id="pf-desc-haojixing"></p>
                 <div class="portfolio-detail-gallery" id="pf-gallery-haojixing"></div>
+                <div class="portfolio-collapse-row">
+                  <button class="portfolio-collapse-btn" type="button" onclick="togglePortfolioCard('haojixing')">
+                    <svg viewBox="0 0 24 24" width="15" height="15" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><polyline points="18 15 12 9 6 15"/></svg>
+                    收起
+                  </button>
+                </div>
               </div>
             </div>
           </div>
@@ -3409,7 +3478,11 @@ function togglePortfolioCard(projectId) {
       if (window.ScrollTrigger) ScrollTrigger.refresh();
     }, 350);
   } else {
-    setTimeout(() => { if (window.ScrollTrigger) ScrollTrigger.refresh(); }, 500);
+    // 收起：动画开始后把卡片头部保持在视口内，避免高度骤减停在空白处
+    setTimeout(() => {
+      card.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+      if (window.ScrollTrigger) ScrollTrigger.refresh();
+    }, 150);
   }
 }
 
