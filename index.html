@@ -1,4 +1,4 @@
-﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿<!DOCTYPE html>
+﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿<!DOCTYPE html>
 <html lang="zh-CN">
 <head>
 <meta charset="UTF-8">
@@ -1883,6 +1883,125 @@ body {
   .pdf-embed { aspect-ratio: auto; height: 80vh; }
 }
 
+/* ===== 单页轮播查看器 ===== */
+.carousel-viewer {
+  width: 100%;
+  max-width: 1100px;
+  margin: 0 auto;
+  aspect-ratio: 16 / 9;
+  border-radius: 16px;
+  overflow: hidden;
+  box-shadow: 0 8px 32px rgba(0,0,0,0.15);
+  border: 1px solid var(--border-light);
+  background: #1a1a2e;
+  position: relative;
+  user-select: none;
+}
+.carousel-track {
+  display: flex;
+  height: 100%;
+  transition: transform 0.45s cubic-bezier(0.4, 0, 0.2, 1);
+}
+.carousel-slide {
+  flex: 0 0 100%;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  background: #1a1a2e;
+}
+.carousel-slide img {
+  max-width: 100%;
+  max-height: 100%;
+  object-fit: contain;
+  display: block;
+  cursor: zoom-in;
+}
+.carousel-slide .gif-overlay {
+  position: absolute;
+  border-radius: 16px;
+  overflow: hidden;
+  box-shadow: 0 6px 20px rgba(0,0,0,.45);
+  background: #fff;
+}
+.carousel-slide .gif-overlay img {
+  cursor: pointer;
+}
+.carousel-btn {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  border: none;
+  background: rgba(255,255,255,0.92);
+  backdrop-filter: blur(8px);
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 4px 16px rgba(0,0,0,0.25);
+  transition: all 0.2s;
+  z-index: 5;
+}
+.carousel-btn:hover {
+  background: #fff;
+  transform: translateY(-50%) scale(1.08);
+  box-shadow: 0 6px 20px rgba(0,0,0,0.35);
+}
+.carousel-btn:active { transform: translateY(-50%) scale(0.95); }
+.carousel-btn svg { pointer-events: none; }
+.carousel-btn.prev { left: 14px; }
+.carousel-btn.next { right: 14px; }
+.carousel-btn.prev.hidden,
+.carousel-btn.next.hidden { opacity: 0; pointer-events: none; }
+.carousel-counter {
+  position: absolute;
+  bottom: 14px;
+  left: 50%;
+  transform: translateX(-50%);
+  padding: 6px 16px;
+  border-radius: 999px;
+  background: rgba(0,0,0,0.55);
+  backdrop-filter: blur(6px);
+  color: #fff;
+  font-size: 13px;
+  font-weight: 600;
+  letter-spacing: 0.5px;
+  z-index: 5;
+  pointer-events: none;
+}
+.carousel-dots {
+  position: absolute;
+  bottom: 14px;
+  right: 14px;
+  display: flex;
+  gap: 6px;
+  z-index: 5;
+}
+.carousel-dot {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: rgba(255,255,255,0.4);
+  cursor: pointer;
+  transition: all 0.2s;
+}
+.carousel-dot.active {
+  width: 18px;
+  border-radius: 3px;
+  background: #fff;
+}
+@media (max-width: 768px) {
+  .carousel-viewer { aspect-ratio: auto; height: 72vh; }
+  .carousel-btn { width: 40px; height: 40px; }
+  .carousel-btn.prev { left: 8px; }
+  .carousel-btn.next { right: 8px; }
+}
+
 /* ===== PPT网格展示（掌城专用） ===== */
 .slide-grid {
   display: grid;
@@ -3508,66 +3627,138 @@ function renderProjectContent(projectId, card) {
     return;
   }
 
-  // PPT网格模式
-  if (project.viewType === 'slides') {
-    const grid = document.createElement('div');
-    grid.className = 'slide-grid';
-    project.images.forEach((imgSrc, idx) => {
-      const item = document.createElement('div');
-      item.className = 'slide-grid-item';
-      item.onclick = () => openLightbox(project.images, idx);
-      item.innerHTML = `<img src="${imgSrc}" alt="${project.title} - ${idx + 1}" loading="lazy">`;
-      grid.appendChild(item);
+  // 单页轮播模式（所有图片类项目）
+  if (project.images && project.images.length) {
+    // cmcc 项目：GIF 叠加位置配置
+    const overlayConfig = projectId === 'cmcc' ? {
+      '32.png': { top: '48%',   left: '47.5%', width: '15.7%' },
+      '35.png': { top: '47.5%', left: '37.5%', width: '22%'   },
+      '39.png': { top: '48.5%', left: '48%',   width: '15.5%' },
+      '46.png': { top: '48.5%', left: '32%',   width: '15.5%' }
+    } : null;
+
+    // 预处理：合并 PNG+GIF 叠加组合
+    const slides = [];
+    const skipIdx = new Set();
+    project.images.forEach((src, i) => {
+      if (skipIdx.has(i)) return;
+      const nextSrc = i + 1 < project.images.length ? project.images[i + 1] : null;
+      const nextIsGif = nextSrc && /\.gif$/i.test(nextSrc);
+      const imgName = src.split('/').pop();
+      const cfg = overlayConfig && overlayConfig[imgName];
+
+      if (!/\.gif$/i.test(src) && nextIsGif && cfg) {
+        slides.push({ type: 'overlay', base: src, gif: nextSrc, cfg: cfg });
+        skipIdx.add(i + 1);
+      } else {
+        slides.push({ type: 'single', src: src });
+      }
     });
-    gallery.appendChild(grid);
+
+    // 构建轮播 DOM
+    const viewer = document.createElement('div');
+    viewer.className = 'carousel-viewer';
+    viewer.innerHTML = `
+      <div class="carousel-track"></div>
+      <button class="carousel-btn prev" aria-label="上一页">
+        <svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="15 18 9 12 15 6"/></svg>
+      </button>
+      <button class="carousel-btn next" aria-label="下一页">
+        <svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"/></svg>
+      </button>
+      <div class="carousel-counter"><span class="idx">1</span> / ${slides.length}</div>
+      <div class="carousel-dots"></div>
+    `;
+    gallery.appendChild(viewer);
+
+    const track = viewer.querySelector('.carousel-track');
+    const dotsBox = viewer.querySelector('.carousel-dots');
+
+    // 填充 slide
+    const lightboxImages = []; // 用于点击放大
+    slides.forEach((slide, idx) => {
+      const slideEl = document.createElement('div');
+      slideEl.className = 'carousel-slide';
+      if (slide.type === 'overlay') {
+        slideEl.innerHTML = `
+          <img src="${slide.base}" alt="${project.title} - ${idx + 1}" loading="lazy">
+          <div class="gif-overlay" style="top:${slide.cfg.top};left:${slide.cfg.left};width:${slide.cfg.width};transform:translateY(-50%);">
+            <img src="${slide.gif}" alt="动图演示" loading="lazy">
+          </div>
+        `;
+        lightboxImages.push(slide.base);
+      } else {
+        slideEl.innerHTML = `<img src="${slide.src}" alt="${project.title} - ${idx + 1}" loading="lazy">`;
+        lightboxImages.push(slide.src);
+      }
+      // 点击图片 → lightbox 放大，传入 lightboxImages 全量
+      slideEl.querySelector('img').onclick = () => openLightbox(lightboxImages, idx);
+      track.appendChild(slideEl);
+
+      const dot = document.createElement('div');
+      dot.className = 'carousel-dot' + (idx === 0 ? ' active' : '');
+      dot.onclick = () => carousel.goTo(idx);
+      dotsBox.appendChild(dot);
+    });
+
+    // 轮播控制器
+    const carousel = {
+      idx: 0,
+      total: slides.length,
+      goTo(i) {
+        carousel.idx = Math.max(0, Math.min(i, carousel.total - 1));
+        track.style.transform = `translateX(-${carousel.idx * 100}%)`;
+        viewer.querySelector('.idx').textContent = carousel.idx + 1;
+        viewer.querySelectorAll('.carousel-dot').forEach((d, k) => {
+          d.classList.toggle('active', k === carousel.idx);
+        });
+        viewer.querySelector('.carousel-btn.prev').classList.toggle('hidden', carousel.idx === 0);
+        viewer.querySelector('.carousel-btn.next').classList.toggle('hidden', carousel.idx === carousel.total - 1);
+      },
+      prev() { carousel.goTo(carousel.idx - 1); },
+      next() { carousel.goTo(carousel.idx + 1); }
+    };
+    carousel.goTo(0);
+
+    viewer.querySelector('.carousel-btn.prev').onclick = carousel.prev;
+    viewer.querySelector('.carousel-btn.next').onclick = carousel.next;
+
+    // 键盘方向键（仅当 viewer 在视口附近时生效，避免多个轮播互相干扰）
+    const onKey = (e) => {
+      const rect = viewer.getBoundingClientRect();
+      if (rect.bottom < 0 || rect.top > window.innerHeight) return;
+      if (e.target.tagName === 'INPUT' || e.target.tagName === 'TEXTAREA') return;
+      if (e.key === 'ArrowLeft') { carousel.prev(); e.preventDefault(); }
+      else if (e.key === 'ArrowRight') { carousel.next(); e.preventDefault(); }
+    };
+    document.addEventListener('keydown', onKey);
+
+    // 触摸滑动
+    let touchStartX = 0, touchDeltaX = 0, touching = false;
+    viewer.addEventListener('touchstart', e => {
+      touchStartX = e.touches[0].clientX;
+      touchDeltaX = 0;
+      touching = true;
+    }, { passive: true });
+    viewer.addEventListener('touchmove', e => {
+      if (!touching) return;
+      touchDeltaX = e.touches[0].clientX - touchStartX;
+    }, { passive: true });
+    viewer.addEventListener('touchend', () => {
+      if (!touching) return;
+      touching = false;
+      if (touchDeltaX > 50) carousel.prev();
+      else if (touchDeltaX < -50) carousel.next();
+    });
+
+    // 卡片收起时清理键盘监听
+    const cleanup = () => document.removeEventListener('keydown', onKey);
+    const observer = new MutationObserver(() => {
+      if (!card.classList.contains('open')) { cleanup(); observer.disconnect(); }
+    });
+    observer.observe(card, { attributes: true, attributeFilter: ['class'] });
     return;
   }
-
-  // GIF 叠加位置配置：灰色"动图"占位框实测位置（按 PNG 文件名）；未配置的 GIF 单独展示
-  const overlayConfig = {
-    '32.png': { top: '48%',   left: '47.5%', width: '15.7%' },
-    '35.png': { top: '47.5%', left: '37.5%', width: '22%'   },
-    '39.png': { top: '48.5%', left: '48%',   width: '15.5%' },
-    '46.png': { top: '48.5%', left: '32%',   width: '15.5%' }
-  };
-
-  // 标记需要跳过的 GIF（前一张 PNG 配置了叠加位）
-  const skipGif = new Set();
-  project.images.forEach((src, i) => {
-    if (/\.gif$/i.test(src) && i > 0 && !/\.gif$/i.test(project.images[i - 1])) {
-      const prevName = project.images[i - 1].split('/').pop();
-      if (overlayConfig[prevName]) skipGif.add(i);
-    }
-  });
-
-  project.images.forEach((imgSrc, idx) => {
-    if (skipGif.has(idx)) return; // 已叠加到前面 PNG 上的 GIF 不单独显示
-
-    const curIsGif = /\.gif$/i.test(imgSrc);
-    const imgName = imgSrc.split('/').pop();
-    const nextSrc = idx + 1 < project.images.length ? project.images[idx + 1] : null;
-    const nextIsGif = nextSrc && /\.gif$/i.test(nextSrc);
-    const cfg = overlayConfig[imgName];
-
-    const wrapper = document.createElement('div');
-    wrapper.className = 'portfolio-detail-img-wrapper' + (curIsGif ? ' is-gif' : '');
-    wrapper.onclick = () => openLightbox(project.images, idx);
-
-    if (!curIsGif && nextIsGif && cfg) {
-      // GIF 叠加到 PNG 的灰色"动图"占位框位置，垂直居中
-      wrapper.innerHTML = `
-        <div style="position:relative;width:100%;">
-          <img src="${imgSrc}" alt="${project.title}" loading="lazy" style="width:100%;display:block;">
-          <div style="position:absolute;top:${cfg.top};left:${cfg.left};width:${cfg.width};transform:translateY(-50%);border-radius:16px;overflow:hidden;box-shadow:0 6px 20px rgba(0,0,0,.25);background:#fff;">
-            <img src="${nextSrc}" alt="动图演示" loading="lazy" style="width:100%;display:block;">
-          </div>
-        </div>
-      `;
-    } else {
-      wrapper.innerHTML = '<img src="' + imgSrc + '" alt="' + project.title + ' - 图片' + (idx + 1) + '" loading="lazy" onerror="this.parentElement.style.display=\'none\'">';
-    }
-    gallery.appendChild(wrapper);
-  });
 }
 
 /* ==================== 作品集灯箱交互 ==================== */
