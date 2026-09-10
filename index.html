@@ -1,4 +1,4 @@
-﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿<!DOCTYPE html>
+﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿<!DOCTYPE html>
 <html lang="zh-CN">
 <head>
 <meta charset="UTF-8">
@@ -796,6 +796,56 @@ body {
 @keyframes detailFade {
   from { opacity: 0; transform: translateY(8px); }
   to { opacity: 1; transform: translateY(0); }
+}
+
+/* 触屏设备（手机/平板）：禁用 hover 展开，只通过点击 .open 控制，
+   避免 tap 产生的瞬时 hover 消失后详情被收回 */
+@media (hover: none) {
+  .timeline-item:hover .timeline-card {
+    box-shadow: var(--shadow-sm);
+    transform: none;
+    border-color: var(--border-light);
+  }
+  .timeline-item:hover .timeline-num {
+    background: var(--bg-white);
+    color: var(--primary-dark);
+    transform: none;
+    box-shadow: 0 0 0 4px rgba(15, 118, 110, 0.08);
+  }
+  .timeline-item:hover .timeline-hint {
+    opacity: 1;
+    height: auto;
+    margin-top: 14px;
+    padding-top: 10px;
+    border-top: 1px dashed var(--border-light);
+    overflow: visible;
+  }
+  .timeline-item:hover .timeline-detail {
+    max-height: 0;
+    margin-top: 0;
+  }
+  .timeline-item:hover .timeline-block {
+    opacity: 0;
+    animation: none;
+  }
+  /* open 状态下区块正常淡入 */
+  .timeline-item.open .timeline-block {
+    opacity: 1;
+    animation: detailFade 0.4s var(--ease) forwards;
+  }
+  /* open 状态始终优先（即便 tap 后残留 :hover） */
+  .timeline-item.open .timeline-detail {
+    max-height: 600px;
+    margin-top: 16px;
+  }
+  .timeline-item.open .timeline-hint {
+    opacity: 0;
+    height: 0;
+    margin: 0;
+    padding: 0;
+    border: none;
+    overflow: hidden;
+  }
 }
 
 /* 旧样式隐藏 */
@@ -3321,6 +3371,11 @@ document.querySelectorAll('.timeline-item').forEach(item => {
   item.addEventListener('click', (e) => {
     // 避免内部链接/按钮（若有）触发
     if (e.target.closest('a, button')) return;
+    // 防抖：手机浏览器在展开导致布局重排后，可能对同一手势补发第二个 click，
+    // 两次 toggle 会相互抵消（表现为"迅速展开又收回"），500ms 内只允许一次切换
+    const now = Date.now();
+    if (item._tlLastToggle && now - item._tlLastToggle < 500) return;
+    item._tlLastToggle = now;
     item.classList.toggle('open');
   });
 });
