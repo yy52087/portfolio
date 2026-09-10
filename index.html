@@ -1,4 +1,4 @@
-﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿<!DOCTYPE html>
+﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿<!DOCTYPE html>
 <html lang="zh-CN">
 <head>
 <meta charset="UTF-8">
@@ -2326,59 +2326,6 @@ body {
     font-size: 24px;
     margin-bottom: 24px;
   }
-
-  /* 移动端：时间轴保持双列，缩小间距 */
-  .timeline-left {
-    padding-right: 50px;
-  }
-  .timeline-right {
-    padding-left: 50px;
-  }
-  .timeline-left .timeline-date-badge {
-    right: -240px;
-  }
-  .timeline-right .timeline-date-badge {
-    left: -240px;
-  }
-  .timeline-date-badge {
-    font-size: 13px;
-    padding: 6px 12px;
-  }
-  .timeline-card {
-    padding: 14px;
-  }
-
-  .honors-grid {
-    grid-template-columns: 1fr 1fr;
-  }
-
-  /* 作品集保持双列 */
-  .portfolio-grid {
-    grid-template-columns: 1fr 1fr;
-    gap: 14px;
-  }
-  .portfolio-thumb {
-    height: 140px;
-  }
-  .portfolio-info {
-    padding: 12px 14px;
-  }
-  .portfolio-title {
-    font-size: 14px;
-  }
-  .portfolio-desc {
-    font-size: 11px;
-    line-height: 1.5;
-    margin-bottom: 8px;
-  }
-  .portfolio-tag {
-    font-size: 10px;
-    padding: 3px 8px;
-  }
-  .portfolio-meta {
-    font-size: 10px;
-    gap: 8px;
-  }
 }
 
 @media (max-width: 480px) {
@@ -2399,37 +2346,6 @@ body {
   .btn-secondary {
     padding: 12px 24px;
     font-size: 14px;
-  }
-
-  /* 时间轴更紧凑（保持双列） */
-  .timeline-left {
-    padding-right: 40px;
-  }
-  .timeline-right {
-    padding-left: 40px;
-  }
-  .timeline-left .timeline-date-badge {
-    right: -190px;
-  }
-  .timeline-right .timeline-date-badge {
-    left: -190px;
-  }
-  .timeline-card {
-    padding: 12px;
-  }
-  .timeline-date-badge {
-    font-size: 11px;
-    padding: 4px 10px;
-  }
-  .timeline-stats {
-    font-size: 11px;
-    gap: 8px;
-  }
-  .timeline-company {
-    font-size: 14px;
-  }
-  .timeline-role {
-    font-size: 11px;
   }
 
   /* 技能抽卡区域 */
@@ -2628,6 +2544,72 @@ body {
     aspect-ratio: auto;
     height: 70vh;
   }
+}
+
+/* ==================== 移动端触控与可读性增强（仅影响 ≤768px） ==================== */
+@media (max-width: 768px) {
+  /* 图片自适应，防止溢出 */
+  img { max-width: 100%; height: auto; }
+
+  /* --- 触控目标 ≥44px --- */
+  .menu-toggle {
+    min-width: 44px;
+    min-height: 44px;
+    align-items: center;
+    justify-content: center;
+    padding: 10px;
+  }
+  .card-tab {
+    padding: 12px 22px;
+    font-size: 14px;
+    min-height: 44px;
+  }
+  .card-draw-btn {
+    min-height: 48px;
+    font-size: 15px;
+  }
+  .portfolio-collapse-btn {
+    min-height: 44px;
+    padding: 12px 28px;
+    font-size: 14px;
+  }
+  .portfolio-card-head {
+    min-height: 64px;
+  }
+  .nav-link {
+    min-height: 48px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 15px;
+  }
+
+  /* --- 正文可读性：字号 ≥14px --- */
+  .section-sub { font-size: 14px; }
+  .hero-intro { font-size: 15px; line-height: 1.7; }
+  .portfolio-dir-desc { font-size: 14px; line-height: 1.5; -webkit-line-clamp: unset; }
+  .timeline-role,
+  .timeline-stats,
+  .timeline-desc,
+  .timeline-detail,
+  .edu-desc,
+  .edu-major,
+  .honor-text { font-size: 14px; line-height: 1.6; }
+  .timeline-company { font-size: 16px; }
+  .honor-text { font-size: 15px; }
+
+  /* --- 装饰性标签/元信息 ≥12px --- */
+  .portfolio-tag,
+  .portfolio-meta,
+  .timeline-date-badge,
+  .honor-tag { font-size: 12px; }
+  .honor-tag { padding: 6px 12px; }
+
+  /* --- 间距：避免误触、呼吸感 --- */
+  .main-content { padding-left: 16px; padding-right: 16px; }
+  .section { padding: 36px 0 20px; }
+  .card-tabs { gap: 10px; flex-wrap: wrap; }
+  .honor-item { padding: 16px; }
 }
 </style>
 <!-- GSAP + ScrollTrigger -->
