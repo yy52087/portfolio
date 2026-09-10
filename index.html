@@ -1,4 +1,4 @@
-﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿<!DOCTYPE html>
+﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿<!DOCTYPE html>
 <html lang="zh-CN">
 <head>
 <meta charset="UTF-8">
@@ -3400,26 +3400,27 @@ window.addEventListener('scroll', () => {
       // 给标题加个 span 包裹用于 clipPath
       if (!el.querySelector('.title-text-wrap')) {
         const text = el.innerHTML;
-        el.innerHTML = `<span class="title-text-wrap" style="display:inline-block;overflow:hidden"><span class="title-text" style="display:inline-block">${text}</span></span>`;
+        el.innerHTML = `<span class="title-text-wrap" style="display:inline-block;overflow:hidden;vertical-align:bottom"><span class="title-text" style="display:inline-block">${text}</span></span>`;
       }
       const titleText = el.querySelector('.title-text');
       const eyebrow = el.previousElementSibling; // section-eyebrow
 
-      gsap.set(titleText, { y: '120%' });
-      if (eyebrow) gsap.set(eyebrow, { y: 20, opacity: 0 });
-
+      // 注意：不预先 gsap.set 隐藏，标题默认可见；
+      // 使用 immediateRender:false，仅当 ScrollTrigger 触发时才从隐藏态入场，
+      // 避免任何情况下标题永久空白
       const tl = gsap.timeline({
         scrollTrigger: {
           trigger: el,
-          start: 'top 85%',
-          once: true
+          start: 'top 90%',
+          once: true,
+          immediateRender: false
         }
       });
 
       if (eyebrow) {
-        tl.to(eyebrow, { y: 0, opacity: 1, duration: 0.6 * slow, ease: 'power3.out' }, 0);
+        tl.from(eyebrow, { y: 20, opacity: 0, duration: 0.6 * slow, ease: 'power3.out', immediateRender: false }, 0);
       }
-      tl.to(titleText, { y: '0%', duration: 0.9 * slow, ease: 'expo.out' }, 0.15);
+      tl.from(titleText, { y: '120%', duration: 0.9 * slow, ease: 'expo.out', immediateRender: false }, 0.15);
     });
   }
 
