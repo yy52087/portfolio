@@ -1,4 +1,4 @@
-﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿<!DOCTYPE html>
+﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿<!DOCTYPE html>
 <html lang="zh-CN">
 <head>
 <meta charset="UTF-8">
@@ -735,7 +735,8 @@ body {
   letter-spacing: 0.04em;
   transition: opacity 0.2s var(--ease);
 }
-.timeline-item:hover .timeline-hint {
+.timeline-item:hover .timeline-hint,
+.timeline-item.open .timeline-hint {
   opacity: 0;
   height: 0;
   margin: 0;
@@ -744,14 +745,15 @@ body {
   overflow: hidden;
 }
 
-/* 详情区 - 默认收起 */
+/* 详情区 - 默认收起（桌面 hover / 点击 .open 双触发） */
 .timeline-detail {
   max-height: 0;
   overflow: hidden;
   transition: max-height 0.5s cubic-bezier(0.22, 1, 0.36, 1), margin 0.4s var(--ease);
 }
-.timeline-item:hover .timeline-detail {
-  max-height: 500px;
+.timeline-item:hover .timeline-detail,
+.timeline-item.open .timeline-detail {
+  max-height: 600px;
   margin-top: 16px;
 }
 
@@ -761,8 +763,10 @@ body {
   animation: detailFade 0.4s var(--ease) forwards;
   opacity: 0;
 }
-.timeline-item:hover .timeline-block:nth-child(1) { animation-delay: 0.05s; }
-.timeline-item:hover .timeline-block:nth-child(2) { animation-delay: 0.12s; }
+.timeline-item:hover .timeline-block:nth-child(1),
+.timeline-item.open .timeline-block:nth-child(1) { animation-delay: 0.05s; }
+.timeline-item:hover .timeline-block:nth-child(2),
+.timeline-item.open .timeline-block:nth-child(2) { animation-delay: 0.12s; }
 .timeline-block-label {
   display: inline-block;
   font-size: 10px;
@@ -2061,7 +2065,7 @@ body {
   }
 
   .card-back-face-desc {
-    font-size: 12px;
+    font-size: 14px;
   }
 
   .portfolio-toc-header {
@@ -2350,12 +2354,18 @@ body {
 
   /* 技能抽卡区域 */
   .card-deck {
-    width: 160px;
-    height: 220px;
+    width: 100%;
+    height: auto;
+    align-items: center;
+  }
+  .card-deck-stack {
+    width: 150px;
+    height: 200px;
   }
   .card-reveal {
     width: 100%;
     max-width: 300px;
+    justify-self: center;
   }
 }
 
@@ -2541,19 +2551,28 @@ body {
 
 /* --- 技能抽卡区：手机端 --- */
 @media (max-width: 600px) {
-  .skill-interact {
-    flex-direction: column;
-    align-items: center;
-    gap: 24px;
+  .card-area {
+    gap: 28px;
   }
   .card-deck {
-    width: 140px;
-    height: 190px;
+    width: 100%;
+    align-items: center;
   }
   .card-reveal {
     width: 100%;
     max-width: 280px;
+    justify-self: center;
+  }
+  .card-flip-container {
+    width: 100%;
+    max-width: 260px;
     aspect-ratio: 3 / 4;
+    height: auto;
+  }
+  /* 抽卡按钮文字不换行 */
+  .card-draw-btn {
+    white-space: nowrap;
+    padding: 14px 32px;
   }
 }
 
@@ -2790,7 +2809,7 @@ body {
               </ul>
             </div>
           </div>
-          <div class="timeline-hint">hover 查看详情 ↓</div>
+          <div class="timeline-hint">点击查看详情 ↓</div>
         </div>
         <span class="timeline-num">1</span>
       </div>
@@ -2830,7 +2849,7 @@ body {
               </ul>
             </div>
           </div>
-          <div class="timeline-hint">hover 查看详情 ↓</div>
+          <div class="timeline-hint">点击查看详情 ↓</div>
         </div>
         <span class="timeline-num">2</span>
       </div>
@@ -2863,7 +2882,7 @@ body {
               </ul>
             </div>
           </div>
-          <div class="timeline-hint">hover 查看详情 ↓</div>
+          <div class="timeline-hint">点击查看详情 ↓</div>
         </div>
         <span class="timeline-num">3</span>
       </div>
@@ -3287,6 +3306,15 @@ const navLinks = document.getElementById('navLinks');
 
 menuToggle.addEventListener('click', () => {
   navLinks.classList.toggle('open');
+});
+
+/* ==================== 工作经历卡片：点击展开/收起（桌面仍支持 hover） ==================== */
+document.querySelectorAll('.timeline-item').forEach(item => {
+  item.addEventListener('click', (e) => {
+    // 避免内部链接/按钮（若有）触发
+    if (e.target.closest('a, button')) return;
+    item.classList.toggle('open');
+  });
 });
 
 /* ==================== 3D形象轮播 ==================== */
