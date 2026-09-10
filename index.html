@@ -1,4 +1,4 @@
-﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿<!DOCTYPE html>
+﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿<!DOCTYPE html>
 <html lang="zh-CN">
 <head>
 <meta charset="UTF-8">
@@ -2744,10 +2744,43 @@ body {
       </div>
 
       <div class="portfolio-dir-list">
-        <!-- 项目1：中国移动 -->
+        <!-- 项目1：好记星 -->
+        <div class="portfolio-dir-item" data-project="haojixing">
+          <div class="portfolio-card-head" onclick="togglePortfolioCard('haojixing')">
+            <div class="portfolio-dir-index">01</div>
+            <div class="portfolio-dir-info">
+              <h3 class="portfolio-dir-title">好记星 · 实习项目</h3>
+              <p class="portfolio-dir-desc">实习期间的需求拆解与功能设计实战</p>
+            </div>
+            <div class="portfolio-dir-thumb">
+              <img src="images_haojixing/01.png" alt="好记星" loading="lazy" onerror="this.parentElement.innerHTML='<div class=\'portfolio-dir-thumb-fallback\'>📘</div>'">
+            </div>
+            <div class="portfolio-dir-arrow">
+              <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <polyline points="9 18 15 12 9 6"/>
+              </svg>
+            </div>
+          </div>
+          <div class="portfolio-card-body">
+            <div class="portfolio-card-body-inner">
+              <div class="portfolio-card-content">
+                <p class="portfolio-card-desc" id="pf-desc-haojixing"></p>
+                <div class="portfolio-detail-gallery" id="pf-gallery-haojixing"></div>
+                <div class="portfolio-collapse-row">
+                  <button class="portfolio-collapse-btn" type="button" onclick="togglePortfolioCard('haojixing')">
+                    <svg viewBox="0 0 24 24" width="15" height="15" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><polyline points="18 15 12 9 6 15"/></svg>
+                    收起
+                  </button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- 项目2：中国移动 -->
         <div class="portfolio-dir-item" data-project="cmcc">
           <div class="portfolio-card-head" onclick="togglePortfolioCard('cmcc')">
-            <div class="portfolio-dir-index">01</div>
+            <div class="portfolio-dir-index">02</div>
             <div class="portfolio-dir-info">
               <h3 class="portfolio-dir-title">中国移动</h3>
               <p class="portfolio-dir-desc">可用性测试 + 界面迭代，覆盖充值、会员、套餐等核心场景</p>
@@ -2777,10 +2810,10 @@ body {
           </div>
         </div>
 
-        <!-- 项目2：RERELIC -->
+        <!-- 项目3：RERELIC -->
         <div class="portfolio-dir-item" data-project="rerelic">
           <div class="portfolio-card-head" onclick="togglePortfolioCard('rerelic')">
-            <div class="portfolio-dir-index">02</div>
+            <div class="portfolio-dir-index">03</div>
             <div class="portfolio-dir-info">
               <h3 class="portfolio-dir-title">RERELIC</h3>
               <p class="portfolio-dir-desc">数字博物馆 × Z世代文化共创</p>
@@ -2810,10 +2843,10 @@ body {
           </div>
         </div>
 
-        <!-- 项目3：掌城APP -->
+        <!-- 项目4：掌城APP -->
         <div class="portfolio-dir-item" data-project="zhangcheng">
           <div class="portfolio-card-head" onclick="togglePortfolioCard('zhangcheng')">
-            <div class="portfolio-dir-index">03</div>
+            <div class="portfolio-dir-index">04</div>
             <div class="portfolio-dir-info">
               <h3 class="portfolio-dir-title">掌城APP</h3>
               <p class="portfolio-dir-desc">融入 AR 技术的商场导航 APP，提供精确室内导航与 AR 互动</p>
@@ -2843,10 +2876,10 @@ body {
           </div>
         </div>
 
-        <!-- 项目4：莲境 -->
+        <!-- 项目5：莲境 -->
         <div class="portfolio-dir-item" data-project="lianjing">
           <div class="portfolio-card-head" onclick="togglePortfolioCard('lianjing')">
-            <div class="portfolio-dir-index">04</div>
+            <div class="portfolio-dir-index">05</div>
             <div class="portfolio-dir-info">
               <h3 class="portfolio-dir-title">莲境</h3>
               <p class="portfolio-dir-desc">为 10~15 岁青少年设计的五音疗愈玩具</p>
@@ -2867,39 +2900,6 @@ body {
                 <div class="portfolio-detail-gallery" id="pf-gallery-lianjing"></div>
                 <div class="portfolio-collapse-row">
                   <button class="portfolio-collapse-btn" type="button" onclick="togglePortfolioCard('lianjing')">
-                    <svg viewBox="0 0 24 24" width="15" height="15" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><polyline points="18 15 12 9 6 15"/></svg>
-                    收起
-                  </button>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-
-        <!-- 项目5：好记星 -->
-        <div class="portfolio-dir-item" data-project="haojixing">
-          <div class="portfolio-card-head" onclick="togglePortfolioCard('haojixing')">
-            <div class="portfolio-dir-index">05</div>
-            <div class="portfolio-dir-info">
-              <h3 class="portfolio-dir-title">好记星 · 实习项目</h3>
-              <p class="portfolio-dir-desc">实习期间的需求拆解与功能设计实战</p>
-            </div>
-            <div class="portfolio-dir-thumb">
-              <img src="images_haojixing/01.png" alt="好记星" loading="lazy" onerror="this.parentElement.innerHTML='<div class=\'portfolio-dir-thumb-fallback\'>📘</div>'">
-            </div>
-            <div class="portfolio-dir-arrow">
-              <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                <polyline points="9 18 15 12 9 6"/>
-              </svg>
-            </div>
-          </div>
-          <div class="portfolio-card-body">
-            <div class="portfolio-card-body-inner">
-              <div class="portfolio-card-content">
-                <p class="portfolio-card-desc" id="pf-desc-haojixing"></p>
-                <div class="portfolio-detail-gallery" id="pf-gallery-haojixing"></div>
-                <div class="portfolio-collapse-row">
-                  <button class="portfolio-collapse-btn" type="button" onclick="togglePortfolioCard('haojixing')">
                     <svg viewBox="0 0 24 24" width="15" height="15" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><polyline points="18 15 12 9 6 15"/></svg>
                     收起
                   </button>
