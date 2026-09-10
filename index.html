@@ -1,4 +1,4 @@
-﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿<!DOCTYPE html>
+﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿<!DOCTYPE html>
 <html lang="zh-CN">
 <head>
 <meta charset="UTF-8">
@@ -2396,35 +2396,65 @@ body {
   }
 }
 
-/* --- 工作经历时间轴：手机端单列 --- */
+/* --- 工作经历时间轴：手机端单列（覆盖桌面绝对定位双列布局） --- */
 @media (max-width: 768px) {
-  .timeline-wrapper {
-    padding-left: 0;
-    padding-right: 0;
-  }
-  .timeline-wrapper::before {
+  /* 轴线移到左侧 20px */
+  .timeline::before {
     left: 20px;
   }
-  .timeline-left, .timeline-right {
-    padding-left: 56px !important;
-    padding-right: 16px !important;
-    grid-column: 1 !important;
-  }
+  /* 每个条目占满整行 */
   .timeline-item {
-    grid-template-columns: 1fr !important;
+    width: 100%;
+    left: 0 !important;
+    margin-bottom: 28px;
+    padding-left: 56px;
+    padding-right: 4px;
+    text-align: left;
   }
+  .timeline-left, .timeline-right {
+    padding-right: 4px;
+  }
+  /* 编号圆点落在左侧轴线上 */
+  .timeline-left .timeline-num,
+  .timeline-right .timeline-num {
+    left: 2px;
+    right: auto;
+    top: 8px;
+  }
+  /* 日期徽章回到文档流，横排在卡片顶部 */
   .timeline-left .timeline-date-badge,
   .timeline-right .timeline-date-badge {
     position: static;
     transform: none;
-    margin-bottom: 10px;
+    margin: 0 0 10px;
     display: inline-block;
+    white-space: normal;
+    font-size: 14px;
+    padding: 8px 16px;
   }
-  .timeline-num {
-    left: 12px;
-  }
+  /* 卡片占满可用宽度 */
   .timeline-card {
     width: 100%;
+    padding: 16px 18px;
+    text-align: left;
+  }
+  .timeline-company {
+    font-size: 17px;
+  }
+  .timeline-role {
+    font-size: 15px;
+  }
+  .timeline-desc,
+  .timeline-detail {
+    font-size: 14px;
+    line-height: 1.7;
+  }
+  /* 成果统计横向排列不竖排 */
+  .timeline-stats {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 12px 20px;
+    font-size: 13px;
   }
 }
 
