@@ -1,4 +1,4 @@
-﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿<!DOCTYPE html>
+﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿<!DOCTYPE html>
 <html lang="zh-CN">
 <head>
 <meta charset="UTF-8">
@@ -3831,6 +3831,7 @@ function togglePortfolioCard(projectId) {
   if (!card) return;
 
   const willOpen = !card.classList.contains('open');
+  const isTouch = window.matchMedia('(hover: none)').matches || /Mobile|Android|iPhone|iPad/i.test(navigator.userAgent);
 
   // 手风琴：先收起其他已展开的卡片
   document.querySelectorAll('.portfolio-dir-item.open').forEach(c => c.classList.remove('open'));
@@ -3842,17 +3843,44 @@ function togglePortfolioCard(projectId) {
       card.dataset.rendered = '1';
     }
     card.classList.add('open');
-    // 展开动画过程中把卡片保持在视口内
-    setTimeout(() => {
-      card.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
-      if (window.ScrollTrigger) ScrollTrigger.refresh();
-    }, 350);
+
+    // 展开动画过程中把卡片头部保持在视口内
+    // 移动端完全跳过自动滚动，避免 scrollIntoView 把页面拉回顶部
+    if (!isTouch) {
+      setTimeout(() => {
+        const head = card.querySelector('.portfolio-card-head');
+        const rect = head.getBoundingClientRect();
+        const vh = window.innerHeight;
+        // 卡片头部已经在视口中下部就不动；只在超出上边界时微调
+        if (rect.top < 20 || rect.bottom > vh - 60) {
+          const targetY = window.scrollY + rect.top - 80;
+          window.scrollTo({ top: Math.max(0, targetY), behavior: 'smooth' });
+        }
+        requestAnimationFrame(() => { if (window.ScrollTrigger) ScrollTrigger.refresh(); });
+      }, 380);
+    } else {
+      // 只刷新 ScrollTrigger 位置，不做任何滚动
+      setTimeout(() => {
+        requestAnimationFrame(() => { if (window.ScrollTrigger) ScrollTrigger.refresh(); });
+      }, 400);
+    }
   } else {
-    // 收起：动画开始后把卡片头部保持在视口内，避免高度骤减停在空白处
-    setTimeout(() => {
-      card.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
-      if (window.ScrollTrigger) ScrollTrigger.refresh();
-    }, 150);
+    // 收起：只在非移动端做微调
+    if (!isTouch) {
+      setTimeout(() => {
+        const head = card.querySelector('.portfolio-card-head');
+        const rect = head.getBoundingClientRect();
+        if (rect.top < 20) {
+          const targetY = window.scrollY + rect.top - 80;
+          window.scrollTo({ top: Math.max(0, targetY), behavior: 'smooth' });
+        }
+        requestAnimationFrame(() => { if (window.ScrollTrigger) ScrollTrigger.refresh(); });
+      }, 180);
+    } else {
+      setTimeout(() => {
+        requestAnimationFrame(() => { if (window.ScrollTrigger) ScrollTrigger.refresh(); });
+      }, 200);
+    }
   }
 }
 
