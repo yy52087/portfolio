@@ -1,4 +1,4 @@
-﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿<!DOCTYPE html>
+﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿<!DOCTYPE html>
 <html lang="zh-CN">
 <head>
 <meta charset="UTF-8">
@@ -2194,6 +2194,178 @@ body {
   }
 }
 
+/* ==================== 作品集：桌面端左右分栏 ==================== */
+.portfolio-desktop { display: none; }
+.portfolio-mobile { display: block; }
+
+@media (min-width: 901px) {
+  .portfolio-desktop { display: block; }
+  .portfolio-mobile { display: none; }
+
+  .portfolio-split {
+    display: grid;
+    grid-template-columns: 320px 1fr;
+    gap: 24px;
+    margin-top: 24px;
+  }
+
+  .portfolio-sidebar {
+    background: var(--bg-white);
+    border: 1px solid var(--border-light);
+    border-radius: var(--radius-md);
+    padding: 20px;
+    height: fit-content;
+    position: sticky;
+    top: 110px;
+  }
+
+  .portfolio-menu {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+  }
+
+  .portfolio-menu-item {
+    display: grid;
+    grid-template-columns: 28px 1fr 52px;
+    gap: 10px;
+    align-items: center;
+    padding: 10px 8px;
+    border-radius: 10px;
+    cursor: pointer;
+    transition: all 0.2s var(--ease);
+    border: 1px solid transparent;
+  }
+
+  .portfolio-menu-item:hover {
+    background: rgba(13, 148, 136, 0.06);
+  }
+
+  .portfolio-menu-item.active {
+    background: rgba(13, 148, 136, 0.1);
+    border-color: rgba(13, 148, 136, 0.3);
+  }
+
+  .pm-index {
+    font-size: 14px;
+    font-weight: 700;
+    color: #0D9488;
+    text-align: center;
+    font-variant-numeric: tabular-nums;
+  }
+
+  .pm-info {
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+    min-width: 0;
+  }
+
+  .pm-title {
+    font-size: 13px;
+    font-weight: 600;
+    color: var(--text-primary);
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+
+  .portfolio-menu-item.active .pm-title {
+    color: #0D9488;
+  }
+
+  .pm-desc {
+    font-size: 11px;
+    color: var(--text-muted);
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+
+  .pm-thumb {
+    width: 52px;
+    height: 34px;
+    border-radius: 6px;
+    overflow: hidden;
+    flex-shrink: 0;
+  }
+
+  .pm-thumb img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+
+  .portfolio-detail-panel {
+    background: var(--bg-white);
+    border: 1px solid var(--border-light);
+    border-radius: var(--radius-md);
+    overflow: hidden;
+  }
+
+  .portfolio-detail-header {
+    display: grid;
+    grid-template-columns: 60px 1fr;
+    gap: 16px;
+    padding: 24px 32px;
+    border-bottom: 1px solid var(--border-light);
+    background: linear-gradient(135deg, #F0FAF9 0%, #ffffff 100%);
+  }
+
+  .pdp-index {
+    font-size: 36px;
+    font-weight: 800;
+    color: #0D9488;
+    font-variant-numeric: tabular-nums;
+    line-height: 1;
+    letter-spacing: -1px;
+  }
+
+  .pdp-info {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+  }
+
+  .pdp-title {
+    font-size: 22px;
+    font-weight: 700;
+    color: var(--text-primary);
+    margin: 0;
+  }
+
+  .pdp-desc {
+    font-size: 14px;
+    color: var(--text-secondary);
+    margin: 0;
+    line-height: 1.6;
+  }
+
+  .portfolio-detail-scroll {
+    padding: 24px;
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+    max-height: calc(100vh - 300px);
+    overflow-y: auto;
+  }
+
+  .portfolio-detail-scroll img {
+    width: 100%;
+    border-radius: 12px;
+    box-shadow: 0 2px 12px rgba(0, 0, 0, 0.08);
+    cursor: zoom-in;
+    transition: transform 0.25s var(--ease);
+  }
+
+  .portfolio-detail-scroll img:hover {
+    transform: translateY(-2px);
+  }
+}
+
 /* ==================== 证书/荣誉 ==================== */
 .honors-list {
   display: flex;
@@ -3207,23 +3379,85 @@ body {
     <span class="section-eyebrow">Portfolio</span>
     <h2 class="section-title">我的作品集</h2>
 
-    <!-- 作品集手风琴卡片（点击展开 / 再点收起） -->
-    <div class="portfolio-view" id="portfolioDirView">
-      <div class="portfolio-toc-header">
-        <div class="portfolio-toc-icon">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-            <polygon points="5 3 19 12 5 21 5 3"/>
-          </svg>
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-            <polygon points="5 3 19 12 5 21 5 3"/>
-          </svg>
-        </div>
-        <div class="portfolio-toc-text">
-          <span class="portfolio-toc-label">CONTENTS</span>
-          <span class="portfolio-toc-sub">UI DESIGN</span>
+    <!-- 桌面端：左右分栏 -->
+    <div class="portfolio-desktop">
+      <div class="portfolio-split">
+        <!-- 左侧菜单 -->
+        <aside class="portfolio-sidebar">
+          <div class="portfolio-toc-header">
+            <div class="portfolio-toc-icon">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <polygon points="5 3 19 12 5 21 5 3"/>
+              </svg>
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <polygon points="5 3 19 12 5 21 5 3"/>
+              </svg>
+            </div>
+            <div class="portfolio-toc-text">
+              <span class="portfolio-toc-label">CONTENTS</span>
+              <span class="portfolio-toc-sub">UI DESIGN</span>
+            </div>
+          </div>
+          <ul class="portfolio-menu">
+            <li class="portfolio-menu-item active" data-project="haojixing" onclick="switchPortfolioProject('haojixing')">
+              <span class="pm-index">01</span>
+              <div class="pm-info">
+                <span class="pm-title">好记星 · 实习项目</span>
+                <span class="pm-desc">实习期间的需求拆解与功能设计实战</span>
+              </div>
+              <div class="pm-thumb"><img src="images_haojixing/01.jpg" alt="好记星" loading="lazy"></div>
+            </li>
+            <li class="portfolio-menu-item" data-project="cmcc" onclick="switchPortfolioProject('cmcc')">
+              <span class="pm-index">02</span>
+              <div class="pm-info">
+                <span class="pm-title">中国移动</span>
+                <span class="pm-desc">可用性测试 + 界面迭代，覆盖充值、会员、套餐等核心场景</span>
+              </div>
+              <div class="pm-thumb"><img src="images_cmcc_new/01.jpg" alt="中国移动" loading="lazy"></div>
+            </li>
+            <li class="portfolio-menu-item" data-project="rerelic" onclick="switchPortfolioProject('rerelic')">
+              <span class="pm-index">03</span>
+              <div class="pm-info">
+                <span class="pm-title">RERELIC</span>
+                <span class="pm-desc">数字博物馆 × Z世代文化共创</span>
+              </div>
+              <div class="pm-thumb"><img src="images_rerelic/01.jpg" alt="RERELIC" loading="lazy"></div>
+            </li>
+            <li class="portfolio-menu-item" data-project="zhangcheng" onclick="switchPortfolioProject('zhangcheng')">
+              <span class="pm-index">04</span>
+              <div class="pm-info">
+                <span class="pm-title">掌城APP</span>
+                <span class="pm-desc">融入 AR 技术的商场导航 APP，提供精确室内导航与 AR 互动</span>
+              </div>
+              <div class="pm-thumb"><img src="images_zhangcheng/cover.png" alt="掌城APP" loading="lazy"></div>
+            </li>
+            <li class="portfolio-menu-item" data-project="lianjing" onclick="switchPortfolioProject('lianjing')">
+              <span class="pm-index">05</span>
+              <div class="pm-info">
+                <span class="pm-title">莲境</span>
+                <span class="pm-desc">为 10~15 岁青少年设计的五音疗愈玩具</span>
+              </div>
+              <div class="pm-thumb"><img src="images_lianjing/01.jpg" alt="莲境" loading="lazy"></div>
+            </li>
+          </ul>
+        </aside>
+
+        <!-- 右侧详情面板 -->
+        <div class="portfolio-detail-panel">
+          <div class="portfolio-detail-header">
+            <span class="pdp-index" id="pdpIndex">01</span>
+            <div class="pdp-info">
+              <h3 class="pdp-title" id="pdpTitle">好记星 · 实习项目</h3>
+              <p class="pdp-desc" id="pdpDesc">实习期间的需求拆解与功能设计实战</p>
+            </div>
+          </div>
+          <div class="portfolio-detail-scroll" id="pdpScroll"></div>
         </div>
       </div>
+    </div>
 
+    <!-- 移动端：手风琴展开 -->
+    <div class="portfolio-mobile">
       <div class="portfolio-dir-list">
         <!-- 项目1：好记星 -->
         <div class="portfolio-dir-item" data-project="haojixing">
@@ -4185,6 +4419,97 @@ function renderProjectContent(projectId, card) {
     return;
   }
 }
+
+/* ==================== 桌面端作品集分栏切换 ==================== */
+const portfolioProjectOrder = ['haojixing', 'cmcc', 'rerelic', 'zhangcheng', 'lianjing'];
+
+function switchPortfolioProject(projectId) {
+  const project = portfolioProjects[projectId];
+  if (!project) return;
+
+  // 更新左侧菜单 active 状态
+  document.querySelectorAll('.portfolio-menu-item').forEach(el => {
+    el.classList.toggle('active', el.dataset.project === projectId);
+  });
+
+  // 计算序号（两位数，如 01）
+  const index = portfolioProjectOrder.indexOf(projectId);
+  const indexStr = String(index + 1).padStart(2, '0');
+
+  // 更新右侧头部
+  document.getElementById('pdpIndex').textContent = indexStr;
+  document.getElementById('pdpTitle').textContent = project.title;
+  document.getElementById('pdpDesc').textContent = project.desc;
+
+  // 渲染图片到右侧滚动区
+  const scrollArea = document.getElementById('pdpScroll');
+  if (!scrollArea) return;
+  scrollArea.innerHTML = '';
+
+  if (project.images && project.images.length) {
+    // cmcc 项目：GIF 叠加位置配置
+    const overlayConfig = projectId === 'cmcc' ? {
+      '32.jpg': { top: '48%',   left: '47.5%', width: '15.7%' },
+      '35.jpg': { top: '47.5%', left: '37.5%', width: '22%'   },
+      '39.jpg': { top: '48.5%', left: '48%',   width: '15.5%' },
+      '46.jpg': { top: '48.5%', left: '32%',   width: '15.5%' }
+    } : null;
+
+    // 预处理：合并 PNG+GIF 叠加组合
+    const pages = [];
+    const skipIdx = new Set();
+    project.images.forEach((src, i) => {
+      if (skipIdx.has(i)) return;
+      const nextSrc = i + 1 < project.images.length ? project.images[i + 1] : null;
+      const nextIsGif = nextSrc && /\.(gif|webp)$/i.test(nextSrc);
+      const imgName = src.split('/').pop();
+      const cfg = overlayConfig && overlayConfig[imgName];
+
+      if (!/\.(gif|webp)$/i.test(src) && nextIsGif && cfg) {
+        pages.push({ type: 'overlay', base: src, gif: nextSrc, cfg: cfg });
+        skipIdx.add(i + 1);
+      } else {
+        pages.push({ type: 'single', src: src });
+      }
+    });
+
+    // 用于 lightbox 放大的图片列表
+    const lightboxImages = pages.map(p => p.type === 'overlay' ? p.base : p.src);
+
+    pages.forEach((page, idx) => {
+      if (page.type === 'overlay') {
+        const wrapper = document.createElement('div');
+        wrapper.style.position = 'relative';
+        wrapper.innerHTML = `
+          <img src="${page.base}" alt="${project.title} - ${idx + 1}" loading="lazy">
+          <div class="gif-overlay" style="top:${page.cfg.top};left:${page.cfg.left};width:${page.cfg.width};transform:translateY(-50%);">
+            <img src="${page.gif}" alt="动图演示" loading="lazy">
+          </div>
+        `;
+        wrapper.querySelectorAll('img').forEach(im => {
+          im.onclick = (e) => { e.stopPropagation(); openLightbox(lightboxImages, idx); };
+        });
+        scrollArea.appendChild(wrapper);
+      } else {
+        const img = document.createElement('img');
+        img.src = page.src;
+        img.alt = `${project.title} - ${idx + 1}`;
+        img.loading = 'lazy';
+        img.onerror = function() { this.style.display = 'none'; };
+        img.onclick = () => openLightbox(lightboxImages, idx);
+        scrollArea.appendChild(img);
+      }
+    });
+  }
+}
+
+// 页面加载时初始化桌面端默认项目（好记星）
+document.addEventListener('DOMContentLoaded', function() {
+  // 检查桌面端是否存在（即 >900px 视口）
+  if (document.querySelector('.portfolio-desktop')) {
+    switchPortfolioProject('haojixing');
+  }
+});
 
 /* ==================== CTA 求职交互 ==================== */
 const CTA_EMAIL = '2646158571@qq.com';
