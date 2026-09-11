@@ -1,4 +1,4 @@
-﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿<!DOCTYPE html>
+﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿<!DOCTYPE html>
 <html lang="zh-CN">
 <head>
 <meta charset="UTF-8">
@@ -1929,29 +1929,7 @@ body {
   transform: scale(1.02);
 }
 
-/* ===== PDF嵌入展示 ===== */
-.pdf-embed {
-  width: 100%;
-  max-width: 1100px;
-  margin: 0 auto;
-  aspect-ratio: 16 / 9;
-  border-radius: 16px;
-  overflow: hidden;
-  box-shadow: 0 8px 32px rgba(0,0,0,0.15);
-  border: 1px solid var(--border-light);
-  background: #fff;
-}
-.pdf-embed iframe {
-  width: 100%;
-  height: 100%;
-  border: none;
-  display: block;
-}
-@media (max-width: 768px) {
-  .pdf-embed { aspect-ratio: auto; height: 80vh; }
-}
-
-/* ===== 纵向滚动查看器（同掌城 PDF 体验） ===== */
+/* ===== 纵向滚动查看器（所有作品通用） ===== */
 .scroll-viewer {
   width: 100%;
   max-width: 1100px;
@@ -2669,48 +2647,6 @@ body {
   }
   .scroll-page {
     margin-bottom: 12px;
-  }
-}
-
-/* --- PDF 嵌入手机端 --- */
-@media (max-width: 768px) {
-  .pdf-embed {
-    aspect-ratio: auto;
-    height: 70vh;
-  }
-  /* 移动端 PDF 按钮（替代 iframe 白屏） */
-  .pdf-mobile-btn {
-    display: flex;
-    align-items: center;
-    gap: 20px;
-    padding: 28px 24px;
-    background: linear-gradient(135deg, var(--primary) 0%, var(--primary-dark) 100%);
-    color: #fff;
-    text-decoration: none;
-    border-radius: 16px;
-    box-shadow: 0 12px 32px rgba(15, 118, 110, 0.35);
-    transition: transform 0.15s var(--ease), box-shadow 0.15s var(--ease);
-    min-height: 120px;
-  }
-  .pdf-mobile-btn:active {
-    transform: scale(0.97);
-    box-shadow: 0 6px 18px rgba(15, 118, 110, 0.3);
-  }
-  .pdf-mobile-btn svg {
-    flex-shrink: 0;
-  }
-  .pdf-mobile-btn div {
-    display: flex;
-    flex-direction: column;
-    gap: 6px;
-  }
-  .pdf-mobile-btn strong {
-    font-size: 18px;
-    font-weight: 700;
-  }
-  .pdf-mobile-btn span {
-    font-size: 13px;
-    opacity: 0.85;
   }
 }
 
@@ -3848,8 +3784,20 @@ const portfolioProjects = {
   zhangcheng: {
     title: '掌城APP',
     desc: '融入 AR 技术的商场导航 APP，以提高逛商场体验和效率为目的，提供精确室内导航、AR 导航、路线定制、AR 创作与社区互动等功能。',
-    viewType: 'pdf',
-    pdfUrl: 'images_zhangcheng/zhangcheng.pdf'
+    images: [
+      'images_zhangcheng/pages/page_01.jpg', 'images_zhangcheng/pages/page_02.jpg',
+      'images_zhangcheng/pages/page_03.jpg', 'images_zhangcheng/pages/page_04.jpg',
+      'images_zhangcheng/pages/page_05.jpg', 'images_zhangcheng/pages/page_06.jpg',
+      'images_zhangcheng/pages/page_07.jpg', 'images_zhangcheng/pages/page_08.jpg',
+      'images_zhangcheng/pages/page_09.jpg', 'images_zhangcheng/pages/page_10.jpg',
+      'images_zhangcheng/pages/page_11.jpg', 'images_zhangcheng/pages/page_12.jpg',
+      'images_zhangcheng/pages/page_13.jpg', 'images_zhangcheng/pages/page_14.jpg',
+      'images_zhangcheng/pages/page_15.jpg', 'images_zhangcheng/pages/page_16.jpg',
+      'images_zhangcheng/pages/page_17.jpg', 'images_zhangcheng/pages/page_18.jpg',
+      'images_zhangcheng/pages/page_19.jpg', 'images_zhangcheng/pages/page_20.jpg',
+      'images_zhangcheng/pages/page_21.jpg', 'images_zhangcheng/pages/page_22.jpg',
+      'images_zhangcheng/pages/page_23.jpg', 'images_zhangcheng/pages/page_24.jpg'
+    ]
   },
   lianjing: {
     title: '莲境',
@@ -3921,30 +3869,7 @@ function renderProjectContent(projectId, card) {
   const gallery = card.querySelector('.portfolio-detail-gallery');
   gallery.innerHTML = '';
 
-  // PDF嵌入模式（掌城专用）
-  if (project.viewType === 'pdf') {
-    const container = document.createElement('div');
-    container.className = 'pdf-embed';
-    // 手机端 iframe 渲染 PDF 极不可靠（iOS Safari / 微信内置浏览器常白屏），
-    // 改为提供显眼的链接按钮，让手机用原生 PDF 查看器打开
-    const isMobile = window.matchMedia('(max-width: 768px), (hover: none)').matches;
-    if (isMobile) {
-      container.innerHTML = `
-        <a href="${project.pdfUrl}" target="_blank" rel="noopener" class="pdf-mobile-btn">
-          <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="12" y1="18" x2="12" y2="12"/><polyline points="9 15 12 12 15 15"/></svg>
-          <div>
-            <strong>点击查看完整 PDF</strong>
-            <span>新窗口打开 · ${project.title}</span>
-          </div>
-        </a>`;
-    } else {
-      container.innerHTML = `<iframe src="${project.pdfUrl}#toolbar=0&navpanes=0" title="${project.title}" loading="lazy"></iframe>`;
-    }
-    gallery.appendChild(container);
-    return;
-  }
-
-  // 纵向滚动查看器（所有图片类项目，同掌城 PDF 的上下滑动体验）
+  // 纵向滚动查看器（所有作品通用，含掌城 PDF 转图序列）
   if (project.images && project.images.length) {
     // cmcc 项目：GIF 叠加位置配置
     const overlayConfig = projectId === 'cmcc' ? {
