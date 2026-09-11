@@ -1,4 +1,4 @@
-﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿<!DOCTYPE html>
+﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿<!DOCTYPE html>
 <html lang="zh-CN">
 <head>
 <meta charset="UTF-8">
@@ -2340,8 +2340,31 @@ body {
 }
 
 @media (max-width: 768px) {
+  /* 导航栏增强：更明显的底边框和阴影 */
+  .navbar {
+    background: #ffffff;
+    border-bottom: 3px solid var(--primary);
+    box-shadow: 0 4px 20px rgba(15, 118, 110, 0.2), 0 2px 8px rgba(0, 0, 0, 0.08);
+  }
+  .nav-inner {
+    height: 60px;
+    padding: 0 16px;
+  }
+  .nav-logo {
+    font-size: 19px;
+  }
+  /* 汉堡按钮加主题色描边，让它从背景中跳出来 */
   .menu-toggle {
     display: flex;
+    padding: 10px;
+    border: 2px solid var(--primary);
+    border-radius: 10px;
+    background: rgba(15, 118, 110, 0.06);
+  }
+  .menu-toggle span {
+    background: var(--primary);
+    width: 22px;
+    height: 2.5px;
   }
 
   .nav-links {
@@ -2357,6 +2380,7 @@ body {
     transform: translateY(-120%);
     opacity: 0;
     transition: all 0.15s var(--ease);
+    border-top: 2px solid var(--primary-light);
   }
 
   .nav-links.open {
@@ -2653,6 +2677,40 @@ body {
   .pdf-embed {
     aspect-ratio: auto;
     height: 70vh;
+  }
+  /* 移动端 PDF 按钮（替代 iframe 白屏） */
+  .pdf-mobile-btn {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+    padding: 28px 24px;
+    background: linear-gradient(135deg, var(--primary) 0%, var(--primary-dark) 100%);
+    color: #fff;
+    text-decoration: none;
+    border-radius: 16px;
+    box-shadow: 0 12px 32px rgba(15, 118, 110, 0.35);
+    transition: transform 0.15s var(--ease), box-shadow 0.15s var(--ease);
+    min-height: 120px;
+  }
+  .pdf-mobile-btn:active {
+    transform: scale(0.97);
+    box-shadow: 0 6px 18px rgba(15, 118, 110, 0.3);
+  }
+  .pdf-mobile-btn svg {
+    flex-shrink: 0;
+  }
+  .pdf-mobile-btn div {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+  }
+  .pdf-mobile-btn strong {
+    font-size: 18px;
+    font-weight: 700;
+  }
+  .pdf-mobile-btn span {
+    font-size: 13px;
+    opacity: 0.85;
   }
 }
 
@@ -3867,7 +3925,21 @@ function renderProjectContent(projectId, card) {
   if (project.viewType === 'pdf') {
     const container = document.createElement('div');
     container.className = 'pdf-embed';
-    container.innerHTML = `<iframe src="${project.pdfUrl}#toolbar=0&navpanes=0" title="${project.title}" loading="lazy"></iframe>`;
+    // 手机端 iframe 渲染 PDF 极不可靠（iOS Safari / 微信内置浏览器常白屏），
+    // 改为提供显眼的链接按钮，让手机用原生 PDF 查看器打开
+    const isMobile = window.matchMedia('(max-width: 768px), (hover: none)').matches;
+    if (isMobile) {
+      container.innerHTML = `
+        <a href="${project.pdfUrl}" target="_blank" rel="noopener" class="pdf-mobile-btn">
+          <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="12" y1="18" x2="12" y2="12"/><polyline points="9 15 12 12 15 15"/></svg>
+          <div>
+            <strong>点击查看完整 PDF</strong>
+            <span>新窗口打开 · ${project.title}</span>
+          </div>
+        </a>`;
+    } else {
+      container.innerHTML = `<iframe src="${project.pdfUrl}#toolbar=0&navpanes=0" title="${project.title}" loading="lazy"></iframe>`;
+    }
     gallery.appendChild(container);
     return;
   }
