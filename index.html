@@ -1,4 +1,4 @@
-﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿<!DOCTYPE html>
+﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿<!DOCTYPE html>
 <html lang="zh-CN">
 <head>
 <meta charset="UTF-8">
@@ -259,11 +259,27 @@ body {
   border: 1px solid rgba(15, 118, 110, 0.15);
 }
 
+/* 姓名艺术字 */
+.hero-name-wrap {
+  position: relative;
+  display: inline-block;
+  margin-bottom: 10px;
+}
+.hero-name-pinyin {
+  display: block;
+  font-size: clamp(12px, 1.4vw, 15px);
+  font-weight: 600;
+  letter-spacing: 0.42em;
+  text-transform: uppercase;
+  color: var(--primary);
+  opacity: 0.75;
+  margin-bottom: 6px;
+}
 .hero-name {
   font-size: clamp(56px, 9vw, 112px);
   font-weight: 800;
   color: var(--text-primary);
-  margin-bottom: 8px;
+  margin-bottom: 0;
   letter-spacing: -2px;
   line-height: 1.02;
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'PingFang SC', 'Hiragino Sans GB', 'Microsoft YaHei', sans-serif;
@@ -275,6 +291,51 @@ body {
   -webkit-text-fill-color: transparent;
   background-clip: text;
   font-weight: 900;
+}
+
+/* 手绘风下划线 */
+.hero-name-stroke {
+  display: block;
+  width: min(72%, 300px);
+  height: 12px;
+  margin-top: 2px;
+  overflow: visible;
+}
+.hero-name-stroke path {
+  fill: none;
+  stroke: url(#nameStrokeGrad);
+  stroke-width: 5;
+  stroke-linecap: round;
+}
+
+/* 求职意向高亮条 */
+.job-intention {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 26px;
+  padding: 10px 18px;
+  background: linear-gradient(135deg, rgba(13, 148, 136, 0.10), rgba(13, 148, 136, 0.05));
+  border: 1.5px solid rgba(13, 148, 136, 0.35);
+  border-radius: 100px;
+  font-size: 15px;
+  color: var(--text-secondary);
+}
+.job-intention strong {
+  color: var(--primary-dark);
+  font-weight: 700;
+}
+.ji-dot {
+  width: 9px;
+  height: 9px;
+  border-radius: 50%;
+  background: var(--primary);
+  box-shadow: 0 0 0 4px rgba(13, 148, 136, 0.18);
+  animation: jiPulse 2s ease-in-out infinite;
+}
+@keyframes jiPulse {
+  0%, 100% { box-shadow: 0 0 0 3px rgba(13, 148, 136, 0.22); }
+  50% { box-shadow: 0 0 0 6px rgba(13, 148, 136, 0.10); }
 }
 
 .hero-intro {
@@ -486,6 +547,11 @@ body {
   background: #FCE7F3;
   color: #9D174D;
   border-color: rgba(157, 23, 77, 0.15);
+}
+.skill-tag-5 {
+  background: #EDE9FE;
+  color: #5B21B6;
+  border-color: rgba(91, 33, 182, 0.15);
 }
 .skill-tag:hover {
   transform: translateY(-2px);
@@ -2973,6 +3039,19 @@ body {
   .hero-name {
     font-size: 28px;
   }
+  .hero-name-pinyin {
+    font-size: 11px;
+    letter-spacing: 0.3em;
+  }
+  .hero-name-stroke {
+    width: 60%;
+    height: 8px;
+  }
+  .job-intention {
+    font-size: 13px;
+    padding: 8px 14px;
+    gap: 8px;
+  }
   .hero-intro {
     font-size: 13px;
     line-height: 1.6;
@@ -3203,12 +3282,28 @@ body {
       <!-- 左栏：名字 + 介绍 + 联系 + 按钮 -->
       <div class="hero-left">
         <div class="hero-greeting">你好，我是 👋</div>
-        <h1 class="hero-name">史<span>雅靓</span></h1>
+        <div class="hero-name-wrap">
+          <span class="hero-name-pinyin">SHI YALIANG</span>
+          <h1 class="hero-name">史<span>雅靓</span></h1>
+          <svg class="hero-name-stroke" viewBox="0 0 220 12" aria-hidden="true">
+            <defs>
+              <linearGradient id="nameStrokeGrad" x1="0" y1="0" x2="1" y2="0">
+                <stop offset="0%" stop-color="#0F766E"/>
+                <stop offset="100%" stop-color="#5EEAD4"/>
+              </linearGradient>
+            </defs>
+            <path d="M4 8 Q 60 2 112 6 T 216 5"/>
+          </svg>
+        </div>
         <p class="hero-intro">产品经理 · 产品运营 · UX 设计</p>
         <p class="hero-tagline">
-          具备 To C 智能座舱与 To B 工业 IoT 双赛道产品经验<br>
-          擅长从用户调研与业务场景出发，完成需求拆解、方案设计与跨团队推进，关注产品从定义到落地的完整闭环
+          江南大学工业设计在读，多段产品实习覆盖 To C 智能座舱与 To B 工业 IoT，擅长用户调研与跨团队推进。
         </p>
+
+        <div class="job-intention">
+          <span class="ji-dot"></span>
+          求职意向：<strong>产品经理 / 产品运营 · 实习</strong>
+        </div>
 
         <div class="hero-info">
           <div class="hero-info-item">
@@ -3265,6 +3360,7 @@ body {
         <!-- 技能便签（参考图三的便签风格） -->
         <div class="skill-tags-row">
           <span class="skill-tag skill-tag-1">学生会主席 <em>×</em></span>
+          <span class="skill-tag skill-tag-5">公众号运营部长 <em>×</em></span>
           <span class="skill-tag skill-tag-2">江南大学 (211) <em>×</em></span>
           <span class="skill-tag skill-tag-3">Figma / Axure 原型 <em>×</em></span>
           <span class="skill-tag skill-tag-4">用户调研 · 数据驱动 <em>×</em></span>
