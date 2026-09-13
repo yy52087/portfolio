@@ -1,4 +1,4 @@
-﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿<!DOCTYPE html>
+﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿<!DOCTYPE html>
 <html lang="zh-CN">
 <head>
 <meta charset="UTF-8">
@@ -348,6 +348,7 @@ body {
   border-radius: 50%;
   border: 1px solid rgba(15, 118, 110, 0.15);
   animation: ringRotate 20s linear infinite;
+  will-change: transform;
 }
 .portrait-ring {
   inset: 2%;
@@ -376,6 +377,7 @@ body {
     0 0 0 6px #fff,
     0 0 0 8px rgba(15, 118, 110, 0.2);
   animation: portraitFloat 6s ease-in-out infinite;
+  will-change: transform;
 }
 @keyframes portraitFloat {
   0%, 100% { transform: translateY(0); }
@@ -433,6 +435,7 @@ body {
   transform: rotate(15deg);
   box-shadow: 0 4px 12px rgba(15, 118, 110, 0.3);
   animation: accentFloat 4s ease-in-out infinite;
+  will-change: transform;
 }
 @keyframes accentFloat {
   0%, 100% { transform: rotate(15deg) scale(1); }
@@ -1055,6 +1058,7 @@ body {
   transform: translate(0, 0) rotate(0deg);
   z-index: 3;
   animation: cardBreathe 4s ease-in-out infinite;
+  will-change: transform;
 }
 
 @keyframes cardBreathe {
@@ -2532,10 +2536,9 @@ body {
   box-shadow: 0 6px 20px rgba(0, 0, 0, 0.2);
 }
 .cta-btn-secondary {
-  background: rgba(255, 255, 255, 0.12);
+  background: rgba(255, 255, 255, 0.15);
   color: #ffffff;
   border-color: rgba(255, 255, 255, 0.25);
-  backdrop-filter: blur(8px);
 }
 .cta-btn-secondary:hover {
   background: rgba(255, 255, 255, 0.2);
@@ -3891,6 +3894,26 @@ window.addEventListener('scroll', () => {
   lastScrollY = currentScrollY;
 }, { passive: true });
 
+/* ==================== 无限动画视口外暂停（省 GPU） ==================== */
+(function() {
+  const animated = document.querySelectorAll(
+    '.portrait-ring, .portrait-ring-2, .portrait-circle, .portrait-accent, .card-back-1'
+  );
+  if (animated.length === 0) return;
+  const io = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      const els = entry.target.querySelectorAll
+        ? entry.target.querySelectorAll('.portrait-ring, .portrait-ring-2, .portrait-circle, .portrait-accent, .card-back-1')
+        : [];
+      els.forEach(el => { el.style.animationPlayState = entry.isIntersecting ? 'running' : 'paused'; });
+    });
+  }, { rootMargin: '100px' });
+  animated.forEach(el => {
+    const parent = el.closest('section') || el.parentElement;
+    if (parent) io.observe(parent);
+  });
+})();
+
 /* ==================== GSAP + ScrollTrigger 动效系统 ==================== */
 (function() {
   if (typeof gsap === 'undefined' || typeof ScrollTrigger === 'undefined') return;
@@ -3902,7 +3925,8 @@ window.addEventListener('scroll', () => {
   // 手机/触屏：动画提速、关闭模糊滤镜与滚动 parallax（低端机卡顿主要来源）
   const isMobile = window.matchMedia('(max-width: 768px), (hover: none)').matches;
   const slow = prefersReduced ? 0.3 : (isMobile ? 0.75 : 1);
-  const blur = px => isMobile ? {} : { filter: `blur(${px}px)` };
+  // 全平台移除 blur 滤镜（GPU 重负载，会触发合成层重绘）
+  const blur = () => ({});
 
   // ====== 首屏 Opening Animation ======
   function heroOpening() {
@@ -4050,43 +4074,27 @@ window.addEventListener('scroll', () => {
     });
   }
 
-  // ====== 图片 reveal + 轻微 parallax ======
+  // ====== 图片 reveal（移除 parallax scrub，减少滚动时的逐帧计算） ======
   function imageReveal() {
-    // 手机端直接跳过：scale 与 scrub parallax 会为大量图片建立合成层，是滚动卡顿主因
+    // 手机端跳过
     if (isMobile) return;
-    const imgSelectors = ['.portfolio-detail-img-wrapper img', '.edu-card-img'];
-
-    imgSelectors.forEach(sel => {
-      const imgs = document.querySelectorAll(sel);
-      if (imgs.length === 0) return;
-
-      imgs.forEach(img => {
-        gsap.fromTo(img,
-          { scale: 1.08 },
-          {
-            scale: 1,
-            duration: 1.2 * slow,
-            ease: 'power3.out',
-            scrollTrigger: {
-              trigger: img,
-              start: 'top 90%',
-              once: true
-            }
-          }
-        );
-
-        // 轻微 parallax（滚动时图片反向微移）
-        gsap.to(img, {
-          y: '-20px',
-          ease: 'none',
+    // 只对教育背景图片做简单 reveal（数量少），作品集图片不做 GSAP 动画
+    const imgs = document.querySelectorAll('.edu-card-img');
+    if (imgs.length === 0) return;
+    imgs.forEach(img => {
+      gsap.fromTo(img,
+        { scale: 1.05 },
+        {
+          scale: 1,
+          duration: 1 * slow,
+          ease: 'power3.out',
           scrollTrigger: {
             trigger: img,
-            start: 'top bottom',
-            end: 'bottom top',
-            scrub: true
+            start: 'top 90%',
+            once: true
           }
-        });
-      });
+        }
+      );
     });
   }
 
@@ -4402,13 +4410,13 @@ function renderProjectContent(projectId, card) {
       pageEl.className = 'scroll-page';
       if (page.type === 'overlay') {
         pageEl.innerHTML = `
-          <img src="${page.base}" alt="${project.title} - ${idx + 1}" loading="lazy">
+          <img src="${page.base}" alt="${project.title} - ${idx + 1}" loading="lazy" decoding="async">
           <div class="gif-overlay" style="top:${page.cfg.top};left:${page.cfg.left};width:${page.cfg.width};transform:translateY(-50%);">
-            <img src="${page.gif}" alt="动图演示" loading="lazy">
+            <img src="${page.gif}" alt="动图演示" loading="lazy" decoding="async">
           </div>
         `;
       } else {
-        pageEl.innerHTML = `<img src="${page.src}" alt="${project.title} - ${idx + 1}" loading="lazy" onerror="this.parentElement.style.display='none'">`;
+        pageEl.innerHTML = `<img src="${page.src}" alt="${project.title} - ${idx + 1}" loading="lazy" decoding="async" onerror="this.parentElement.style.display='none'">`;
       }
       // 点击任意图片 → lightbox 放大
       pageEl.querySelectorAll('img').forEach(im => {
@@ -4481,9 +4489,9 @@ function switchPortfolioProject(projectId) {
         const wrapper = document.createElement('div');
         wrapper.style.position = 'relative';
         wrapper.innerHTML = `
-          <img src="${page.base}" alt="${project.title} - ${idx + 1}" loading="lazy">
+          <img src="${page.base}" alt="${project.title} - ${idx + 1}" loading="lazy" decoding="async">
           <div class="gif-overlay" style="top:${page.cfg.top};left:${page.cfg.left};width:${page.cfg.width};transform:translateY(-50%);">
-            <img src="${page.gif}" alt="动图演示" loading="lazy">
+            <img src="${page.gif}" alt="动图演示" loading="lazy" decoding="async">
           </div>
         `;
         wrapper.querySelectorAll('img').forEach(im => {
@@ -4495,6 +4503,7 @@ function switchPortfolioProject(projectId) {
         img.src = page.src;
         img.alt = `${project.title} - ${idx + 1}`;
         img.loading = 'lazy';
+        img.decoding = 'async';
         img.onerror = function() { this.style.display = 'none'; };
         img.onclick = () => openLightbox(lightboxImages, idx);
         scrollArea.appendChild(img);
