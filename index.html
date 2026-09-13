@@ -1,4 +1,4 @@
-﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿<!DOCTYPE html>
+﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿<!DOCTYPE html>
 <html lang="zh-CN">
 <head>
 <meta charset="UTF-8">
@@ -964,6 +964,59 @@ body {
   flex: 1;
   min-width: 0;
   text-align: left;
+}
+
+/* 校园经历 */
+.edu-experiences {
+  margin-top: 24px;
+  padding-top: 20px;
+  border-top: 1px dashed var(--border-light);
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+.edu-exp-label {
+  font-size: 13px;
+  font-weight: 700;
+  color: var(--primary);
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+}
+.edu-exp-item {
+  background: rgba(255, 255, 255, 0.7);
+  border: 1px solid var(--border-light);
+  border-radius: 12px;
+  padding: 14px 18px;
+}
+.edu-exp-head {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-bottom: 8px;
+}
+.edu-exp-role {
+  font-size: 15px;
+  font-weight: 700;
+  color: var(--text-primary);
+}
+.edu-exp-date {
+  font-size: 12px;
+  color: var(--text-muted);
+  white-space: nowrap;
+}
+.edu-exp-body {
+  font-size: 13px;
+  line-height: 1.7;
+  color: var(--text-secondary);
+}
+.edu-exp-body p {
+  margin: 2px 0;
+}
+.edu-exp-body strong {
+  color: var(--primary-dark);
+  font-weight: 600;
 }
 
 /* ==================== 技能与爱好（抽卡玩法） ==================== */
@@ -2639,6 +2692,10 @@ body {
     padding: 24px;
   }
 
+  .edu-experiences {
+    text-align: left;
+  }
+
   .edu-icon {
     margin: 0 auto;
   }
@@ -3247,6 +3304,34 @@ body {
           <div class="edu-detail-item">
             <strong>核心课程：</strong>
             <span>用户研究、智能制造基础、交互设计和可用性测试（在这几门课程中均获满绩4.0/4.0）</span>
+          </div>
+        </div>
+
+        <div class="edu-experiences">
+          <div class="edu-exp-label">校园经历</div>
+
+          <div class="edu-exp-item">
+            <div class="edu-exp-head">
+              <span class="edu-exp-role">校团委公众号平台 · 部长</span>
+              <span class="edu-exp-date">2023.09 — 2024.09</span>
+            </div>
+            <div class="edu-exp-body">
+              <p><strong>背景：</strong>任职初期，公众号粉丝约2000人，内容生产缺乏规范，阅读量长期处于较低水平，团队选题方向不明确。</p>
+              <p><strong>目标：</strong>建立规范化的内容生产流程，提升粉丝规模与阅读量，优化用户活跃度。</p>
+              <p><strong>行动：</strong>建立选题策划、内容生产、审核发布的标准化流程，带领10人团队一年完成100+篇推文；跟踪阅读数据，分析用户偏好，优化内容策略；开展用户调研，了解内容需求；策划线上互动活动提升用户参与度；对接各院系协调内容资源与推广渠道。</p>
+              <p><strong>成果：</strong>一年内粉丝从2000+增长至8000+，篇均阅读量提升约200%，单篇最高阅读量突破1.5万；团队内容生产实现规范化、数据化运营。</p>
+            </div>
+          </div>
+
+          <div class="edu-exp-item">
+            <div class="edu-exp-head">
+              <span class="edu-exp-role">高中 · 班长 / 校学生会主席</span>
+              <span class="edu-exp-date">2020.09 — 2022.06</span>
+            </div>
+            <div class="edu-exp-body">
+              <p><strong>行动：</strong>担任班长2年，统筹班级日常管理与活动组织，协调50+同学需求；担任校学生会主席，带领30+人团队策划组织校园活动，对接学校各部门推动活动落地。</p>
+              <p><strong>成果：</strong>组织校园活动10+场，覆盖全校2000+师生；班级连续2年获评"优秀班集体"，个人获评"优秀学生干部"。</p>
+            </div>
           </div>
         </div>
         </div>
