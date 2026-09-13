@@ -1,4 +1,4 @@
-﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿<!DOCTYPE html>
+﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿<!DOCTYPE html>
 <html lang="zh-CN">
 <head>
 <meta charset="UTF-8">
@@ -2559,123 +2559,173 @@ body {
   color: #0D9488;
 }
 
-/* ==================== 页脚 ==================== */
-/* ==================== 求职 CTA ==================== */
+/* ==================== 求职 CTA（暗色大卡，左右布局） ==================== */
 .cta-card {
   position: relative;
-  max-width: 960px;
+  max-width: 1280px;
   margin: 32px auto 0;
-  padding: 64px 56px;
-  background: linear-gradient(135deg, #0f3a37 0%, #0f766e 55%, #0d9488 100%);
+  padding: 56px 64px 0;
+  background:
+    radial-gradient(900px 480px at 88% -10%, rgba(110, 168, 60, 0.28) 0%, transparent 60%),
+    radial-gradient(700px 420px at -5% 110%, rgba(29, 78, 216, 0.22) 0%, transparent 55%),
+    linear-gradient(160deg, #0e1514 0%, #0a0f0e 60%, #0c1312 100%);
   border-radius: 28px;
   color: #ffffff;
   overflow: hidden;
-  box-shadow: 0 20px 60px rgba(15, 118, 110, 0.35), 0 8px 24px rgba(0, 0, 0, 0.1);
+  box-shadow: 0 24px 70px rgba(6, 16, 15, 0.45);
 }
-.cta-card::before {
-  content: '';
-  position: absolute;
-  top: -60px;
-  right: -60px;
-  width: 260px;
-  height: 260px;
-  background: radial-gradient(circle, rgba(255,255,255,0.15) 0%, transparent 70%);
-  border-radius: 50%;
-  pointer-events: none;
+
+/* 左右布局 */
+.cta-grid {
+  position: relative;
+  z-index: 2;
+  display: grid;
+  grid-template-columns: 1fr 300px;
+  gap: 48px;
+  align-items: center;
+  padding-bottom: 130px;
 }
-.cta-card::after {
-  content: '';
-  position: absolute;
-  bottom: -80px;
-  left: -40px;
-  width: 200px;
-  height: 200px;
-  background: radial-gradient(circle, rgba(255,255,255,0.08) 0%, transparent 70%);
-  border-radius: 50%;
-  pointer-events: none;
+
+.cta-index {
+  font-size: 13px;
+  font-weight: 700;
+  letter-spacing: 0.28em;
+  color: #5EEAD4;
+  margin-bottom: 26px;
 }
 .cta-eyebrow {
-  font-size: 13px;
+  font-size: 14px;
   font-weight: 600;
-  letter-spacing: 3px;
+  letter-spacing: 0.32em;
   text-transform: uppercase;
-  color: rgba(255, 255, 255, 0.65);
-  margin-bottom: 20px;
+  color: rgba(255, 255, 255, 0.55);
+  margin-bottom: 18px;
 }
 .cta-title {
-  font-size: 44px;
+  font-size: clamp(40px, 5.2vw, 68px);
   font-weight: 800;
-  line-height: 1.2;
-  letter-spacing: -0.5px;
-  margin: 0 0 20px;
-  position: relative;
-  z-index: 1;
+  line-height: 1.16;
+  letter-spacing: -1px;
+  margin: 0 0 24px;
 }
 .cta-desc {
   font-size: 16px;
-  line-height: 1.75;
-  color: rgba(255, 255, 255, 0.78);
-  margin: 0 0 36px;
-  position: relative;
-  z-index: 1;
+  line-height: 1.8;
+  color: rgba(255, 255, 255, 0.68);
+  margin: 0 0 30px;
+  max-width: 560px;
 }
-.cta-actions {
+
+/* 标签胶囊 */
+.cta-tags {
   display: flex;
-  gap: 14px;
   flex-wrap: wrap;
-  position: relative;
-  z-index: 1;
+  gap: 10px;
+  margin-bottom: 34px;
 }
-.cta-btn {
+.cta-tag {
   display: inline-flex;
   align-items: center;
   gap: 8px;
-  padding: 14px 24px;
-  border-radius: 14px;
-  font-size: 15px;
-  font-weight: 600;
-  cursor: pointer;
+  padding: 8px 16px;
+  border-radius: 100px;
+  border: 1px solid rgba(255, 255, 255, 0.22);
+  background: rgba(255, 255, 255, 0.05);
+  font-size: 14px;
+  color: rgba(255, 255, 255, 0.85);
+}
+.cta-tag em {
+  font-style: normal;
+  font-size: 13px;
+  color: rgba(255, 255, 255, 0.4);
+}
+
+/* 联系方式行 */
+.cta-lines {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 14px 44px;
+}
+.cta-line {
+  display: inline-flex;
+  align-items: baseline;
+  gap: 14px;
   text-decoration: none;
-  border: 1.5px solid transparent;
-  transition: all 0.25s var(--ease);
-  font-family: inherit;
-}
-.cta-btn-primary {
-  background: #ffffff;
-  color: var(--primary);
-  box-shadow: 0 4px 14px rgba(0, 0, 0, 0.15);
-}
-.cta-btn-primary:hover {
-  transform: translateY(-2px);
-  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.2);
-}
-.cta-btn-secondary {
-  background: rgba(255, 255, 255, 0.15);
   color: #ffffff;
-  border-color: rgba(255, 255, 255, 0.25);
+  cursor: pointer;
+  background: none;
+  border: none;
+  padding: 0;
+  font-family: inherit;
+  font-size: 17px;
+  transition: opacity 0.2s var(--ease);
 }
-.cta-btn-secondary:hover {
-  background: rgba(255, 255, 255, 0.2);
-  transform: translateY(-2px);
-}
-.cta-btn-sub {
+.cta-line:hover { opacity: 0.75; }
+.cta-line-label {
   font-size: 12px;
-  font-weight: 400;
-  opacity: 0.75;
-  padding-left: 4px;
-  border-left: 1px solid currentColor;
-  margin-left: 2px;
+  font-weight: 600;
+  letter-spacing: 0.22em;
+  color: rgba(255, 255, 255, 0.45);
 }
+.cta-line-value {
+  font-weight: 600;
+  letter-spacing: 0.02em;
+}
+
+/* 右侧二维码玻璃卡 */
+.cta-qr-card {
+  justify-self: center;
+  width: 240px;
+  padding: 28px 28px 22px;
+  border-radius: 22px;
+  background: linear-gradient(160deg, rgba(255, 255, 255, 0.10), rgba(255, 255, 255, 0.04));
+  border: 1px solid rgba(255, 255, 255, 0.14);
+  box-shadow: 0 18px 44px rgba(0, 0, 0, 0.35);
+  text-align: center;
+}
+.cta-qr-card img {
+  width: 100%;
+  height: auto;
+  display: block;
+}
+.cta-qr-caption {
+  margin-top: 16px;
+  font-size: 13px;
+  color: rgba(255, 255, 255, 0.65);
+  letter-spacing: 0.05em;
+}
+
+/* 底部巨型描边背景字 */
+.cta-bigword {
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: -0.28em;
+  z-index: 1;
+  font-size: clamp(120px, 20vw, 240px);
+  font-weight: 900;
+  line-height: 1;
+  letter-spacing: 0.02em;
+  white-space: nowrap;
+  text-align: center;
+  color: transparent;
+  -webkit-text-stroke: 1px rgba(255, 255, 255, 0.07);
+  pointer-events: none;
+  user-select: none;
+  overflow: hidden;
+}
+
 .cta-back-top {
   position: absolute;
   right: 32px;
-  bottom: 28px;
+  bottom: 24px;
+  z-index: 3;
   display: inline-flex;
   align-items: center;
   gap: 4px;
   background: none;
   border: none;
-  color: rgba(255, 255, 255, 0.6);
+  color: rgba(255, 255, 255, 0.45);
   font-size: 13px;
   cursor: pointer;
   padding: 8px 12px;
@@ -2685,7 +2735,7 @@ body {
 }
 .cta-back-top:hover {
   color: #ffffff;
-  background: rgba(255, 255, 255, 0.1);
+  background: rgba(255, 255, 255, 0.08);
 }
 
 /* ==================== 页脚 ==================== */
@@ -3179,37 +3229,40 @@ body {
 
   /* --- 求职 CTA 手机端 --- */
   .cta-card {
-    padding: 40px 24px 72px;
+    padding: 40px 24px 0;
     border-radius: 22px;
     margin: 16px auto 0;
   }
+  .cta-grid {
+    grid-template-columns: 1fr;
+    gap: 32px;
+    padding-bottom: 90px;
+  }
   .cta-title {
-    font-size: 30px;
-    line-height: 1.25;
+    font-size: 32px;
+    line-height: 1.22;
   }
   .cta-desc {
     font-size: 14px;
-    margin-bottom: 28px;
+    margin-bottom: 24px;
   }
-  .cta-actions {
+  .cta-lines {
     flex-direction: column;
-    gap: 10px;
+    gap: 12px;
   }
-  .cta-btn {
-    width: 100%;
-    justify-content: center;
-    padding: 14px 20px;
-    font-size: 15px;
+  .cta-line {
+    font-size: 16px;
   }
-  .cta-btn-sub {
-    border-left: none;
-    opacity: 0.8;
-    margin-left: auto;
-    padding-left: 0;
+  .cta-qr-card {
+    width: 200px;
+    padding: 22px 22px 18px;
+  }
+  .cta-bigword {
+    font-size: 22vw;
   }
   .cta-back-top {
-    right: 20px;
-    bottom: 18px;
+    right: 16px;
+    bottom: 14px;
     font-size: 12px;
   }
 }
@@ -3910,30 +3963,42 @@ body {
   <!-- 求职 CTA -->
   <section class="section" id="cta">
     <div class="cta-card">
-      <div class="cta-eyebrow">LET'S CONNECT</div>
-      <h2 class="cta-title">期待遇见<br>下一段精彩旅程</h2>
-      <p class="cta-desc">
-        我正在寻找产品经理方向的实习机会。<br>
-        如果你也对智能座舱、工业互联网或 AI 产品感兴趣，
-        欢迎随时联系我聊聊～
-      </p>
-      <div class="cta-actions">
-        <a class="cta-btn cta-btn-primary" href="tel:19519938670">
-          <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-            <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/>
-          </svg>
-          拨打电话
-          <span class="cta-btn-sub">19519938670</span>
-        </a>
-        <button class="cta-btn cta-btn-secondary" onclick="copyEmail()">
-          <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-            <rect x="9" y="9" width="13" height="13" rx="2" ry="2"/>
-            <path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/>
-          </svg>
-          <span id="ctaBtnCopy">复制邮箱</span>
-          <span class="cta-btn-sub">2646158571@qq.com</span>
-        </button>
+      <div class="cta-grid">
+        <!-- 左侧：标题 + 标签 + 联系方式 -->
+        <div class="cta-left">
+          <div class="cta-index">06 / CONTACT</div>
+          <div class="cta-eyebrow">Let's Talk</div>
+          <h2 class="cta-title">下一段经历，<br>也许可以一起创造。</h2>
+          <p class="cta-desc">
+            欢迎通过电话或邮箱联系我，聊聊产品实习、项目机会与创意想法。
+          </p>
+          <div class="cta-tags">
+            <span class="cta-tag">产品经理实习 <em>×</em></span>
+            <span class="cta-tag">开放合作 <em>×</em></span>
+            <span class="cta-tag">作品交流 <em>×</em></span>
+          </div>
+          <div class="cta-lines">
+            <a class="cta-line" href="tel:19519938670">
+              <span class="cta-line-label">PHONE</span>
+              <span class="cta-line-value">195 1993 8670</span>
+            </a>
+            <button class="cta-line" onclick="copyEmail()">
+              <span class="cta-line-label">EMAIL</span>
+              <span class="cta-line-value" id="ctaEmailValue">2646158571@qq.com</span>
+            </button>
+          </div>
+        </div>
+
+        <!-- 右侧：二维码玻璃卡 -->
+        <div class="cta-qr-card">
+          <img src="images/contact-qr.svg" alt="扫码查看我的简历">
+          <div class="cta-qr-caption">扫码查看我的简历</div>
+        </div>
       </div>
+
+      <!-- 底部巨型描边背景字 -->
+      <div class="cta-bigword" aria-hidden="true">LET'S BUILD</div>
+
       <button class="cta-back-top" onclick="scrollToTop()">
         回到顶部
         <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
@@ -4688,23 +4753,23 @@ document.addEventListener('DOMContentLoaded', function() {
 const CTA_EMAIL = '2646158571@qq.com';
 
 function copyEmail() {
-  const btn = document.getElementById('ctaBtnCopy');
-  const originalText = btn.textContent;
+  const valEl = document.getElementById('ctaEmailValue');
+  const original = CTA_EMAIL;
+  const showOk = () => {
+    if (!valEl) return;
+    valEl.textContent = '邮箱已复制 ✓';
+    setTimeout(() => { valEl.textContent = original; }, 1800);
+  };
   const fallback = () => {
     const ta = document.createElement('textarea');
     ta.value = CTA_EMAIL;
     document.body.appendChild(ta);
     ta.select();
-    try { document.execCommand('copy'); btn.textContent = '已复制 ✓'; }
-    catch (e) { btn.textContent = '复制失败'; }
+    try { document.execCommand('copy'); showOk(); } catch (e) {}
     document.body.removeChild(ta);
-    setTimeout(() => btn.textContent = originalText, 2000);
   };
   if (navigator.clipboard && navigator.clipboard.writeText) {
-    navigator.clipboard.writeText(CTA_EMAIL).then(() => {
-      btn.textContent = '已复制 ✓';
-      setTimeout(() => btn.textContent = originalText, 2000);
-    }).catch(fallback);
+    navigator.clipboard.writeText(CTA_EMAIL).then(showOk).catch(fallback);
   } else {
     fallback();
   }
