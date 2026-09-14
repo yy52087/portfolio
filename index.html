@@ -1,4 +1,4 @@
-﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿<!DOCTYPE html>
+﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿<!DOCTYPE html>
 <html lang="zh-CN">
 <head>
 <meta charset="UTF-8">
@@ -176,6 +176,11 @@ body {
   scroll-margin-top: 80px;
   padding: 48px 0 24px;
   border-top: 1px solid var(--border-light, rgba(0,0,0,0.06));
+}
+/* 首屏以下 section 离屏时跳过渲染 */
+.section:not(:first-of-type) {
+  content-visibility: auto;
+  contain-intrinsic-size: 600px;
 }
 .section:first-of-type {
   border-top: none;
@@ -4077,6 +4082,17 @@ document.querySelectorAll('.section').forEach(section => {
   navObserver.observe(section);
 });
 
+/* ==================== 视口外暂停无限动画 ==================== */
+const animPauseObserver = new IntersectionObserver((entries) => {
+  entries.forEach(entry => {
+    entry.target.style.animationPlayState = entry.isIntersecting ? 'running' : 'paused';
+  });
+}, { rootMargin: '100px' });
+
+document.querySelectorAll('.ji-dot, .portrait-ring, .portrait-circle, .portrait-accent, .card-back-1').forEach(el => {
+  animPauseObserver.observe(el);
+});
+
 /* ==================== 移动端汉堡菜单 ==================== */
 const menuToggle = document.getElementById('menuToggle');
 const navLinks = document.getElementById('navLinks');
@@ -4401,23 +4417,10 @@ window.addEventListener('scroll', () => {
     });
   }
 
-  // ====== Hero 肖像 parallax ======
+  // ====== Hero 肖像（移除 scrub parallax，改用 CSS 悬浮，减少滚动逐帧计算） ======
   function heroParallax() {
-    if (prefersReduced) return;
-    const portrait = document.querySelector('.portrait-wrap');
-    if (!portrait) return;
-
-    gsap.to(portrait, {
-      y: -25,
-      ease: 'none',
-      scrollTrigger: {
-        trigger: '#home',
-        start: 'top top',
-        end: 'bottom top',
-        scrub: 0.5
-      }
-    });
-
+    // CSS portraitFloat 已处理悬浮效果，不再需要 GSAP scrub
+    return;
   }
 
   // ====== 启动 ======
