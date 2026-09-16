@@ -13,3 +13,4 @@ Thumbs.db
 # 脚本（网站运行不需要）
 *.ps1
 *.cs
+*.pptx
